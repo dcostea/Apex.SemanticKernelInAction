@@ -20,15 +20,15 @@ var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
     Temperature = 0.1,
     ChatSystemPrompt = """
         You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
-        Your task is to break down complex commands into a sequence of these basic moves.
-        Provide only the sequence of the basic movements, without any additional explanations.
+        You have to break down the provided complex commands into basic moves you know.
+        Respond only with the moves, without any additional explanations.
         """
 });
 
 while (true)
 {
     Console.Write(" User >>> ");
-    var prompt = Console.ReadLine(); // e.g. "There is a tree directly in front of the car. Avoid it and then resume the initial direction."
+    var prompt = Console.ReadLine(); // e.g. "There is a tree directly in front of the car. Avoid it and then come back to the original path."
     if (string.IsNullOrEmpty(prompt)) break;
 
     var response = await kernel.InvokePromptAsync(prompt, kernelArguments);

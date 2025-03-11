@@ -43,8 +43,9 @@ var kernelArguments = new KernelArguments
 var template = """
     <message role="system">
         You are an AI assistant controlling a robot car capable of performing basic moves: {{robot_car.movements}}.
-        Your task is to break down complex commands into a sequence of these basic moves.
-                        
+        You have to break down the provided complex commands into basic moves you know.
+        Respond only with the moves, without any additional explanations.
+        
         # Context
         robot car name: {{robot_car.name}}
     </message>
@@ -64,10 +65,10 @@ var promptTemplateConfig = new PromptTemplateConfig()
 };
 
 var promptTemplateFactory = new LiquidPromptTemplateFactory();
-//////var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
+var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
 
 // rendering prompt using prompt template and kernel arguments
-//////var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
+var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
 //////await kernel.InvokePromptAsync(renderedPrompt, kernelArguments);
 
 // querying using rendered prompt

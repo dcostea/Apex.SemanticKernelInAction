@@ -24,7 +24,6 @@ history.AddSystemMessage("""
     """
 );
 
-#pragma warning disable SKEXP0001 // FunctionChoiceBehavior is experimental and it needs to be enabled explicitly
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     Temperature = 0.1,
@@ -34,7 +33,7 @@ var executionSettings = new OpenAIPromptExecutionSettings
 while (true)
 {
     Console.Write(" User >>> ");
-    var prompt = Console.ReadLine(); // You have a tree in front of the car. Avoid it and then resume the initial direction.
+    var prompt = Console.ReadLine(); // There is a tree directly in front of the car. Avoid it and then come back to the original path.
     if (string.IsNullOrEmpty(prompt)) break;
 
     history.AddUserMessage(prompt);

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -14,30 +13,58 @@ var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Information));
 var kernel = builder.Build();
 
-var prompt = """
-    Your task is to break down complex commands into a sequence basic moves such as {{$basic_moves}}.
-    Provide only the sequence of the basic movements, without any additional explanations.
+// Create a semantic function
+var semanticFunctionPrompt = """
+    Your task is to break down complex commands into a sequence of these basic moves.
+    The permitted basic moves are: {{$basic_moves}}.
+    
+    [COMPLEX COMMAND START]
+    {{$input}}
+    [COMPLEX COMMAND END]
 
-    Complex command:
-    {{$input}}.
+    Commands:
     """;
+var semanticFunction = kernel.CreateFunctionFromPrompt(semanticFunctionPrompt, functionName: "BreakdownComplexCommands", description: "It breaks down the given complex command into a step-by-step sequence of basic moves.");
 
+// Create a native function
 var nativeFunction = kernel.CreateFunctionFromMethod(
-    typeof(DateTimeFunctions).GetMethod(nameof(DateTimeFunctions.GetCurrentDay))!,
-    new DateTimeFunctions(),
-    "GetCurrentDay",
-    "Gets the current day."
+    typeof(MaintenanceFunctions).GetMethod(nameof(MaintenanceFunctions.CalibrateSensors))!,
+    new MaintenanceFunctions(),
+    "CalibrateSensors",
+    "Calibrates all sensors on the robot car."
 );
 
-var semanticFunction = kernel.CreateFunctionFromPrompt(prompt, functionName: "BreakdownComplexCommands", description: "It breaks down a complex command into basic commands.");
-var functions = new List<KernelFunction> { semanticFunction, nativeFunction };
-kernel.ImportPluginFromFunctions("date_plugin", "Date plugin.", functions);
+// Import both functions into a plugin
+var hybridFunctions = new List<KernelFunction> { semanticFunction, nativeFunction };
+
+kernel.ImportPluginFromFunctions("robot_car_plugin", "Robot car plugin.", hybridFunctions);
 
 PrintAllPluginFunctions(kernel);
 
+var kernelArguments = new KernelArguments
+{
+    ["input"] = "There is a tree directly in front of the car. Avoid it and then come back to the original path.",
+    ["basic_moves"] = "forward, backward, turn left, turn right, and stop"
+};
+
+// The prompt calls CalibrateSensors function from the kernel plugin
+var prompt = """
+    You are an AI assistant controlling a robot car.
+    Status: {{CalibrateSensors}}
+
+    Provide only the sequence of the basic movements, without any additional explanations.
+        
+    Complex command: {{$input}}.
+    """;
+
+// Invoke the prompt with the kernel arguments and kernel plugin
+var response = await kernel.InvokePromptAsync(prompt, kernelArguments);
+Console.WriteLine($"RENDERED PROMPT: {response.RenderedPrompt}");
+
+Console.WriteLine($"RESPONSE: {response}");
 
 static void PrintAllPluginFunctions(Kernel kernel)
 {
@@ -59,26 +86,11 @@ static void PrintAllPluginFunctions(Kernel kernel)
     }
 }
 
-public class DateTimeFunctions
+public class MaintenanceFunctions
 {
-    public DayOfWeek GetCurrentDay() => DateTime.Now.DayOfWeek;
-}
-
-
-[Description("Date and time plugin.")]
-public class DateTimePlugin
-{
-    [KernelFunction]
-    [Description("Retrieves the current date in provided format.")]
-    public static string GetCurrentDate([Description("Provided date format.")] string format = "d")
+    public static async Task<string> CalibrateSensors()
     {
-        return DateTime.Now.ToString("D");
-    }
-
-    [KernelFunction]
-    [Description("Retrieves the current time in provided format.")]
-    public static string GetCurrentTime([Description("Provided time format.")] string format = "t")
-    {
-        return DateTime.Now.ToString("T");
+        Console.WriteLine($"[{DateTime.Now:mm:ss}] CALIBRATING sensors...");
+        return await Task.FromResult("All sensors have been calibrated.");
     }
 }

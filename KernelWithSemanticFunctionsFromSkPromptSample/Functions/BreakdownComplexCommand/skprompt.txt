@@ -1,0 +1,10 @@
+﻿Your task is to break down complex commands into a sequence of these basic moves.
+The permitted basic moves are: {{$basic_moves}}.
+
+[COMPLEX COMMAND START]
+{{$input}}
+[COMPLEX COMMAND END]
+
+Provide only the sequence of the basic movements, without any additional explanations.
+
+Commands:

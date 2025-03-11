@@ -1,0 +1,58 @@
+﻿using ProtoBuf.Meta;
+
+syntax = "proto3";
+
+package robotcar;
+
+// Robot car motors service
+service MotorsService
+{
+    // Basic command: Moves the robot car backward
+    rpc Backward (BackwardRequest) returns (MotorResponse);
+
+    // Basic command: Moves the robot car forward
+    rpc Forward (ForwardRequest) returns (MotorResponse);
+
+    // Basic command: Stops the robot car
+    rpc Stop (StopRequest) returns (MotorResponse);
+
+    // Basic command: Turns the robot car anticlockwise
+    rpc TurnLeft (TurnRequest) returns (MotorResponse);
+
+    // Basic command: Turns the robot car clockwise
+    rpc TurnRight (TurnRequest) returns (MotorResponse);
+}
+
+// Request message for backward movement
+message BackwardRequest
+{
+    // The distance (in meters) to move the robot car
+    optional int32 distance = 1;
+}
+
+// Request message for forward movement
+message ForwardRequest
+{
+    // The distance (in meters) to move the robot car
+    optional int32 distance = 1;
+}
+
+// Request message for stopping
+message StopRequest
+{
+    // Empty request as Stop doesn't require parameters
+}
+
+// Request message for turning
+message TurnRequest
+{
+    // The angle (in ° / degrees) to turn the robot car
+    int32 angle = 1;
+}
+
+// Response message for all motor actions
+message MotorResponse
+{
+  // The result of the motor action
+  string result = 1;
+}

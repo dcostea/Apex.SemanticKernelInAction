@@ -18,7 +18,7 @@ var kernel = Kernel.CreateBuilder()
 
 var commandsPluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins", "CommandsPlugin");
 kernel.ImportPluginFromPromptDirectory(commandsPluginPath, "CommandsPlugin");
-kernel.ImportPluginFromType<RobotCarPlugin>();
+//kernel.ImportPluginFromType<RobotCarPlugin>();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var history = new ChatHistory();
@@ -27,17 +27,17 @@ history.AddSystemMessage("""
     """
 );
 
-#pragma warning disable SKEXP0001 // FunctionChoiceBehavior is experimental and it needs to be enabled explicitly
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     Temperature = 0.1,
+    //ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
     FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
 };
 
 while (true)
 {
     Console.Write(" User >>> ");
-    var prompt = Console.ReadLine(); // You have a tree in front of the car. Avoid it and then resume the initial direction.
+    var prompt = Console.ReadLine(); // There is a tree directly in front of the car. Avoid it and then come back to the original path.
     if (string.IsNullOrEmpty(prompt)) break;
 
     history.AddUserMessage(prompt);

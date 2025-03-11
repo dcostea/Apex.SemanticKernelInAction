@@ -26,10 +26,9 @@ var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
     Logprobs = true, // Logprobs instructs the model to populate the logarithmic probabilities in the response
     TopLogprobs = 10, // TopLogprobs instructs the model how many likely tokens (with its logarithmic probabilities) to return for each token
     ChatSystemPrompt = """
-        You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, left, and right.
-
-        Your task is to break down complex commands into a sequence of these basic moves.
-        Provide only the sequence of the basic movements, without any additional explanations.
+        You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+        You have to break down the provided complex commands into basic moves you know.
+        Respond only with the moves, without any additional explanations.
         """ // the system prompt tailors the model behaviour
 });
 

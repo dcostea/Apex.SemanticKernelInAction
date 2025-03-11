@@ -1,35 +1,31 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var builder = Kernel.CreateBuilder();
 //builder.AddAzureOpenAIChatCompletion(
-//    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-//    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-//    apiKey: configuration["AzureOpenAI:ApiKey"]!);
+//deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
+//endpoint: configuration["AzureOpenAI:Endpoint"]!,
+//apiKey: configuration["AzureOpenAI:ApiKey"]!);
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+//builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-//kernel.ImportPluginFromType<DateTimePlugin>("datetime_plugin");
-kernel.ImportPluginFromObject(new DateTimePlugin(), "datetime_plugin");
+kernel.ImportPluginFromObject(new SensorsPlugin(), "sensors_plugin");
 
 // Preparing the method function from reflection
-var methodReflectedFunction = kernel.CreateFunctionFromMethod(
-    typeof(DateTimeFunctions).GetMethod(nameof(DateTimeFunctions.GetCurrentDay))!,
-    new DateTimeFunctions(),
-    "GetCurrentDay",
-    "Gets the current day."
+var nativeFunction = kernel.CreateFunctionFromMethod(
+    typeof(MaintenanceFunctions).GetMethod(nameof(MaintenanceFunctions.CalibrateSensors))!,
+    new MaintenanceFunctions(),
+    "calibrate_sensors",
+    "Calibrates all sensors on the robot car."
 );
-var functions = new List<KernelFunction> { methodReflectedFunction };
-kernel.ImportPluginFromFunctions("date_plugin", "Date plugin.", functions);
-
+kernel.ImportPluginFromFunctions("maintenance_plugin", "Robot car maintenance plugin.", [nativeFunction]);
 
 PrintAllPluginFunctions(kernel);
 
@@ -44,7 +40,7 @@ static void PrintAllPluginFunctions(Kernel kernel)
 
         foreach (var function in plugin.GetFunctionsMetadata())
         {
-            Console.WriteLine($"\t\t{function.Name}: {function.Description} | output: {function.ReturnParameter.Schema}, input parameters:");
+            Console.WriteLine($"\t\t{function.Name}: {function.Description} | output parameter schema: {function.ReturnParameter.Schema}, input parameters:");
 
             foreach(var parameter in function.Parameters)
             {
@@ -54,27 +50,33 @@ static void PrintAllPluginFunctions(Kernel kernel)
     }
 }
 
-public class DateTimeFunctions
+public class MaintenanceFunctions
 {
-    public DayOfWeek GetCurrentDay() => DateTime.Now.DayOfWeek;
-}
-
-
-[Description("Date and time plugin.")]
-public class DateTimePlugin
-{
-    [KernelFunction]
-    [Description("Retrieves the current date in provided format.")]
-    public static string GetCurrentDate([Description("Provided date format.")] string format = "d")
+    public static async Task<string> CalibrateSensors()
     {
-        return DateTime.Now.ToString("D");
-    }
-
-    [KernelFunction]
-    [Description("Retrieves the current time in provided format.")]
-    public static string GetCurrentTime([Description("Provided time format.")] string format = "t")
-    {
-        return DateTime.Now.ToString("T");
+        Console.WriteLine($"[{DateTime.Now:mm:ss}] CALIBRATING sensors...");
+        return await Task.FromResult("All sensors have been calibrated.");
     }
 }
 
+[Description("Robot car sensors plugin.")]
+public class SensorsPlugin
+{
+    [KernelFunction("read_temperature"), Description("Use thermal sensors to detect abnormal heat levels.")]
+    public async Task<int> ReadTemperature()
+    {
+        var random = new Random();
+        var temperature = random.Next(-20, 100); // Simulate temperature reading
+        Console.WriteLine($"[{DateTime.Now:mm:ss}] SENSOR READING: Temperature: {temperature} Celsius degrees.");
+        return await Task.FromResult(temperature);
+    }
+
+    [KernelFunction("read_wind_speed"), Description("Reads and returns the wind speed in kmph.")]
+    public async Task<int> ReadWindSpeed()
+    {
+        var random = new Random();
+        var speed = random.Next(0, 100);
+        Console.WriteLine($"[{DateTime.Now:mm:ss}] SENSOR READING: Wind speed: {speed} kmph"); // Simulate wind speed reading
+        return await Task.FromResult(speed);
+    }
+}

@@ -47,7 +47,8 @@ var promptyTemplate = """
     system:
 
     You are an AI assistant controlling a robot car capable of performing basic moves: {{robot_car.movements}}.
-    Your task is to break down complex commands into a sequence of these basic moves.
+    You have to break down the provided complex commands into basic moves you know.
+    Respond only with the moves, without any additional explanations.
     
     robot car name: {{robot_car.name}}
 
@@ -57,7 +58,7 @@ var promptyTemplate = """
     {% endfor %}
 
     user:
-    There is a tree directly in front of the car. Avoid it and then resume the initial direction.
+    There is a tree directly in front of the car. Avoid it and then come back to the original path.
     """;
 
 var robotCar = new

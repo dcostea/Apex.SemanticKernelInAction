@@ -1,5 +1,4 @@
-﻿Your task is to break down complex commands into a sequence of these basic moves.
-The permited basic moves are: forward, backward, turn left, turn right, and stop.
+﻿Your task is to break down complex commands into a sequence of basic moves such as {{$basic_moves}}.
 
 [COMPLEX COMMAND START]
 {{$input}}

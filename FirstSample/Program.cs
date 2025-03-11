@@ -4,22 +4,38 @@ using Microsoft.SemanticKernel;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var kernel = Kernel.CreateBuilder()
-    //.AddAzureOpenAIChatCompletion(
-    //deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-    //endpoint: configuration["AzureOpenAI:Endpoint"]!,
-    //apiKey: configuration["AzureOpenAI:ApiKey"]!)
-    .AddOpenAIChatCompletion(
-            modelId: configuration["OpenAI:ModelId"]!,
-            apiKey: configuration["OpenAI:ApiKey"]!)
+    .AddAzureOpenAIChatCompletion(
+        deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
+        endpoint: configuration["AzureOpenAI:Endpoint"]!,
+        apiKey: configuration["AzureOpenAI:ApiKey"]!)
+    //.AddOpenAIChatCompletion(
+    //    modelId: configuration["OpenAI:ModelId"]!,
+    //    apiKey: configuration["OpenAI:ApiKey"]!)
     .Build();
 
-var response = await kernel.InvokePromptAsync("""
-    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
-    Your task is to break down complex commands into a sequence of these basic moves.
-                    
-    ## Complex command:
-    "There is a tree directly in front of the car. Avoid it and then resume the initial direction."
-    """);
+var prompt = """  
+    ### Persona  
+    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.  
+
+    ### Action  
+    You have to break down the provided complex commands into basic moves you know.  
+
+    ### Context  
+    Complex command: "There is a tree directly in front of the car. Avoid it and then come back to the original path."  
+
+    ### Template  
+    Use JSON array like [move1, move2, move3] for response.  
+    Respond only with the moves, without any additional explanations.  
+    """;
+
+var response = await kernel.InvokePromptAsync(prompt);
+
+//var response = await kernel.InvokePromptAsync("""
+//    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+//    You have to break down the provided complex commands into basic moves you know.
+
+//    Complex command: "There is a tree directly in front of the car. Avoid it and then come back to the original path."
+//    """);
 
 Console.WriteLine(response);
 

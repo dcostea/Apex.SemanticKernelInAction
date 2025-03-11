@@ -8,13 +8,13 @@ using System.Text.Json;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var builder = Kernel.CreateBuilder();
-//builder.AddAzureOpenAIChatCompletion(
-//    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-//    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-//    apiKey: configuration["AzureOpenAI:ApiKey"]!);
-builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!);
+builder.AddAzureOpenAIChatCompletion(
+    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
+    endpoint: configuration["AzureOpenAI:Endpoint"]!,
+    apiKey: configuration["AzureOpenAI:ApiKey"]!);
+//builder.AddOpenAIChatCompletion(
+//    modelId: configuration["OpenAI:ModelId"]!,
+//    apiKey: configuration["OpenAI:ApiKey"]!);
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Debug));
 var kernel = builder.Build();
 
@@ -25,15 +25,14 @@ var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
 {
     ResponseFormat = typeof(StepsResult), // model response can be formatted as json_object
     ChatSystemPrompt = """
-        You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, left, and right.
-
-        Your task is to break down complex commands into a sequence of these basic moves.
-        Provide only the sequence of the basic movements, without any additional explanations.
+        You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+        You have to break down the provided complex commands into basic moves you know.
+        Respond only with the moves, without any additional explanations.
         """ // the system prompt taylors the model behaviour
 });
 
 var response = await kernel.InvokePromptAsync("""
-    There is a tree directly in front of the car. Avoid it and then resume the initial direction.
+    There is a tree directly in front of the car. Avoid it and then come back to the original path.
     """, // the user prompt which changes which each new query
     kernelArguments);
 
@@ -46,7 +45,39 @@ foreach (var step in stepsResult!.Steps!)
     Console.WriteLine($"  {step}");
 }
 
+//var response = await kernel.InvokePromptAsync<StepsResult>("""
+//    There is a tree directly in front of the car. Avoid it and then come back to the original path.
+//    """, // the user prompt which changes which each new query
+//    kernelArguments);
+
+//logger.LogDebug("RESPONSE: {response}", response);
+
+
+//[TypeConverter(typeof(StepsResultTypeConverter))]
 public sealed class StepsResult
 {
     public List<string>? Steps { get; set; }
 }
+
+//public sealed class StepsResultTypeConverter : TypeConverter
+//{
+//    public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) => true;
+
+//    /// <summary>
+//    /// This method is used to convert object from string to actual type. This will allow to pass object to
+//    /// method function which requires it.
+//    /// </summary>
+//    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
+//    {
+//        return JsonSerializer.Deserialize<StepsResult>((string)value);
+//    }
+
+//    /// <summary>
+//    /// This method is used to convert actual type to string representation, so it can be passed to AI
+//    /// for further processing.
+//    /// </summary>
+//    public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType)
+//    {
+//        return JsonSerializer.Serialize(value);
+//    }
+//}

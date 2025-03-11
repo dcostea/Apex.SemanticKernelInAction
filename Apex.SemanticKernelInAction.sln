@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.3 ChatbotSample", "Chatbo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.4 ChatbotWithHistorySample", "ChatbotWithHistorySample\2.4 ChatbotWithHistorySample.csproj", "{22C9C484-A25B-4578-9336-FE9F9CC88676}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.1 ChatbotServiceSample (unfinished)", "ChatbotServiceSample\5.1 ChatbotServiceSample (unfinished).csproj", "{7CD5767C-1248-49E5-959D-7834D9AEA0E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "7.1 ChatbotServiceSample (unfinished)", "ChatbotServiceSample\7.1 ChatbotServiceSample (unfinished).csproj", "{7CD5767C-1248-49E5-959D-7834D9AEA0E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.1 TextGenerationSample", "TextGenerationSample\2.1 TextGenerationSample.csproj", "{163EB510-02DE-480A-AF13-05A9E1BE619F}"
 EndProject
@@ -29,39 +29,55 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1a KernelSample", "Kernel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.1 FirstSample", "FirstSample\1.1 FirstSample.csproj", "{594B8CC0-7A7F-4407-886E-51EFBCC89C2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.3b KernelWithExecutionSettingsSample", "KernelWithExecutionSettingsSample\3.3b KernelWithExecutionSettingsSample.csproj", "{72168594-0551-4BDD-8C58-E43AF6E7BD58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.3b KernelWithExecutionSettingsSample", "KernelWithExecutionSettingsSample\4.3b KernelWithExecutionSettingsSample.csproj", "{72168594-0551-4BDD-8C58-E43AF6E7BD58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.5d KernelWithPromptyFunctionSample", "KernelWithPromptyFunctionSample\3.5d KernelWithPromptyFunctionSample.csproj", "{6B75C5B0-8BAF-4A40-A04A-976B5A559A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.5d KernelWithPromptyFunctionSample", "KernelWithPromptyFunctionSample\4.5d KernelWithPromptyFunctionSample.csproj", "{6B75C5B0-8BAF-4A40-A04A-976B5A559A6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.5a KernelWithPromptTemplateSample", "KernelWithPromptTemplateSample\3.5a KernelWithPromptTemplateSample.csproj", "{FBB41DDD-3B02-4C84-B65C-DE2ADA5A0E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.5a KernelWithPromptTemplateSample", "KernelWithPromptTemplateSample\4.5a KernelWithPromptTemplateSample.csproj", "{FBB41DDD-3B02-4C84-B65C-DE2ADA5A0E3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.2a KernelWithMessagesSample", "KernelWithMessagesSample\3.2a KernelWithMessagesSample.csproj", "{EBB7DFF4-2688-482B-A695-1C272375604B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.2a KernelWithMessagesSample", "KernelWithMessagesSample\4.2a KernelWithMessagesSample.csproj", "{EBB7DFF4-2688-482B-A695-1C272375604B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.5b KernelWithLiquidPromptTemplateSample", "KernelWithLiquidPromptTemplateSample\3.5b KernelWithLiquidPromptTemplateSample.csproj", "{4B977B12-7ADB-4547-BB33-2BF11F99BA5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.5b KernelWithLiquidPromptTemplateSample", "KernelWithLiquidPromptTemplateSample\4.5b KernelWithLiquidPromptTemplateSample.csproj", "{4B977B12-7ADB-4547-BB33-2BF11F99BA5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.5c KernelWithHandlebarsPromptTemplateSample", "KernelWithHandlebarsPromptTemplateSample\3.5c KernelWithHandlebarsPromptTemplateSample.csproj", "{49B573B6-FC8D-4D26-8A24-47295CB63181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.5c KernelWithHandlebarsPromptTemplateSample", "KernelWithHandlebarsPromptTemplateSample\4.5c KernelWithHandlebarsPromptTemplateSample.csproj", "{49B573B6-FC8D-4D26-8A24-47295CB63181}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.4a KernelWithAIServiceSelectorSample", "KernelWithAIServiceSelectorSample\3.4a KernelWithAIServiceSelectorSample.csproj", "{5C8F8F1D-348B-4FF5-8F8E-128F6776892A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1b KernelWithJsonResponseSample", "KernelWithJsonResponseSample\3.1b KernelWithJsonResponseSample.csproj", "{C69C1CBE-4B14-4F09-85DB-01F11D8493FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.3a KernelWithKernelArgumentsSample", "KernelWithKernelArgumentsSample\3.3a KernelWithKernelArgumentsSample.csproj", "{1C28B2DE-790A-4106-A628-962AD5077E18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.3a KernelWithKernelArgumentsSample", "KernelWithKernelArgumentsSample\4.3a KernelWithKernelArgumentsSample.csproj", "{1C28B2DE-790A-4106-A628-962AD5077E18}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.1a KernelWithNativeFunctionsSample", "KernelWithNativeFunctionsSample\4.1a KernelWithNativeFunctionsSample.csproj", "{B4CFB6EB-44AC-4C35-AC71-8AD406D521B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.1a KernelWithNativeFunctionsSample", "KernelWithNativeFunctionsSample\5.1a KernelWithNativeFunctionsSample.csproj", "{B4CFB6EB-44AC-4C35-AC71-8AD406D521B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.1b KernelWithSemanticFunctionsSample", "KernelWithSemanticFunctionsSample\4.1b KernelWithSemanticFunctionsSample.csproj", "{600B77BE-2149-40A6-BC34-BF0FAB9AA15A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.1b KernelWithSemanticFunctionsSample", "KernelWithSemanticFunctionsSample\5.1b KernelWithSemanticFunctionsSample.csproj", "{600B77BE-2149-40A6-BC34-BF0FAB9AA15A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1c KernelWithStreamingSample", "KernelWithStreamingSample\3.1c KernelWithStreamingSample.csproj", "{1837434A-3362-4CD9-8B8C-17373B2DEF50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1b KernelWithMultipleServicesSample", "KernelWithMultipleServicesSample\3.1b KernelWithMultipleServicesSample.csproj", "{92E85DC8-33D0-4416-80EF-4E282BC713D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.2b PluginsWithSemanticFunctionsSample", "PluginsWithSemanticFunctionsSample\4.2b PluginsWithSemanticFunctionsSample.csproj", "{D04147B7-CBA6-4822-952A-C09EAE9F47E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.2b PluginsWithSemanticFunctionsSample", "PluginsWithSemanticFunctionsSample\5.2b PluginsWithSemanticFunctionsSample.csproj", "{D04147B7-CBA6-4822-952A-C09EAE9F47E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.2a PluginsWithNativeFunctionsSample", "PluginsWithNativeFunctionsSample\4.2a PluginsWithNativeFunctionsSample.csproj", "{B2D4EFAB-5787-4B21-B2DE-5C873EFB1413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.2a PluginsWithNativeFunctionsSample", "PluginsWithNativeFunctionsSample\5.2a PluginsWithNativeFunctionsSample.csproj", "{B2D4EFAB-5787-4B21-B2DE-5C873EFB1413}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.2c PluginsWithHybridFunctionsSample", "PluginsWithHybridFunctionsSample\4.2c PluginsWithHybridFunctionsSample.csproj", "{BBC30A96-BFC2-4804-91C5-0B9642562AD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.2c PluginsWithHybridFunctionsSample", "PluginsWithHybridFunctionsSample\5.2c PluginsWithHybridFunctionsSample.csproj", "{BBC30A96-BFC2-4804-91C5-0B9642562AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.2d PluginsWithOpenApiFunctionsSample", "PluginsWithOpenApiFunctionsSample\4.2d PluginsWithOpenApiFunctionsSample.csproj", "{D5AFB316-7A1A-4ED5-8505-D5965982274B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.2d PluginsWithOpenApiFunctionsSample", "PluginsWithOpenApiFunctionsSample\5.2d PluginsWithOpenApiFunctionsSample.csproj", "{D5AFB316-7A1A-4ED5-8505-D5965982274B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.1a PluginsWithFunctionCalling", "PluginsWithFunctionCalling\6.1a PluginsWithFunctionCalling.csproj", "{DDFF796B-FEA0-480C-8970-DDD5227EEE53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1e KernelWithSemanticFunctionsFromYamlSample", "KernelWithSemanticFunctionsFromYamlSample\5.1e KernelWithSemanticFunctionsFromYamlSample.csproj", "{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1d KernelWithSemanticFunctionsFromSkPromptSample", "KernelWithSemanticFunctionsFromSkPromptSample\5.1d KernelWithSemanticFunctionsFromSkPromptSample.csproj", "{B31E3EA3-1EAB-4F6B-9C49-4329328BC86E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig", "KernelWithSemanticFunctionsFromPromptTemplateConfig\5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig.csproj", "{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.2e PluginsWithGrpcFunctionsSample", "PluginsWithGrpcFunctionsSample\5.2e PluginsWithGrpcFunctionsSample.csproj", "{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3a PluginsWithFunctionChaining", "PluginsWithFunctionChaining\5.3a PluginsWithFunctionChaining.csproj", "{D2A607CE-F2B5-4654-97DD-28C83E45D73C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3b PluginsWithFunctionNesting", "PluginsWithFunctionNesting\5.3b PluginsWithFunctionNesting.csproj", "{0589E014-EA07-4EED-BA07-E7BC359BDED5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.4a PluginsUnitTesting", "PluginsUnitTesting\5.4a PluginsUnitTesting.csproj", "{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +205,38 @@ Global
 		{D5AFB316-7A1A-4ED5-8505-D5965982274B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5AFB316-7A1A-4ED5-8505-D5965982274B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5AFB316-7A1A-4ED5-8505-D5965982274B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDFF796B-FEA0-480C-8970-DDD5227EEE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDFF796B-FEA0-480C-8970-DDD5227EEE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDFF796B-FEA0-480C-8970-DDD5227EEE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDFF796B-FEA0-480C-8970-DDD5227EEE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31E3EA3-1EAB-4F6B-9C49-4329328BC86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31E3EA3-1EAB-4F6B-9C49-4329328BC86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31E3EA3-1EAB-4F6B-9C49-4329328BC86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31E3EA3-1EAB-4F6B-9C49-4329328BC86E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0589E014-EA07-4EED-BA07-E7BC359BDED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0589E014-EA07-4EED-BA07-E7BC359BDED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0589E014-EA07-4EED-BA07-E7BC359BDED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0589E014-EA07-4EED-BA07-E7BC359BDED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

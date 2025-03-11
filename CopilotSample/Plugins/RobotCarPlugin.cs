@@ -10,9 +10,7 @@ public class RobotCarPlugin
     public static async Task<string> Backward([Description("The distance (in meters) to move the robot car.")] int distance)
     {
         // TODO call car motor API, backward endpoint
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"Backward: {distance}m");
-        Console.ResetColor();
+        Console.WriteLine($"ACTION: Backward: {distance}m");
 
         return await Task.FromResult($"moving backward for {distance} meters...");
     }
@@ -21,9 +19,7 @@ public class RobotCarPlugin
     public static async Task<string> Forward([Description("The distance (in meters) to move the robot car.")] int distance)
     {
         // TODO call car motor API, forward endpoint
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"Forward: {distance}m");
-        Console.ResetColor();
+        Console.WriteLine($"ACTION: Forward: {distance}m");
 
         return await Task.FromResult($"moving forward for {distance} meters...");
     }
@@ -32,9 +28,7 @@ public class RobotCarPlugin
     public static async Task<string> Stop()
     {
         // TODO call car motor API, stop endpoint
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("Stop");
-        Console.ResetColor();
+        Console.WriteLine("ACTION: Stop");
 
         return await Task.FromResult("stopping...");
     }
@@ -43,9 +37,7 @@ public class RobotCarPlugin
     public static async Task<string> TurnLeft([Description("The angle (in ° / degrees) to turn the robot car.")] int angle)
     {
         // TODO call car motor API, turn left endpoint
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"TurnLeft: {angle}°");
-        Console.ResetColor();
+        Console.WriteLine($"ACTION: TurnLeft: {angle}°");
 
         return await Task.FromResult($"turning anticlockwise {angle}°...");
     }
@@ -54,9 +46,7 @@ public class RobotCarPlugin
     public static async Task<string> TurnRight([Description("The angle (in ° / degrees) to turn the robot car.")] int angle)
     {
         // TODO call car motor API, turn right endpoint
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"TurnRight: {angle}°");
-        Console.ResetColor();
+        Console.WriteLine($"ACTION: TurnRight: {angle}°");
 
         return await Task.FromResult($"turning clockwise {angle}°...");
     }
