@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.5 ChatbotWithSemanticFunc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.8 ChatCompletionWithVisionSample (unfinished)", "ChatCompletionWithVisionSample\2.8 ChatCompletionWithVisionSample (unfinished).csproj", "{3C46C806-4920-46A8-8939-E45986349C52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatCompletionWithVisionAndPhi35Sample (unfinished)", "ChatCompletionWithVisionAndPhi35Sample\ChatCompletionWithVisionAndPhi35Sample (unfinished).csproj", "{D8153E4A-9401-4EBA-9F15-D4FB84B3B514}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.1a TextGenerationWithKernelArgumentsSample", "TextGenerationWithKernelArgumentsSample\2.1a TextGenerationWithKernelArgumentsSample.csproj", "{E853D26B-A206-4466-AD49-D09A0CB7BAE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.6 ChatbotStreamingWithSemanticFunctionSample", "ChatbotStreamingWithSemanticFunctionSample\2.6 ChatbotStreamingWithSemanticFunctionSample.csproj", "{061144C5-59A4-4D00-86EF-B44342E6E947}"
@@ -123,10 +121,6 @@ Global
 		{3C46C806-4920-46A8-8939-E45986349C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C46C806-4920-46A8-8939-E45986349C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C46C806-4920-46A8-8939-E45986349C52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8153E4A-9401-4EBA-9F15-D4FB84B3B514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8153E4A-9401-4EBA-9F15-D4FB84B3B514}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8153E4A-9401-4EBA-9F15-D4FB84B3B514}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8153E4A-9401-4EBA-9F15-D4FB84B3B514}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E853D26B-A206-4466-AD49-D09A0CB7BAE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E853D26B-A206-4466-AD49-D09A0CB7BAE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E853D26B-A206-4466-AD49-D09A0CB7BAE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
