@@ -24,29 +24,32 @@ public class PluginsSemanticIntegrationTests
         builder.AddOpenAIChatCompletion(
             modelId: configuration["OpenAI:ModelId"]!,
             apiKey: configuration["OpenAI:ApiKey"]!);
-#pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+        #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+        // Register a text embedding service
         builder.AddOpenAITextEmbeddingGeneration(
             modelId: configuration["OpenAI:EmbeddingModelId"]!,
             apiKey: configuration["OpenAI:ApiKey"]!);
-#pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
         var kernel = builder.Build();
 
         var MinSimilarity = 0.70f; // Adjust based on your quality needs
         var expectedResponse = "Semantic Kernel (SK) is an open-source SDK that combines AI services like OpenAI with programming languages like C#";
 
+        // Create and invoke the function for provided prompt
         var function = kernel.CreateFunctionFromPrompt("Explain Semantic Kernel in one sentence");
-        var result = await kernel.InvokeAsync<string>(function);
-        var similarity = await CalculateSimilarity(kernel, expectedResponse, result!);
+        var actualResponse = await kernel.InvokeAsync<string>(function);
+        
+        // Compute the similarity for both expected and actual response
+        var similarity = await CalculateSimilarity(kernel, expectedResponse, actualResponse!);
 
+        // The similarity should be above the suggested threshold MinSimilarity
         Assert.True(similarity >= MinSimilarity, $"Similarity score {similarity:P0} below threshold {MinSimilarity:P0}");
     }
 
     private async Task<float> CalculateSimilarity(Kernel kernel, string string1, string string2)
     {
-#pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+        #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var embeddingService = kernel.GetRequiredService<ITextEmbeddingGenerationService>();
-#pragma warning restore SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
         var embedding1 = await embeddingService.GenerateEmbeddingAsync(string1);
         var embedding2 = await embeddingService.GenerateEmbeddingAsync(string2);

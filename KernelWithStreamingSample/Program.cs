@@ -34,7 +34,7 @@ Console.WriteLine();
 
 var promptFunction = kernel.CreateFunctionFromPrompt(prompt);
 
-Console.WriteLine("STREAMING USING PROMPT FUNCTION");
+Console.WriteLine("STREAMING USING SEMANTIC FUNCTION");
 
 await foreach (var partialResponse in kernel.InvokeStreamingAsync(promptFunction))
 {

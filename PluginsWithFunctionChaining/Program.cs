@@ -43,7 +43,7 @@ var tempReading = await kernel.InvokeAsync<int>(nameof(SensorsPlugin), "read_tem
 arguments["temperature"] = tempReading;
 
 // Move the robot car forward based on the temperature reading
-var movementResult = await kernel.InvokeAsync<string>(nameof(MotorsPlugin), "forward", new() { ["distance"] = tempReading > 50 ? 20 : 5 });
+var movementResult = await kernel.InvokeAsync<string>(nameof(MotorsPlugin), "forward", new() { ["distance"] = tempReading > 50 ? 2 : 10 });
 
 // Report the result
 Console.WriteLine($"""

@@ -21,23 +21,23 @@ kernel.ImportPluginFromType<SensorsPlugin>(nameof(SensorsPlugin));
 kernel.ImportPluginFromType<RainDetectorPlugin>(nameof(RainDetectorPlugin));
 kernel.ImportPluginFromType<EnvironmentalMonitorPlugin>(nameof(EnvironmentalMonitorPlugin));
 
-// Assess the rain threats
-var rainResponse = kernel.InvokeAsync<string>(nameof(EnvironmentalMonitorPlugin), "assess_rain_threats");
+// Assess the rain threat
+var rainResponse = kernel.InvokeAsync<string>(nameof(EnvironmentalMonitorPlugin), "assess_rain_threat");
 Console.WriteLine(rainResponse.Result);
 
 // Remove the RainDetectorPlugin and add the MotorsPlugin
 kernel.Plugins.Remove(kernel.Plugins[nameof(RainDetectorPlugin)]);
 kernel.Plugins.AddFromType<MotorsPlugin>();
 
-// Now assess the fire threats
-var fireResponse = kernel.InvokeAsync<string>(nameof(EnvironmentalMonitorPlugin), "assess_fire_threats");
+// Now assess the fire threat
+var fireResponse = kernel.InvokeAsync<string>(nameof(EnvironmentalMonitorPlugin), "assess_fire_threat");
 Console.WriteLine(fireResponse.Result);
 
 
 public class EnvironmentalMonitorPlugin
 {
-    [KernelFunction("assess_rain_threats")]
-    public async Task<string> AssessRainThreats(Kernel kernel)
+    [KernelFunction("assess_rain_threat")]
+    public async Task<string> AssessRainThreat(Kernel kernel)
     {
         var arguments = new KernelArguments();
         var dropletLevel = await kernel.InvokeAsync<DropletLevel>(nameof(SensorsPlugin), "read_droplet_level");
@@ -54,14 +54,14 @@ public class EnvironmentalMonitorPlugin
             """;
     }
 
-    [KernelFunction("assess_fire_threats")]
-    public async Task<string> AssessFireThreats(Kernel kernel)
+    [KernelFunction("assess_fire_threat")]
+    public async Task<string> AssessFireThreat(Kernel kernel)
     {
         var arguments = new KernelArguments();
         var tempReading = await kernel.InvokeAsync<int>(nameof(SensorsPlugin), "read_temperature");
         arguments["temperature"] = tempReading;
 
-        var movementResult = await kernel.InvokeAsync<string>(nameof(MotorsPlugin), "forward", new() { ["distance"] = tempReading > 50 ? 20 : 5 });
+        var movementResult = await kernel.InvokeAsync<string>(nameof(MotorsPlugin), "forward", new() { ["distance"] = tempReading > 50 ? 2 : 10 });
 
         return $"""
             FIRE THREAT REPORT:

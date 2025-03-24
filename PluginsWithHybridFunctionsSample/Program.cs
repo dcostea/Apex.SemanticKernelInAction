@@ -13,7 +13,6 @@ var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Information));
 var kernel = builder.Build();
 
 // Create a semantic function
@@ -38,8 +37,7 @@ var nativeFunction = kernel.CreateFunctionFromMethod(
 );
 
 // Import both functions into a plugin
-var hybridFunctions = new List<KernelFunction> { semanticFunction, nativeFunction };
-
+List<KernelFunction> hybridFunctions = [ semanticFunction, nativeFunction ];
 kernel.ImportPluginFromFunctions("robot_car_plugin", "Robot car plugin.", hybridFunctions);
 
 PrintAllPluginFunctions(kernel);
@@ -63,8 +61,8 @@ var prompt = """
 // Invoke the prompt with the kernel arguments and kernel plugin
 var response = await kernel.InvokePromptAsync(prompt, kernelArguments);
 Console.WriteLine($"RENDERED PROMPT: {response.RenderedPrompt}");
-
 Console.WriteLine($"RESPONSE: {response}");
+
 
 static void PrintAllPluginFunctions(Kernel kernel)
 {
@@ -72,15 +70,15 @@ static void PrintAllPluginFunctions(Kernel kernel)
 
     foreach (var plugin in kernel.Plugins)
     {
-        Console.WriteLine($"\t[{plugin.Name}] ({plugin.Description}) functions ({plugin.FunctionCount}):");
+        Console.WriteLine($"  [{plugin.Name}] ({plugin.Description}) functions ({plugin.FunctionCount}):");
 
         foreach (var function in plugin.GetFunctionsMetadata())
         {
-            Console.WriteLine($"\t\t[{function.Name}] ({function.Description}) output parameter schema: {function.ReturnParameter.Schema}, input parameters:");
+            Console.WriteLine($"    [{function.Name}] ({function.Description}) output parameter schema: {function.ReturnParameter.Schema}, input parameters:");
 
             foreach (var parameter in function.Parameters)
             {
-                Console.WriteLine($"\t\t\t[{parameter.Name}] schema: {parameter.Schema}");
+                Console.WriteLine($"      [{parameter.Name}] schema: {parameter.Schema}");
             }
         }
     }

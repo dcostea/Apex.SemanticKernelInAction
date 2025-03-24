@@ -16,7 +16,8 @@ builder.AddOpenAIChatCompletion(
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-kernel.ImportPluginFromObject(new SensorsPlugin(), "sensors_plugin");
+kernel.ImportPluginFromObject(new SensorsPlugin("Robby"), "sensors_plugin");
+//kernel.ImportPluginFromType<SensorsPlugin>("sensors_plugin");
 
 // Preparing the method function from reflection
 var nativeFunction = kernel.CreateFunctionFromMethod(
@@ -60,8 +61,10 @@ public class MaintenanceFunctions
 }
 
 [Description("Robot car sensors plugin.")]
-public class SensorsPlugin
+public class SensorsPlugin(string RobotName)
 {
+    public string RobotName { get; } = RobotName;
+
     [KernelFunction("read_temperature"), Description("Use thermal sensors to detect abnormal heat levels.")]
     public async Task<int> ReadTemperature()
     {

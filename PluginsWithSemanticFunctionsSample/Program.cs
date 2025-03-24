@@ -17,8 +17,8 @@ builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace))
 var kernel = builder.Build();
 
 // Importing a plugin from a directory
-////var commandsPluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins", "CommandsPlugin");
-////kernel.ImportPluginFromPromptDirectory(commandsPluginPath, "commands_from_directory_plugin");
+var commandsPluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins", "CommandsPlugin");
+kernel.ImportPluginFromPromptDirectory(commandsPluginPath, "commands_from_directory_plugin");
 
 // Preparing the prompt for the semantic function
 var prompt = """
@@ -33,9 +33,9 @@ var prompt = """
     Commands:
     """;
 // Preparing the semantic function from plain text prompt (not fully packed with all settings such as argument types)
-var functionFromPrompt = kernel.CreateFunctionFromPrompt(prompt, functionName: "breakdown_complex_commands", description: "It breaks down the given complex command into a step-by-step sequence of basic moves.");
+////var functionFromPrompt = kernel.CreateFunctionFromPrompt(prompt, functionName: "breakdown_complex_commands", description: "It breaks down the given complex command into a step-by-step sequence of basic moves.");
 // Importing a plugin from a function list
-kernel.ImportPluginFromFunctions("commands_from_prompt_plugin", "Robot car commands plugin.", [ functionFromPrompt ]);
+////kernel.ImportPluginFromFunctions("commands_from_prompt_plugin", "Robot car commands plugin.", [ functionFromPrompt ]);
 
 PrintAllPluginFunctions(kernel);
 

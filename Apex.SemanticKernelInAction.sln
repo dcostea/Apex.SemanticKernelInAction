@@ -51,9 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.1a KernelWithNativeFuncti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.1b KernelWithSemanticFunctionsSample", "KernelWithSemanticFunctionsSample\5.1b KernelWithSemanticFunctionsSample.csproj", "{600B77BE-2149-40A6-BC34-BF0FAB9AA15A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1c KernelWithStreamingSample", "KernelWithStreamingSample\3.1c KernelWithStreamingSample.csproj", "{1837434A-3362-4CD9-8B8C-17373B2DEF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1d KernelWithStreamingSample", "KernelWithStreamingSample\3.1d KernelWithStreamingSample.csproj", "{1837434A-3362-4CD9-8B8C-17373B2DEF50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1b KernelWithMultipleServicesSample", "KernelWithMultipleServicesSample\3.1b KernelWithMultipleServicesSample.csproj", "{92E85DC8-33D0-4416-80EF-4E282BC713D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.1c KernelWithMultipleServicesSample", "KernelWithMultipleServicesSample\3.1c KernelWithMultipleServicesSample.csproj", "{92E85DC8-33D0-4416-80EF-4E282BC713D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.2b PluginsWithSemanticFunctionsSample", "PluginsWithSemanticFunctionsSample\5.2b PluginsWithSemanticFunctionsSample.csproj", "{D04147B7-CBA6-4822-952A-C09EAE9F47E4}"
 EndProject
@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.2c PluginsWithHybridFunct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.2d PluginsWithOpenApiFunctionsSample", "PluginsWithOpenApiFunctionsSample\5.2d PluginsWithOpenApiFunctionsSample.csproj", "{D5AFB316-7A1A-4ED5-8505-D5965982274B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.1a PluginsWithFunctionCalling", "PluginsWithFunctionCalling\6.1a PluginsWithFunctionCalling.csproj", "{DDFF796B-FEA0-480C-8970-DDD5227EEE53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.1a FunctionCallingWithAutoBehavior", "FunctionCallingWithAutoBehavior\6.1a FunctionCallingWithAutoBehavior.csproj", "{DDFF796B-FEA0-480C-8970-DDD5227EEE53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1e KernelWithSemanticFunctionsFromYamlSample", "KernelWithSemanticFunctionsFromYamlSample\5.1e KernelWithSemanticFunctionsFromYamlSample.csproj", "{4D681FC0-780D-4B08-ACA7-16ADDC64AD80}"
 EndProject
@@ -77,7 +77,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3a PluginsWithFunctionCha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3b PluginsWithFunctionNesting", "PluginsWithFunctionNesting\5.3b PluginsWithFunctionNesting.csproj", "{0589E014-EA07-4EED-BA07-E7BC359BDED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.4a PluginsUnitTesting", "PluginsUnitTesting\5.4a PluginsUnitTesting.csproj", "{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.5a PluginsTesting", "PluginsUnitTesting\5.5a PluginsTesting.csproj", "{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.4a PluginsWithBuiltIn", "PluginsWithBuiltIn\5.4a PluginsWithBuiltIn.csproj", "{6DECD3F1-1762-4F51-9D7C-A4074062C59D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.1b FunctionCallingWithRequiredBehavior", "FunctionCallingWithRequiredBehavior\6.1b FunctionCallingWithRequiredBehavior.csproj", "{DFDE88A9-8426-4657-BEE5-4243D3D0A2A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.1c FunctionCallingWithNoneBehavior", "FunctionCallingWithNoneBehavior\6.1c FunctionCallingWithNoneBehavior.csproj", "{9BF87450-D93F-49AC-A32C-B4ECBC486B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +243,18 @@ Global
 		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{346EBCEE-1B54-47AC-BAB5-CA02D2214F97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DECD3F1-1762-4F51-9D7C-A4074062C59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DECD3F1-1762-4F51-9D7C-A4074062C59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DECD3F1-1762-4F51-9D7C-A4074062C59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DECD3F1-1762-4F51-9D7C-A4074062C59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDE88A9-8426-4657-BEE5-4243D3D0A2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDE88A9-8426-4657-BEE5-4243D3D0A2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDE88A9-8426-4657-BEE5-4243D3D0A2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDE88A9-8426-4657-BEE5-4243D3D0A2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF87450-D93F-49AC-A32C-B4ECBC486B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF87450-D93F-49AC-A32C-B4ECBC486B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF87450-D93F-49AC-A32C-B4ECBC486B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF87450-D93F-49AC-A32C-B4ECBC486B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

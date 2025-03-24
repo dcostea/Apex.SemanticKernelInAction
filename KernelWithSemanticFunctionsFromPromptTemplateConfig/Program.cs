@@ -47,7 +47,7 @@ var promptTemplateConfig = new PromptTemplateConfig
 var promptFunctionFromPromptTemplateConfig = kernel.CreateFunctionFromPrompt(promptTemplateConfig); // create a prompt function from PromptTemplateConfig object with name, description and execution settings
 
 Console.WriteLine($"""
-    PROMPT FUNCTION:
+    SEMANTIC FUNCTION:
       Name: {promptFunctionFromPromptTemplateConfig.Name}
       Description: '{promptFunctionFromPromptTemplateConfig.Description}'
       Temperature: {(promptFunctionFromPromptTemplateConfig.ExecutionSettings["default"] as OpenAIPromptExecutionSettings)!.Temperature}

@@ -43,11 +43,11 @@ var yamlPrompt = """
 var promptFunctionFromYaml = kernel.CreateFunctionFromPromptYaml(yamlPrompt);
 
 Console.WriteLine($"""
-    PROMPT FUNCTION:
+    SEMANTIC FUNCTION:
       Name: {promptFunctionFromYaml.Name}
       Description: '{promptFunctionFromYaml.Description}'
       Plugin name: '{promptFunctionFromYaml.PluginName}'
-      Execution settings: {string.Join(" ", promptFunctionFromYaml.ExecutionSettings["default"].ExtensionData)}
+      Execution settings: {string.Join(" ", promptFunctionFromYaml!.ExecutionSettings!["default"].ExtensionData!)}
       Input variable: {string.Join("", promptFunctionFromYaml.Metadata.Parameters.Select(p => $"\n    {p.Name} : {p.ParameterType!.Name} {(p.IsRequired ? "required" : "")} '{p.Description}'"))}
       Output variable: {promptFunctionFromYaml.Metadata.ReturnParameter.Schema} {promptFunctionFromYaml.Metadata.ReturnParameter.ParameterType} '{promptFunctionFromYaml.Metadata.ReturnParameter.Description}'"
     """);

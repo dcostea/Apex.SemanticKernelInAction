@@ -24,7 +24,7 @@ var kernel = builder.Build();
 //    """;
 
 var prompt = """
-    Your task is to break down complex commands into a sequence basic moves such as {{$basic_moves}}.
+    Your task is to break down complex commands into a sequence for basic moves such as {{$basic_moves}}.
     You have to break down the provided complex commands into basic moves you know.
     Respond only with the moves, without any additional explanations.
 
@@ -33,10 +33,10 @@ var prompt = """
     """;
 
 // Preparing the prompt function from plain text (not fully packed with all settings)
-var promptFunctionFromPromptText = kernel.CreateFunctionFromPrompt(prompt);
+var promptFunctionFromPromptText = kernel.CreateFunctionFromPrompt(prompt, functionName: "breaks_down_complex_command", description: "Breaks down a complex command to basic moves.");
 
 Console.WriteLine($"""
-    PROMPT FUNCTION:
+    SEMANTIC FUNCTION:
       Name: {promptFunctionFromPromptText.Name}
       Description: '{promptFunctionFromPromptText.Description}'
       Input variable: {string.Join("", promptFunctionFromPromptText.Metadata.Parameters.Select(p => $"\n    {p.Name} : {p.ParameterType!.Name} {(p.IsRequired ? "required" : "")} '{p.Description}'"))}

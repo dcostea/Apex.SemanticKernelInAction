@@ -30,7 +30,7 @@ var config = PromptTemplateConfig.FromJson(configJson);
 var promptFunctionFromSkPrompt = kernel.CreateFunctionFromPrompt(promptContent, config.ExecutionSettings["default"]);
 
 Console.WriteLine($"""
-    PROMPT FUNCTION:
+    SEMANTIC FUNCTION:
       Name: {promptFunctionFromSkPrompt.Name}
       Description: '{promptFunctionFromSkPrompt.Description}'
       Plugin name: '{promptFunctionFromSkPrompt.PluginName}'

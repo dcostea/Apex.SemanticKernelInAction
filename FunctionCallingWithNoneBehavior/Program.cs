@@ -28,12 +28,6 @@ var kernel = builder.Build();
 kernel.ImportPluginFromType<MotorsPlugin>();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
-var history = new ChatHistory();
-history.AddSystemMessage("""
-    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
-    You are also equipped with sensors.
-    """
-);
 
 var sw = new Stopwatch();
 
@@ -42,7 +36,7 @@ var sw = new Stopwatch();
 // for sensors it is better to allow parallel calls
 // for robot car it is better to allow concurrent invocation
 // for maintenance it is better to allow concurrent invocation
-var behaviorOptions = new FunctionChoiceBehaviorOptions 
+var behaviorOptions = new FunctionChoiceBehaviorOptions
 {
     AllowConcurrentInvocation = true, // allow multiple function calls at the same time
     AllowParallelCalls = false, // prefer parallel function calls over sequential (multiple functions in one request instead of a tool for each request)
@@ -51,16 +45,24 @@ var behaviorOptions = new FunctionChoiceBehaviorOptions
 
 _ = kernel.Plugins.TryGetFunction(nameof(SensorsPlugin), "read_temperature", out var getWeatherFunction);
 
+var turnLeftFunction = kernel.Plugins.GetFunction("MotorsPlugin", "turn_left");
+var turnRightFunction = kernel.Plugins.GetFunction("MotorsPlugin", "turn_right");
+var stopFunction = kernel.Plugins.GetFunction("MotorsPlugin", "stop");
+
 var executionSettings = new AzureOpenAIPromptExecutionSettings
 {
-    //Temperature = 0.1,
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(options: behaviorOptions, autoInvoke: true), //all plugin functions are advertised to the model, auto may repeat the same function, good for motors, bad for sensors
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required(functions: [getWeatherFunction]), //required does not repeat the same function, good for sensors, bad for motor
-    FunctionChoiceBehavior = FunctionChoiceBehavior.Required(), //required does not repeat the same function, good for sensors, bad for motor
+    FunctionChoiceBehavior = FunctionChoiceBehavior.None(functions: [turnLeftFunction, turnRightFunction, stopFunction]), //good for debugging?
     //FunctionChoiceBehavior = null // disable function calling
 };
 
 sw.Start();
+
+var history = new ChatHistory();
+history.AddSystemMessage("""
+    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+    You are also equipped with sensors.
+    """
+);
 
 //history.AddUserMessage("""
 //    Is it raining? Depending on that, activate/deactive the wipers.
@@ -90,7 +92,7 @@ history.AddUserMessage("""
 //    """);
 
 var response = await chat.GetChatMessageContentAsync(history, executionSettings, kernel);
-var functionCalls = FunctionCallContent.GetFunctionCalls(response); // autoInvoke: false will not invoke the functions, only return the function calls
+//var functionCalls = FunctionCallContent.GetFunctionCalls(response); // autoInvoke: false will not invoke the functions, only return the function calls
 
 sw.Stop();
 Console.WriteLine($"RESPONSE (total time: {sw.Elapsed.TotalSeconds} seconds): {response}");
