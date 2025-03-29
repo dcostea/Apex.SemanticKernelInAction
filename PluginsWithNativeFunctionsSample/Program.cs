@@ -30,6 +30,22 @@ kernel.ImportPluginFromFunctions("maintenance_plugin", "Robot car maintenance pl
 
 PrintAllPluginFunctions(kernel);
 
+// The prompt calls calibrate_sensors, read_temperature and read_wind_speed functions from the kernel plugins
+var prompt = """
+    You are an AI assistant controlling a robot car.
+
+    Temperature: {{read_temperature}}
+    Wind speed: {{read_wind_speed}}
+    Sensors status: {{calibrate_sensors}}
+
+    Provide a report with the previous findings.
+    """;
+
+// Invoke the prompt with the kernel arguments and kernel plugin
+var response = await kernel.InvokePromptAsync(prompt);
+Console.WriteLine($"RENDERED PROMPT: {response.RenderedPrompt}");
+Console.WriteLine($"RESPONSE: {response}");
+
 
 static void PrintAllPluginFunctions(Kernel kernel)
 {

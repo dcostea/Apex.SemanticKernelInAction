@@ -69,8 +69,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1d KernelWithSemanticFunc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig", "KernelWithSemanticFunctionsFromPromptTemplateConfig\5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig.csproj", "{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.2e PluginsWithGrpcFunctionsSample", "PluginsWithGrpcFunctionsSample\5.2e PluginsWithGrpcFunctionsSample.csproj", "{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3a PluginsWithFunctionChaining", "PluginsWithFunctionChaining\5.3a PluginsWithFunctionChaining.csproj", "{D2A607CE-F2B5-4654-97DD-28C83E45D73C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.3b PluginsWithFunctionNesting", "PluginsWithFunctionNesting\5.3b PluginsWithFunctionNesting.csproj", "{0589E014-EA07-4EED-BA07-E7BC359BDED5}"
@@ -221,10 +219,6 @@ Global
 		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{493DEFFA-80F3-4DE2-93E3-BDAAD8E5FBDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBCD6FAE-2BE6-4593-AA96-6C50A8C47938}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A607CE-F2B5-4654-97DD-28C83E45D73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
