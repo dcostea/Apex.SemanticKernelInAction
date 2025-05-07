@@ -51,7 +51,7 @@ var promptTemplateConfig = new PromptTemplateConfig
             MaxTokens = 20000,
             Temperature = 0.3f
         }
-    }
+    },
 };
 
 var renderedPromptTemplate = await new KernelPromptTemplateFactory()

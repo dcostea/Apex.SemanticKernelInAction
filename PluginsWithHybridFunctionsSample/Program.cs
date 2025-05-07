@@ -40,7 +40,7 @@ var nativeFunction = kernel.CreateFunctionFromMethod(
 List<KernelFunction> hybridFunctions = [ semanticFunction, nativeFunction ];
 kernel.ImportPluginFromFunctions("robot_car_plugin", "Robot car plugin.", hybridFunctions);
 
-PrintAllPluginFunctions(kernel);
+Helpers.Printing.PrintPluginsWithFunctions(kernel);
 
 var kernelArguments = new KernelArguments
 {
@@ -63,26 +63,6 @@ var response = await kernel.InvokePromptAsync(prompt, kernelArguments);
 Console.WriteLine($"RENDERED PROMPT: {response.RenderedPrompt}");
 Console.WriteLine($"RESPONSE: {response}");
 
-
-static void PrintAllPluginFunctions(Kernel kernel)
-{
-    Console.WriteLine("Registered plugins and functions and their parameters:");
-
-    foreach (var plugin in kernel.Plugins)
-    {
-        Console.WriteLine($"  [{plugin.Name}] ({plugin.Description}) functions ({plugin.FunctionCount}):");
-
-        foreach (var function in plugin.GetFunctionsMetadata())
-        {
-            Console.WriteLine($"    [{function.Name}] ({function.Description}) output parameter schema: {function.ReturnParameter.Schema}, input parameters:");
-
-            foreach (var parameter in function.Parameters)
-            {
-                Console.WriteLine($"      [{parameter.Name}] schema: {parameter.Schema}");
-            }
-        }
-    }
-}
 
 public class MaintenanceFunctions
 {

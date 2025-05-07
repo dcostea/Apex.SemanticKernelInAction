@@ -35,8 +35,8 @@ var robotCar = new
 
 var kernelArguments = new KernelArguments
 {
-    { "robot_car", robotCar },
-    { "history", chatMessages }
+    ["robot_car"] = robotCar ,
+    ["history"] = chatMessages
 };
 
 // declare the handlebars prompt template

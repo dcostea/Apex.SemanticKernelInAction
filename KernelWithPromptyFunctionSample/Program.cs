@@ -69,8 +69,8 @@ var robotCar = new
 
 var kernelArguments = new KernelArguments
 {
-    { "robot_car", robotCar },
-    { "history", chatMessages }
+    ["robot_car"] = robotCar,
+    ["history"] = chatMessages
 };
 
 #pragma warning disable SKEXP0040 // CreateFunctionFromPrompty is experimental and it needs to be enabled explicitly

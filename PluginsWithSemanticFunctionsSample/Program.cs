@@ -14,7 +14,7 @@ var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+//builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
 // Importing a plugin from a directory
@@ -23,7 +23,7 @@ kernel.ImportPluginFromPromptDirectory(commandsPluginPath, "commands_from_direct
 
 // Preparing the prompt for the semantic function
 var functionPrompt = """
-    Your task is to break down complex commands into a sequence of basic moves such as {{$basic_moves}}.
+    Your task is to break down complex commands into a sequence of basic moves such as forward, backward, turn left, turn right, and stop.
 
     [COMPLEX COMMAND START]
     {{$input}}
@@ -34,31 +34,55 @@ var functionPrompt = """
     Commands:
     """;
 
+var anotherFunctionPrompt = """
+    Your task is to extract the net trending direction from a complex command.
+    The trending direction can be only one of the basic moves, such as forward, backward, turn left, or turn right.
+
+    [COMPLEX COMMAND START]
+    {{$input}}
+    [COMPLEX COMMAND END]
+
+    Provide only the trending direction, without any additional explanations.
+
+    Trending direction:
+    """;
+
 // Preparing the semantic function from plain text prompt (not fully packed with all settings such as argument types)
 var functionFromPrompt = kernel.CreateFunctionFromPrompt(functionPrompt,
-    functionName: "breakdown_complex_commands",
+    functionName: "breakdown_complex_commands_from_prompt",
     description: "It breaks down the given complex command into a step-by-step sequence of basic moves.");
 
+var anotherFunctionFromPrompt = kernel.CreateFunctionFromPrompt(anotherFunctionPrompt,
+    functionName: "extract_trending_direction_from_prompt",
+    description: "It extracts the net trending direction from the given complex command.");
+
 // Importing a plugin from a function list
-kernel.ImportPluginFromFunctions("commands_from_prompt_plugin", "Robot car commands plugin.", [ functionFromPrompt ]);
+kernel.ImportPluginFromFunctions("commands_from_prompt_plugin", "Robot car commands plugin.", [ functionFromPrompt, anotherFunctionFromPrompt ]);
 
 // eventually we will see the functions from both plugins in the output
-PrintAllPluginFunctions(kernel);
+Helpers.Printing.PrintPluginsWithFunctions(kernel);
 
-
-static void PrintAllPluginFunctions(Kernel kernel)
+var kernelArguments = new KernelArguments
 {
-    Console.WriteLine("Registered plugins and functions and their parameters:");
-    foreach (var plugin in kernel.Plugins)
-    {
-        Console.WriteLine($"  [{plugin.Name}] ({plugin.Description}) functions ({plugin.FunctionCount}):");
-        foreach (var function in plugin.GetFunctionsMetadata())
-        {
-            Console.WriteLine($"    [{function.Name}] ({function.Description}) output parameter schema: {function.ReturnParameter.Schema}, input parameters:");
-            foreach (var parameter in function.Parameters)
-            {
-                Console.WriteLine($"      [{parameter.Name}] schema: {parameter.Schema}");
-            }
-        }
-    }
-}
+    //["input"] = "There is a tree directly in front of the car. Avoid it and then come back to the original path.",
+    ["input"] = "There is danger in front of the car. Run away!",
+};
+
+
+var response = await kernel.InvokeAsync(kernel.Plugins.GetFunction("commands_from_prompt_plugin", "breakdown_complex_commands_from_prompt"), kernelArguments);
+Console.WriteLine($"RESPONSE: {response}");
+
+var anotherResponse = await kernel.InvokeAsync(kernel.Plugins.GetFunction("commands_from_prompt_plugin", "extract_trending_direction_from_prompt"), kernelArguments);
+Console.WriteLine($"RESPONSE: {anotherResponse}");
+
+//var prompt = """
+//    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+//    You have to break down the provided complex commands into basic moves you know.
+//    Respond only with the moves, without any additional explanations.
+    
+//    {{breakdown_complex_commands 'There is a tree directly in front of the car. Avoid it and then come back to the original path.'}}        
+//    """;
+
+//var response = await kernel.InvokePromptAsync(prompt);
+//Console.WriteLine($"RENDERED PROMPT: {response.RenderedPrompt}");
+//Console.WriteLine($"RESPONSE: {response}");

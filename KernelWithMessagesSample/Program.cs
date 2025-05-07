@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Runtime.CompilerServices;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -41,7 +42,4 @@ history.AddMessage(AuthorRole.User,
 var response = await chatCompletion.GetChatMessageContentAsync(history);
 history.Add(response); // add the response to the chat history
 
-foreach (var chatMessage in history)
-{
-    Console.WriteLine($"{chatMessage.Role}\n  {chatMessage.Content}");
-}
+Helpers.Printing.PrintHistory(history);

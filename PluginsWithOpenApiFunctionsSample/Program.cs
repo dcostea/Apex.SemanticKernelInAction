@@ -27,7 +27,9 @@ var plugin = await kernel.CreatePluginFromOpenApiAsync(
 
 // Get the function to be invoked and its metadata and extension properties.
 var function = plugin["forward"];
-var kernelArguments = new KernelArguments { ["distance"] = "10" };
+var kernelArguments = new KernelArguments { 
+    ["distance"] = "10" 
+};
 
 var result = await kernel.InvokeAsync(function, kernelArguments);
 Console.WriteLine($"RESULT: {result}");

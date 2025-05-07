@@ -46,7 +46,7 @@ public class PluginsSemanticIntegrationTests
         Assert.True(similarity >= MinSimilarity, $"Similarity score {similarity:P0} below threshold {MinSimilarity:P0}");
     }
 
-    private async Task<float> CalculateSimilarity(Kernel kernel, string string1, string string2)
+    private static async Task<float> CalculateSimilarity(Kernel kernel, string string1, string string2)
     {
         #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var embeddingService = kernel.GetRequiredService<ITextEmbeddingGenerationService>();

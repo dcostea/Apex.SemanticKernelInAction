@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel;
-using Plugins;
 using Microsoft.SemanticKernel.ChatCompletion;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.Extensions.Configuration;
 using Plugins.Enums;
-using Plugins;
+using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 

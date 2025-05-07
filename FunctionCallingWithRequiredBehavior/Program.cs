@@ -2,12 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Plugins;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
 using System.Diagnostics;
-using System.ComponentModel.DataAnnotations;
+using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -27,8 +26,6 @@ var kernel = builder.Build();
 //kernel.ImportPluginFromType<SensorsPlugin>();
 //kernel.ImportPluginFromType<MaintenancePlugin>();
 kernel.ImportPluginFromType<MotorsPlugin>();
-
-var chat = kernel.GetRequiredService<IChatCompletionService>();
 
 var sw = new Stopwatch();
 
@@ -56,8 +53,7 @@ sw.Start();
 
 var history = new ChatHistory();
 history.AddSystemMessage("""
-    You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
-    You are also equipped with sensors.
+    You are an AI assistant controlling a robot car.
     """
 );
 
@@ -76,10 +72,12 @@ history.AddSystemMessage("""
 //    """);
 
 history.AddUserMessage("""
-    You have to break down the provided complex commands into basic moves you know.
+    Your task is to break down complex commands into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
     Respond only with the moves, without any additional explanations.
-
-    There is a tree directly in front of the car. Avoid it and then come back to the original path.
+    Use the tools you know to perform the moves.
+    
+    Complex command:
+    "There is a tree directly in front of the car. Avoid it and then come back to the original path."
     """);
 
 //history.AddUserMessage("""
@@ -88,6 +86,7 @@ history.AddUserMessage("""
 //    What about human safety?
 //    """);
 
+var chat = kernel.GetRequiredService<IChatCompletionService>();
 var response = await chat.GetChatMessageContentAsync(history, executionSettings, kernel);
 //var functionCalls = FunctionCallContent.GetFunctionCalls(response); // autoInvoke: false will not invoke the functions, only return the function calls
 
