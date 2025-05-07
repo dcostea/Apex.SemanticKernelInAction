@@ -1,27 +1,21 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-using System.Net;
+﻿using System.Net;
 using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Embeddings;
+using RAGWithVolatile.Models;
 using UglyToad.PdfPig;
 using UglyToad.PdfPig.Content;
 using UglyToad.PdfPig.DocumentLayoutAnalysis.PageSegmenter;
 
-namespace RAGWithVolatile;
+namespace RAGWithVolatile.Services;
 
 /// <summary>
 /// Class that loads text from a PDF file into a vector store.
 /// </summary>
-/// <typeparam name="TKey">The type of the data model key.</typeparam>
-/// <param name="uniqueKeyGenerator">A function to generate unique keys with.</param>
 /// <param name="vectorStoreRecordCollection">The collection to load the data into.</param>
-/// <param name="textEmbeddingGenerationService">The service to use for generating embeddings from the text.</param>
 /// <param name="chatCompletionService">The chat completion service to use for generating text from images.</param>
 internal sealed class DataLoader(
     IVectorStoreRecordCollection<string, TextSnippet> vectorStoreRecordCollection,
-    //ITextEmbeddingGenerationService textEmbeddingGenerationService,
     IChatCompletionService chatCompletionService) : IDataLoader
 {
     public async Task LoadPdf(string pdfPath, int batchSize, int betweenBatchDelayInMs, CancellationToken cancellationToken)
@@ -55,15 +49,13 @@ internal sealed class DataLoader(
             // Map each paragraph to a TextSnippet and generate an embedding for it.
             var records = textContent.Select(content => new TextSnippet
             {
-                Key = Guid.CreateVersion7().ToString(),
+                Key = Guid.NewGuid().ToString(),
                 Text = content.Text,
                 ReferenceDescription = $"{new FileInfo(pdfPath).Name}#page={content.PageNumber}",
                 ReferenceLink = $"{new Uri(new FileInfo(pdfPath).FullName).AbsoluteUri}#page={content.PageNumber}",
-                //TextEmbedding = await GenerateEmbeddingsWithRetryAsync(textEmbeddingGenerationService, content.Text!, cancellationToken: cancellationToken).ConfigureAwait(false)
             });
 
             // Upsert the records into the vector store.
-            //var records = await Task.WhenAll(records);
             var upsertedKeys = await vectorStoreRecordCollection.UpsertAsync(records, cancellationToken: cancellationToken).ConfigureAwait(false);
             foreach (var key in upsertedKeys)
             {
@@ -82,72 +74,35 @@ internal sealed class DataLoader(
     /// <returns>The text and images from the pdf file, plus the page number that each is on.</returns>
     private static IEnumerable<RawContent> LoadTextAndImages(string pdfPath, CancellationToken cancellationToken)
     {
-        using (PdfDocument document = PdfDocument.Open(pdfPath))
+        using PdfDocument document = PdfDocument.Open(pdfPath);
+        foreach (Page page in document.GetPages())
         {
-            foreach (Page page in document.GetPages())
+            if (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
+
+            foreach (var image in page.GetImages())
+            {
+                if (image.TryGetPng(out var png))
+                {
+                    yield return new RawContent { Image = png, PageNumber = page.Number };
+                }
+                else
+                {
+                    Console.WriteLine($"Unsupported image format on page {page.Number}");
+                }
+            }
+
+            var blocks = DefaultPageSegmenter.Instance.GetBlocks(page.GetWords());
+            foreach (var block in blocks)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
                     break;
                 }
 
-                foreach (var image in page.GetImages())
-                {
-                    if (image.TryGetPng(out var png))
-                    {
-                        yield return new RawContent { Image = png, PageNumber = page.Number };
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Unsupported image format on page {page.Number}");
-                    }
-                }
-
-                var blocks = DefaultPageSegmenter.Instance.GetBlocks(page.GetWords());
-                foreach (var block in blocks)
-                {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        break;
-                    }
-
-                    yield return new RawContent { Text = block.Text, PageNumber = page.Number };
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Add a simple retry mechanism to embedding generation.
-    /// </summary>
-    /// <param name="textEmbeddingGenerationService">The embedding generation service.</param>
-    /// <param name="text">The text to generate the embedding for.</param>
-    /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
-    /// <returns>The generated embedding.</returns>
-    private static async Task<ReadOnlyMemory<float>> GenerateEmbeddingsWithRetryAsync(ITextEmbeddingGenerationService textEmbeddingGenerationService, string text, CancellationToken cancellationToken)
-    {
-        var tries = 0;
-
-        while (true)
-        {
-            try
-            {
-                return await textEmbeddingGenerationService.GenerateEmbeddingAsync(text, cancellationToken: cancellationToken).ConfigureAwait(false);
-            }
-            catch (HttpOperationException ex) when (ex.StatusCode == HttpStatusCode.TooManyRequests)
-            {
-                tries++;
-
-                if (tries < 3)
-                {
-                    Console.WriteLine($"Failed to generate embedding. Error: {ex}");
-                    Console.WriteLine("Retrying embedding generation...");
-                    await Task.Delay(10_000, cancellationToken).ConfigureAwait(false);
-                }
-                else
-                {
-                    throw;
-                }
+                yield return new RawContent { Text = block.Text, PageNumber = page.Number };
             }
         }
     }
@@ -194,17 +149,5 @@ internal sealed class DataLoader(
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Private model for returning the content items from a PDF file.
-    /// </summary>
-    private sealed class RawContent
-    {
-        public string? Text { get; init; }
-
-        public ReadOnlyMemory<byte>? Image { get; init; }
-
-        public int PageNumber { get; init; }
     }
 }

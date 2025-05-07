@@ -3,7 +3,7 @@
 using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Data;
 
-namespace RAGWithVolatile;
+namespace RAGWithVolatile.Models;
 
 /// <summary>
 /// Data model for storing a section of text with an embedding and an optional reference link.
@@ -31,5 +31,5 @@ internal sealed class TextSnippet
     /// text it contains will be converted to a vector and stored as a vector in the vector store.
     /// </summary>
     [VectorStoreRecordVector(1536)]
-    public string? TextEmbedding => this.Text;
+    public string? TextEmbedding => Text;
 }

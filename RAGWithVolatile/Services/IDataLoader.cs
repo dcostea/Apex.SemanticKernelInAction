@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
-namespace RAGWithVolatile;
+namespace RAGWithVolatile.Services;
 
 /// <summary>
 /// Interface for loading data into a data store.
