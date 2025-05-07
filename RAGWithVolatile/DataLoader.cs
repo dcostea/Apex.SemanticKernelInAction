@@ -21,7 +21,7 @@ namespace RAGWithVolatile;
 /// <param name="chatCompletionService">The chat completion service to use for generating text from images.</param>
 internal sealed class DataLoader(
     IVectorStoreRecordCollection<string, TextSnippet> vectorStoreRecordCollection,
-    ITextEmbeddingGenerationService textEmbeddingGenerationService,
+    //ITextEmbeddingGenerationService textEmbeddingGenerationService,
     IChatCompletionService chatCompletionService) : IDataLoader
 {
     public async Task LoadPdf(string pdfPath, int batchSize, int betweenBatchDelayInMs, CancellationToken cancellationToken)
@@ -53,17 +53,17 @@ internal sealed class DataLoader(
             var textContent = await Task.WhenAll(textContentTasks).ConfigureAwait(false);
 
             // Map each paragraph to a TextSnippet and generate an embedding for it.
-            var recordTasks = textContent.Select(async content => new TextSnippet
+            var records = textContent.Select(content => new TextSnippet
             {
                 Key = Guid.CreateVersion7().ToString(),
                 Text = content.Text,
                 ReferenceDescription = $"{new FileInfo(pdfPath).Name}#page={content.PageNumber}",
                 ReferenceLink = $"{new Uri(new FileInfo(pdfPath).FullName).AbsoluteUri}#page={content.PageNumber}",
-                TextEmbedding = await GenerateEmbeddingsWithRetryAsync(textEmbeddingGenerationService, content.Text!, cancellationToken: cancellationToken).ConfigureAwait(false)
+                //TextEmbedding = await GenerateEmbeddingsWithRetryAsync(textEmbeddingGenerationService, content.Text!, cancellationToken: cancellationToken).ConfigureAwait(false)
             });
 
             // Upsert the records into the vector store.
-            var records = await Task.WhenAll(recordTasks).ConfigureAwait(false);
+            //var records = await Task.WhenAll(records);
             var upsertedKeys = await vectorStoreRecordCollection.UpsertAsync(records, cancellationToken: cancellationToken).ConfigureAwait(false);
             foreach (var key in upsertedKeys)
             {
