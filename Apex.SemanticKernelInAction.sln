@@ -101,7 +101,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.13 FiltersWithTelemetry",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireServiceDefaults", "AspireServiceDefaults\AspireServiceDefaults.csproj", "{AC89B200-4626-4B85-B941-7CC96FA858D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithVolatile", "RAGWithVolatile\RAGWithVolatile.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemory", "RAGWithVolatile\RAGWithInMemory.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

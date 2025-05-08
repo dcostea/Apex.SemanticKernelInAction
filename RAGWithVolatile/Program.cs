@@ -9,11 +9,13 @@ using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.Extensions.AI;
-using RAGWithVolatile.Models;
-using RAGWithVolatile.Services;
 using Microsoft.SemanticKernel.ChatCompletion;
+using RAGWithInMemory.Services;
+using RAGWithInMemory.Models;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+
+const string PdfDirectory = @"C:\Temp\PDFs";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
@@ -37,7 +39,7 @@ kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchP
 var cancellationToken = new CancellationTokenSource().Token;
 
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.IndexPdfs(cancellationToken);
+await dataLoader.IndexPdfsAsync(PdfDirectory, 5, 1000, cancellationToken);
 
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");

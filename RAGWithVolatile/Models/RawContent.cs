@@ -1,4 +1,4 @@
-﻿namespace RAGWithVolatile.Models;
+﻿namespace RAGWithInMemory.Models;
 
 /// <summary>
 /// Private model for returning the content items from a PDF file.

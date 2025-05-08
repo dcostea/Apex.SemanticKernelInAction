@@ -3,7 +3,7 @@
 using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Data;
 
-namespace RAGWithVolatile.Models;
+namespace RAGWithInMemory.Models;
 
 /// <summary>
 /// Data model for storing a section of text with an embedding and an optional reference link.
