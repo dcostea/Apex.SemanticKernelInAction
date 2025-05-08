@@ -24,8 +24,8 @@ builder.AddOpenAIChatCompletion(
     apiKey: configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 builder.AddInMemoryVectorStore("sktest");
-builder.Services.AddInMemoryVectorStoreRecordCollection("sktest", 
-    options: new InMemoryVectorStoreRecordCollectionOptions<string, TextSnippet>() 
+builder.Services.AddInMemoryVectorStoreRecordCollection("sktest",
+    options: new InMemoryVectorStoreRecordCollectionOptions<string, TextSnippet>()
     {
         EmbeddingGenerator = new OpenAITextEmbeddingGenerationService(
             modelId: configuration["OpenAI:EmbeddingModelId"]!,
@@ -39,10 +39,9 @@ var kernel = builder.Build();
 var cancellationToken = new CancellationTokenSource().Token;
 
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadPdf("sample.pdf", 2, 1000, cancellationToken);
-Console.WriteLine("PDF loading complete\n");
+await dataLoader.IndexPdfs(cancellationToken);
 
-var vectorStoreCollection = kernel.Services.GetRequiredService<IVectorStoreRecordCollection<string, TextSnippet>>();
+////var vectorStoreCollection = kernel.Services.GetRequiredService<IVectorStoreRecordCollection<string, TextSnippet>>();
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextSnippet>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 

@@ -66,6 +66,30 @@ internal sealed class DataLoader(
         }
     }
 
+    public async Task IndexPdfs(CancellationToken cancellationToken)
+    {
+        // Directory to scan for PDFs
+        string pdfDirectory = @"C:\Temp\PDFs";
+
+        // Find all PDF files
+        string[] pdfFiles = Directory.GetFiles(pdfDirectory, "*.pdf");
+
+        if (pdfFiles.Length == 0)
+        {
+            Console.WriteLine($"No PDF files found in {pdfDirectory}");
+            return;
+        }
+
+        // Load each PDF file
+        foreach (var pdfFile in pdfFiles)
+        {
+            string fileName = Path.GetFileName(pdfFile);
+            Console.WriteLine($"Indexing {fileName}...");
+            await LoadPdf(pdfFile, 2, 1000, cancellationToken);
+            Console.WriteLine($"PDF {fileName} indexing complete\n");
+        }
+    }
+
     /// <summary>
     /// Read the text and images from each page in the provided PDF file.
     /// </summary>

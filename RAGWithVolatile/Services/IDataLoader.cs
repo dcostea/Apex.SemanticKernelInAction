@@ -16,4 +16,12 @@ internal interface IDataLoader
     /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
     /// <returns>An async task that completes when the loading is complete.</returns>
     Task LoadPdf(string pdfPath, int batchSize, int betweenBatchDelayInMs, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Load the text from a PDF file into the data store.
+    /// </summary>
+    /// <param name="dataLoader"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task IndexPdfs(CancellationToken cancellationToken);
 }
