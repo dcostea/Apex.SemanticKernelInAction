@@ -39,7 +39,7 @@ kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchP
 var cancellationToken = new CancellationTokenSource().Token;
 
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.IndexPdfsAsync(PdfDirectory, 5, 1000, cancellationToken);
+await dataLoader.LoadPdfsAsync(PdfDirectory, 4, 1000, cancellationToken);
 
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");

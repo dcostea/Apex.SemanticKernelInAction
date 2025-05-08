@@ -7,5 +7,5 @@ namespace RAGWithInMemory.Services;
 /// </summary>
 internal interface IDataLoader
 {
-    Task IndexPdfsAsync(string pdfDirectory, int batchSize, int batchDelayInMs, CancellationToken cancellationToken);
+    Task LoadPdfsAsync(string pdfDirectory, int batchSize, int batchDelayInMs, CancellationToken cancellationToken);
 }

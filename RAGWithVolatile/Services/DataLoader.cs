@@ -21,7 +21,7 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextSnippe
     /// <param name="dataLoader"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task IndexPdfsAsync(string pdfDirectory, int batchSize, int batchDelayInMs, CancellationToken cancellationToken)
+    public async Task LoadPdfsAsync(string pdfDirectory, int batchSize, int batchDelayInMs, CancellationToken cancellationToken)
     {
         string[] pdfFiles = Directory.GetFiles(pdfDirectory, "*.pdf");
 
@@ -29,9 +29,9 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextSnippe
         {
             if (cancellationToken.IsCancellationRequested) break;
             string fileName = Path.GetFileName(pdfFile);
-            Console.WriteLine($"Indexing {fileName}...");
+            Console.WriteLine($"Loading {fileName}...");
             await IndexPdfAsync(pdfFile, batchSize, batchDelayInMs, cancellationToken);
-            Console.WriteLine($"PDF {fileName} indexing complete\n");
+            Console.WriteLine($"PDF {fileName} loading complete\n");
         }
     }
 
