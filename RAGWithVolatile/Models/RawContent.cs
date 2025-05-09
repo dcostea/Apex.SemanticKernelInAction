@@ -1,8 +1,5 @@
-﻿namespace RAGWithInMemory.Models;
+﻿namespace RAGWithInMemoryAndPdf.Models;
 
-/// <summary>
-/// Private model for returning the content items from a PDF file.
-/// </summary>
 internal sealed class RawContent
 {
     public string? Text { get; init; }

@@ -1,14 +1,9 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-using Microsoft.Extensions.VectorData;
+﻿using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Data;
 
 namespace RAGWithInMemory.Models;
 
-/// <summary>
-/// Data model for storing a section of text with an embedding and an optional reference link.
-/// </summary>
-internal sealed class TextSnippet
+internal sealed class TextBlock
 {
     [VectorStoreRecordKey]
     public required string Key { get; set; }

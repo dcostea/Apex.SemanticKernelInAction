@@ -10,8 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.ChatCompletion;
-using RAGWithInMemoryAndPdf.Models;
-using RAGWithInMemoryAndPdf.Services;
+using RAGWithInMemory.Services;
+using RAGWithInMemory.Models;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -36,11 +36,13 @@ var kernel = builder.Build();
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
+var cancellationToken = new CancellationTokenSource().Token;
+
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadPdfsAsync(PdfDirectory);
+await dataLoader.LoadTextAsync(PdfDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (Type 'exit' to end the chat session)");
+Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
@@ -120,10 +122,10 @@ do
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string fullMessage = string.Empty;
-        await foreach (var messagePart in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
+        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel, cancellationToken))
         {
-            Console.Write(messagePart.Content);
-            fullMessage += messagePart.Content;
+            Console.Write(messageChunk.Content);
+            fullMessage += messageChunk.Content;
         }
         Console.WriteLine("\n");
 
