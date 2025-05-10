@@ -1,46 +1,25 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Data;
-using Microsoft.SemanticKernel.Embeddings;
-using Microsoft.SemanticKernel.Connectors.InMemory;
-using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.ChatCompletion;
-using RAGWithInMemoryAndPdf.Models;
-using RAGWithInMemoryAndPdf.Services;
+using Microsoft.SemanticKernel.Plugins.Web.Bing;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-
-const string PdfDirectory = @"C:\Temp\PDFs";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.AddInMemoryVectorStore("sktest");
-builder.Services.AddInMemoryVectorStoreRecordCollection("sktest",
-    options: new InMemoryVectorStoreRecordCollectionOptions<string, TextBlock>()
-    {
-        EmbeddingGenerator = new OpenAITextEmbeddingGenerationService(
-            modelId: configuration["OpenAI:EmbeddingModelId"]!,
-            apiKey: configuration["OpenAI:ApiKey"]!).AsEmbeddingGenerator(),
-    });
-builder.Services.AddVectorStoreTextSearch<TextBlock>();
-builder.Services.AddSingleton<IDataLoader, DataLoader>();
 var kernel = builder.Build();
 
-var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
-kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
-
-var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadPdfsAsync(PdfDirectory);
+var textSearch = new BingTextSearch(configuration["BingSearchKey"]!);
+var searchPlugin = textSearch.CreateWithSearch("SearchPlugin");
+kernel.Plugins.Add(searchPlugin);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (Type 'exit' to end the chat session)");
+Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
@@ -56,27 +35,20 @@ var executionSettings = new OpenAIPromptExecutionSettings
 
 var prompt = """
     Please use this information to answer the question:
-        -----------------
-    {{#with (SearchPlugin-GetTextSearchResults query)}}  
-        {{#each this}}  
-        Name: {{Name}}
-        Value: {{Value}}
-        Link: {{Link}}
-        -----------------
-        {{/each}}
-    {{/with}}
+    -----------------
+    {{SearchPlugin.Search $query}}
     
-    Question: {{query}}
+    Question: {{$query}}
     """;
 
 var promptTemplateConfig = new PromptTemplateConfig()
 {
     Template = prompt,
-    TemplateFormat = "handlebars",
-    Name = "HandlebarsPrompt",
-    Description = "Handlebars prompt template"
+    TemplateFormat = "semantic-kernel",
+    Name = "SemanticKernelPromptTemplate",
+    Description = "Semantic Kernel prompt template"
 };
-var promptTemplateFactory = new HandlebarsPromptTemplateFactory();
+var promptTemplateFactory = new KernelPromptTemplateFactory();
 var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
 
 bool continueChat = true;
@@ -120,10 +92,10 @@ do
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string fullMessage = string.Empty;
-        await foreach (var messagePart in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
+        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
         {
-            Console.Write(messagePart.Content);
-            fullMessage += messagePart.Content;
+            Console.Write(messageChunk.Content);
+            fullMessage += messageChunk.Content;
         }
         Console.WriteLine("\n");
 

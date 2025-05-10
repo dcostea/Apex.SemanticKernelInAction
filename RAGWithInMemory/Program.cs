@@ -36,8 +36,6 @@ var kernel = builder.Build();
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
-var cancellationToken = new CancellationTokenSource().Token;
-
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
 await dataLoader.LoadTextAsync(PdfDirectory);
 
@@ -59,7 +57,7 @@ var executionSettings = new OpenAIPromptExecutionSettings
 var prompt = """
     Please use this information to answer the question:
         -----------------
-    {{#with (SearchPlugin-GetTextSearchResults question)}}  
+    {{#with (SearchPlugin-GetTextSearchResults query)}}  
         {{#each this}}  
         Name: {{Name}}
         Value: {{Value}}
@@ -68,7 +66,7 @@ var prompt = """
         {{/each}}
     {{/with}}
     
-    Question: {{question}}
+    Question: {{query}}
     """;
 
 var promptTemplateConfig = new PromptTemplateConfig()
@@ -88,14 +86,14 @@ do
     // Read the user question
     Console.ForegroundColor = ConsoleColor.White;
     Console.Write("User > ");
-    var question = Console.ReadLine();
+    var query = Console.ReadLine();
 
-    if (string.IsNullOrEmpty(question))
+    if (string.IsNullOrEmpty(query))
     {
         continue;
     }
 
-    if (string.Equals(question, "exit", StringComparison.OrdinalIgnoreCase))
+    if (string.Equals(query, "exit", StringComparison.OrdinalIgnoreCase))
     {
         continueChat = false;
         Console.ForegroundColor = ConsoleColor.Green;
@@ -108,7 +106,7 @@ do
 
     var kernelArguments = new KernelArguments(executionSettings)
     {
-        { "question", question }
+        { "query", query }
     };
 
     var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
@@ -122,7 +120,7 @@ do
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string fullMessage = string.Empty;
-        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel, cancellationToken))
+        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
         {
             Console.Write(messageChunk.Content);
             fullMessage += messageChunk.Content;
@@ -131,7 +129,7 @@ do
 
         // Replace the last user message (which contains the full rendered prompt) with just the original question
         history.RemoveAt(history.Count - 1); // Remove the last user message
-        history.AddUserMessage(question); // Add back just the original question
+        history.AddUserMessage(query); // Add back just the original question
         history.AddAssistantMessage(fullMessage);
     }
     catch (Exception ex)

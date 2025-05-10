@@ -105,6 +105,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemoryAndPdf", "RA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemory", "RAGWithInMemory\RAGWithInMemory.csproj", "{057E091D-B23D-417E-BD79-D37BBDDD4254}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemoryAndBing", "RAGWithInMemoryAndBing\RAGWithInMemoryAndBing.csproj", "{4EBFFAA6-9096-4768-ADDA-821CF6A79245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -315,6 +317,10 @@ Global
 		{057E091D-B23D-417E-BD79-D37BBDDD4254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{057E091D-B23D-417E-BD79-D37BBDDD4254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{057E091D-B23D-417E-BD79-D37BBDDD4254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
