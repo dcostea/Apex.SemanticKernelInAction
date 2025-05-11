@@ -10,9 +10,9 @@ namespace RAGWithInMemoryAndPdf.Services;
 internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock> vectorStoreRecordCollection,
     IChatCompletionService chatCompletionService) : IDataLoader
 {
-    public async Task LoadPdfsAsync(string pdfDirectory)
+    public async Task LoadPdfsAsync(string ragFilesDirectory)
     {
-        string[] pdfFiles = Directory.GetFiles(pdfDirectory, "*.pdf");
+        string[] pdfFiles = Directory.GetFiles(ragFilesDirectory, "*.pdf");
 
         foreach (var pdfFile in pdfFiles)
         {

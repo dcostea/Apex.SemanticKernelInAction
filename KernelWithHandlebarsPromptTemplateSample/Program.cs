@@ -35,7 +35,7 @@ var robotCar = new
 
 var kernelArguments = new KernelArguments
 {
-    ["robot_car"] = robotCar ,
+    ["robot_car"] = robotCar,
     ["history"] = chatMessages
 };
 

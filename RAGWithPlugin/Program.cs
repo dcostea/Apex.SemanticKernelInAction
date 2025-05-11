@@ -1,17 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Data;
-using Microsoft.SemanticKernel.Embeddings;
-using Microsoft.SemanticKernel.Connectors.InMemory;
-using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.ChatCompletion;
-using RAGWithInMemoryAndPdf.Models;
-using RAGWithInMemoryAndPdf.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.InMemory;
+using Microsoft.SemanticKernel.Embeddings;
+using Microsoft.SemanticKernel.Data;
+using Plugins;
+using Filters;
+using Models;
+using Services;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -31,52 +30,44 @@ builder.Services.AddInMemoryVectorStoreRecordCollection("sktest",
     });
 builder.Services.AddVectorStoreTextSearch<TextBlock>();
 builder.Services.AddSingleton<IDataLoader, DataLoader>();
+builder.Services.AddSingleton<IAutoFunctionInvocationFilter, AugmentingFilter>();
+//builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
+
+kernel.Plugins.AddFromType<SearchHookingPlugin>();
 
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadPdfsAsync(RagFilesDirectory);
+await dataLoader.LoadTextAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (Type 'exit' to end the chat session)");
+Console.WriteLine("Assistant > What would you like to know? (Type 'exit' to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
-    You are an assistant that responds including citations to the 
-    relevant information where it is referenced in the response.
+    You are an assistant that responds to general questions.
     """);
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     Temperature = 0.1,
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
+    FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
 };
 
 var prompt = """
-    Please use this information to answer the question:
-        -----------------
-    {{#with (SearchPlugin-GetTextSearchResults query)}}  
-        {{#each this}}  
-        Name: {{Name}}
-        Value: {{Value}}
-        Link: {{Link}}
-        -----------------
-        {{/each}}
-    {{/with}}
-    
-    Question: {{query}}
+    Question: {{$query}}
     """;
 
 var promptTemplateConfig = new PromptTemplateConfig()
 {
     Template = prompt,
-    TemplateFormat = "handlebars",
-    Name = "HandlebarsPrompt",
-    Description = "Handlebars prompt template"
+    TemplateFormat = "semantic-kernel",
+    Name = "SemanticKernelPromptTemplate",
+    Description = "Semantic Kernel prompt template"
 };
-var promptTemplateFactory = new HandlebarsPromptTemplateFactory();
+var promptTemplateFactory = new KernelPromptTemplateFactory();
 var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
 
 bool continueChat = true;
@@ -118,10 +109,10 @@ do
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string fullMessage = string.Empty;
-        await foreach (var messagePart in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
+        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
         {
-            Console.Write(messagePart.Content);
-            fullMessage += messagePart.Content;
+            Console.Write(messageChunk.Content);
+            fullMessage += messageChunk.Content;
         }
         Console.WriteLine("\n");
 

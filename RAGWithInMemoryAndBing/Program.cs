@@ -19,18 +19,16 @@ var searchPlugin = textSearch.CreateWithSearch("SearchPlugin");
 kernel.Plugins.Add(searchPlugin);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");
+Console.WriteLine("Assistant > What would you like to know? (Type 'exit' to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
-    You are an assistant that responds including citations to the 
-    relevant information where it is referenced in the response.
+    You are an assistant that responds to general questions.
     """);
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
-    Temperature = 0.1,
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
+    Temperature = 0.1
 };
 
 var prompt = """
@@ -68,8 +66,6 @@ do
     if (string.Equals(query, "exit", StringComparison.OrdinalIgnoreCase))
     {
         continueChat = false;
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Assistant > Chat session ended. Goodbye!");
         continue;
     }
 
@@ -78,7 +74,7 @@ do
 
     var kernelArguments = new KernelArguments(executionSettings)
     {
-        { "query", query }
+        ["query"] = query
     };
 
     var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
@@ -100,7 +96,7 @@ do
         Console.WriteLine("\n");
 
         // Replace the last user message (which contains the full rendered prompt) with just the original question
-        history.RemoveAt(history.Count - 1); // Remove the last user message
+        history.Where(h => h.Role == AuthorRole.User).ToList().RemoveAt(0); // Remove the last user message
         history.AddUserMessage(query); // Add back just the original question
         history.AddAssistantMessage(fullMessage);
     }

@@ -53,5 +53,3 @@ var promptFunction = KernelFunctionFactory.CreateFromPrompt(prompt, executionSet
 
 var result = await kernel.InvokeAsync(promptFunction, kernelArguments);
 Console.WriteLine($"RESPONSE: {result}");
-
-// WHY? https://www.perplexity.ai/search/in-semantic-kernel-ipromptrend-Q15IFFhsSzulkDTmNldeKw

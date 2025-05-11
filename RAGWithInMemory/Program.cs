@@ -15,7 +15,7 @@ using RAGWithInMemory.Models;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-const string PdfDirectory = @"C:\Temp\PDFs";
+const string RagFilesDirectory = @"C:\Temp\RAG_Files";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
@@ -37,10 +37,10 @@ var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSe
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
 var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadTextAsync(PdfDirectory);
+await dataLoader.LoadTextAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > What would you like to know from the loaded PDF? (Type 'exit' to end the session)");
+Console.WriteLine("Assistant > What would you like to know from the loaded texts? (Type 'exit' to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
@@ -96,8 +96,6 @@ do
     if (string.Equals(query, "exit", StringComparison.OrdinalIgnoreCase))
     {
         continueChat = false;
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Assistant > Chat session ended. Goodbye!");
         continue;
     }
 
@@ -106,7 +104,7 @@ do
 
     var kernelArguments = new KernelArguments(executionSettings)
     {
-        { "query", query }
+        ["query"] = query
     };
 
     var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
@@ -128,7 +126,7 @@ do
         Console.WriteLine("\n");
 
         // Replace the last user message (which contains the full rendered prompt) with just the original question
-        history.RemoveAt(history.Count - 1); // Remove the last user message
+        history.Where(h => h.Role == AuthorRole.User).ToList().RemoveAt(0); // Remove the last user message
         history.AddUserMessage(query); // Add back just the original question
         history.AddAssistantMessage(fullMessage);
     }

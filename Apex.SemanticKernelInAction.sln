@@ -101,11 +101,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.13 FiltersWithTelemetry",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireServiceDefaults", "AspireServiceDefaults\AspireServiceDefaults.csproj", "{AC89B200-4626-4B85-B941-7CC96FA858D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemoryAndPdf", "RAGWithVolatile\RAGWithInMemoryAndPdf.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.3 RAGWithInMemoryAndPdf", "RAGWithVolatile\10.3 RAGWithInMemoryAndPdf.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemory", "RAGWithInMemory\RAGWithInMemory.csproj", "{057E091D-B23D-417E-BD79-D37BBDDD4254}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.2 RAGWithInMemory", "RAGWithInMemory\10.2 RAGWithInMemory.csproj", "{057E091D-B23D-417E-BD79-D37BBDDD4254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGWithInMemoryAndBing", "RAGWithInMemoryAndBing\RAGWithInMemoryAndBing.csproj", "{4EBFFAA6-9096-4768-ADDA-821CF6A79245}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.1 RAGWithBing", "RAGWithInMemoryAndBing\10.1 RAGWithBing.csproj", "{4EBFFAA6-9096-4768-ADDA-821CF6A79245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.4 RAGWithInMemoryAndFunctionCalling", "RAGWithInMemoryAndFunctionCalling\10.4 RAGWithInMemoryAndFunctionCalling.csproj", "{A2524F9B-967F-4506-B012-4206B18A8A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.5 RAGWithPlugin", "RAGWithPlugin\10.5 RAGWithPlugin.csproj", "{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -321,6 +325,14 @@ Global
 		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EBFFAA6-9096-4768-ADDA-821CF6A79245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2524F9B-967F-4506-B012-4206B18A8A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2524F9B-967F-4506-B012-4206B18A8A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2524F9B-967F-4506-B012-4206B18A8A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2524F9B-967F-4506-B012-4206B18A8A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
