@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.SemanticKernel.Connectors.InMemory;
-using Microsoft.SemanticKernel.Embeddings;
 using Microsoft.SemanticKernel.Data;
 using Plugins;
 using Filters;
 using Models;
 using Services;
+using Microsoft.Extensions.AI;
+using OpenAI;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -20,14 +20,11 @@ var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.AddInMemoryVectorStore("sktest");
-builder.Services.AddInMemoryVectorStoreRecordCollection("sktest",
-    options: new InMemoryVectorStoreRecordCollectionOptions<string, TextBlock>()
-    {
-        EmbeddingGenerator = new OpenAITextEmbeddingGenerationService(
-            modelId: configuration["OpenAI:EmbeddingModelId"]!,
-            apiKey: configuration["OpenAI:ApiKey"]!).AsEmbeddingGenerator(),
-    });
+builder.Services.AddSingleton<IEmbeddingGenerator>(
+    sp => new OpenAIClient(configuration["OpenAI:ApiKey"]!)
+        .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"]!)
+        .AsIEmbeddingGenerator());
+builder.Services.AddInMemoryVectorStoreRecordCollection<string, TextBlock>("sktest");
 builder.Services.AddVectorStoreTextSearch<TextBlock>();
 builder.Services.AddSingleton<IDataLoader, DataLoader>();
 builder.Services.AddSingleton<IAutoFunctionInvocationFilter, AugmentingFilter>();

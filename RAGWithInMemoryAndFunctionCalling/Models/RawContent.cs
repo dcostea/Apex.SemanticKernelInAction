@@ -1,4 +1,4 @@
-﻿namespace RAGWithInMemoryAndFunctionCalling.Models;
+﻿namespace Models;
 
 internal sealed class RawContent
 {

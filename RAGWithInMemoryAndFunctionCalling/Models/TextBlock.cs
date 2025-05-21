@@ -1,30 +1,25 @@
 ﻿using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Data;
 
-namespace RAGWithInMemoryAndFunctionCalling.Models;
+namespace Models;
 
 internal sealed class TextBlock
 {
-    [VectorStoreRecordKey]
+    [VectorStoreKey]
     public required string Key { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultValue]
-    [VectorStoreRecordData]
     public string? Text { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultName]
-    [VectorStoreRecordData]
     public string? ReferenceDescription { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultLink]
-    [VectorStoreRecordData]
     public string? ReferenceLink { get; set; }
 
-    /// <summary>
-    /// The text embedding for this snippet. This is used to search the vector store.
-    /// While this is a string property it has the vector attribute, which means whatever
-    /// text it contains will be converted to a vector and stored as a vector in the vector store.
-    /// </summary>
-    [VectorStoreRecordVector(1536)]
+    [VectorStoreVector(1536)]
     public string? TextEmbedding => Text;
 }

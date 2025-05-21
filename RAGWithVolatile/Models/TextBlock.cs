@@ -1,25 +1,25 @@
 ﻿using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Data;
 
-namespace RAGWithInMemoryAndPdf.Models;
+namespace Models;
 
 internal sealed class TextBlock
 {
-    [VectorStoreRecordKey]
+    [VectorStoreKey]
     public required string Key { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultValue]
-    [VectorStoreRecordData]
     public string? Text { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultName]
-    [VectorStoreRecordData]
     public string? ReferenceDescription { get; set; }
 
+    [VectorStoreData]
     [TextSearchResultLink]
-    [VectorStoreRecordData]
     public string? ReferenceLink { get; set; }
 
-    [VectorStoreRecordVector(1536)]
+    [VectorStoreVector(1536)]
     public string? TextEmbedding => Text;
 }

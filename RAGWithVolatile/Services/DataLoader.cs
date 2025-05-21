@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using RAGWithInMemoryAndPdf.Models;
+using Models;
 using UglyToad.PdfPig;
 using UglyToad.PdfPig.DocumentLayoutAnalysis.PageSegmenter;
 
-namespace RAGWithInMemoryAndPdf.Services;
+namespace Services;
 
-internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock> vectorStoreRecordCollection,
+internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vectorStoreRecordCollection,
     IChatCompletionService chatCompletionService) : IDataLoader
 {
     public async Task LoadPdfsAsync(string ragFilesDirectory)
@@ -28,7 +28,7 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock>
         var fileName = Path.GetFileName(pdfFile);
         var absolutePath = new Uri(pdfFile).AbsoluteUri;
 
-        await vectorStoreRecordCollection.CreateCollectionIfNotExistsAsync();
+        await vectorStoreRecordCollection.EnsureCollectionExistsAsync();
 
         foreach (var rawContent in ReadRawContentsFromPdf(pdfFile))
         {
@@ -51,8 +51,8 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock>
                 ReferenceLink = $"{absolutePath}#page={textContent.PageNumber}",
             };
 
-            var key = await vectorStoreRecordCollection.UpsertAsync(textBlock);
-            Console.WriteLine($"    Upserted text block with key '{key}' into VectorDB");
+            await vectorStoreRecordCollection.UpsertAsync(textBlock);
+            Console.WriteLine($"    Upserted text block with key '{textBlock.Key}' into VectorDB");
         }
     }
 

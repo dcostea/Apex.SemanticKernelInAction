@@ -1,4 +1,4 @@
-﻿namespace RAGWithInMemoryAndPdf.Services;
+﻿namespace Services;
 
 internal interface IDataLoader
 {

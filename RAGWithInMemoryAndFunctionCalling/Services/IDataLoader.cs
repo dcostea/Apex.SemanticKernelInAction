@@ -1,4 +1,4 @@
-﻿namespace RAGWithInMemoryAndFunctionCalling.Services;
+﻿namespace Services;
 
 internal interface IDataLoader
 {

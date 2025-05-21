@@ -1,4 +1,4 @@
-﻿namespace RAGWithInMemoryAndPdf.Models;
+﻿namespace Models;
 
 internal sealed class RawContent
 {

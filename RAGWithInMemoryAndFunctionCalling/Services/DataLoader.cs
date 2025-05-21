@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.VectorData;
-using RAGWithInMemoryAndFunctionCalling.Models;
+using Models;
 
-namespace RAGWithInMemoryAndFunctionCalling.Services;
+namespace Services;
 
-internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock> vectorStoreRecordCollection)
+internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vectorStoreRecordCollection)
     : IDataLoader
 {
     public async Task LoadTextAsync(string txtDirectory)
@@ -24,7 +24,7 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock>
         var fileName = Path.GetFileName(txtFile);
         var absolutePath = new Uri(txtFile).AbsoluteUri;
 
-        await vectorStoreRecordCollection.CreateCollectionIfNotExistsAsync();
+        await vectorStoreRecordCollection.EnsureCollectionExistsAsync();
 
         var lines = File.ReadAllLines(txtFile);
         int totalLines = lines.Length;
@@ -43,8 +43,8 @@ internal sealed class DataLoader(IVectorStoreRecordCollection<string, TextBlock>
                 ReferenceLink = $"{absolutePath}#page={lineNumber}",
             };
 
-            var key = await vectorStoreRecordCollection.UpsertAsync(textBlock);
-            Console.WriteLine($"  Upserted text block with key '{key}' into VectorDB");
+           await vectorStoreRecordCollection.UpsertAsync(textBlock);
+            Console.WriteLine($"  Upserted text block with key '{textBlock.Key}' into VectorDB");
 
             lineNumber++;
         }
