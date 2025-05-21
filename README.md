@@ -1,4 +1,4 @@
-# SemanticKernelInAction Repository
+# Semantic Kernel In Action Repository
 
 This the code repository for the book Microsoft Semantic Kernel in Action published with Manning Publisher.
 
