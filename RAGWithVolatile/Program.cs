@@ -14,29 +14,29 @@ using OpenAI;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-const string RagFilesDirectory = @"C:\Temp\RAG_Files";
+const string RagFilesDirectory = @"Data";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddSingleton<IEmbeddingGenerator>(
-    sp => new OpenAIClient(configuration["OpenAI:ApiKey"]!)
+builder.Services.AddSingleton<IEmbeddingGenerator>(sp => 
+    new OpenAIClient(configuration["OpenAI:ApiKey"]!)
         .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"]!)
         .AsIEmbeddingGenerator());
 builder.Services.AddInMemoryVectorStoreRecordCollection<string, TextBlock>("sktest");
 builder.Services.AddVectorStoreTextSearch<TextBlock>();
-builder.Services.AddSingleton<IDataLoader, DataLoader>();
+builder.Services.AddSingleton<IPdfLoader, PdfLoader>();
 var kernel = builder.Build();
 
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
-var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadPdfsAsync(RagFilesDirectory);
+var dataLoader = kernel.Services.GetRequiredService<IPdfLoader>();
+await dataLoader.LoadAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (Type 'exit' to end the chat session)");
+Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (Hit 'enter' key to end the chat session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
@@ -46,8 +46,7 @@ var history = new ChatHistory("""
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
-    Temperature = 0.1,
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
+    Temperature = 0.1
 };
 
 var prompt = """
@@ -75,8 +74,6 @@ var promptTemplateConfig = new PromptTemplateConfig()
 var promptTemplateFactory = new HandlebarsPromptTemplateFactory();
 var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
 
-bool continueChat = true;
-
 do
 {
     // Read the user question
@@ -84,16 +81,7 @@ do
     Console.Write("User > ");
     var query = Console.ReadLine();
 
-    if (string.IsNullOrEmpty(query))
-    {
-        continue;
-    }
-
-    if (string.Equals(query, "exit", StringComparison.OrdinalIgnoreCase))
-    {
-        continueChat = false;
-        continue;
-    }
+    if (string.IsNullOrEmpty(query)) break;
 
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write("\nAssistant > ");
@@ -132,4 +120,4 @@ do
         Console.WriteLine($"Call to LLM failed with error: {ex}");
     }
 }
-while (continueChat);
+while (true);

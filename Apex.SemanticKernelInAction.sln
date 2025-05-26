@@ -101,15 +101,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.13 FiltersWithTelemetry",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireServiceDefaults", "AspireServiceDefaults\AspireServiceDefaults.csproj", "{AC89B200-4626-4B85-B941-7CC96FA858D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.3 RAGWithInMemoryAndPdf", "RAGWithVolatile\10.3 RAGWithInMemoryAndPdf.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.7 RAGWithInMemoryAndPdf", "RAGWithVolatile\10.7 RAGWithInMemoryAndPdf.csproj", "{6B67EE05-1B83-4144-AC2E-B43EE3C0B1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.2 RAGWithInMemory", "RAGWithInMemory\10.2 RAGWithInMemory.csproj", "{057E091D-B23D-417E-BD79-D37BBDDD4254}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.4 RAGWithInMemoryExplicitCalling", "RAGWithInMemory\10.4 RAGWithInMemoryExplicitCalling.csproj", "{057E091D-B23D-417E-BD79-D37BBDDD4254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.1 RAGWithBing", "RAGWithInMemoryAndBing\10.1 RAGWithBing.csproj", "{4EBFFAA6-9096-4768-ADDA-821CF6A79245}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.3 RAGWithBing", "RAGWithInMemoryAndBing\10.3 RAGWithBing.csproj", "{4EBFFAA6-9096-4768-ADDA-821CF6A79245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.4 RAGWithInMemoryAndFunctionCalling", "RAGWithInMemoryAndFunctionCalling\10.4 RAGWithInMemoryAndFunctionCalling.csproj", "{A2524F9B-967F-4506-B012-4206B18A8A78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.5 RAGWithInMemoryAndFunctionCalling", "RAGWithInMemoryAndFunctionCalling\10.5 RAGWithInMemoryAndFunctionCalling.csproj", "{A2524F9B-967F-4506-B012-4206B18A8A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.5 RAGWithPlugin", "RAGWithPlugin\10.5 RAGWithPlugin.csproj", "{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.6 RAGWithInMemoryAndPlugin", "RAGWithPlugin\10.6 RAGWithInMemoryAndPlugin.csproj", "{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.2 RAGWithBingExplicitCalling", "RAGWithBingExplicit\10.2 RAGWithBingExplicitCalling.csproj", "{CC7E10E8-301D-486D-9C9C-A1A50902D0DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.1 RAGWithTextFile", "RAGWithStaticText\10.1 RAGWithTextFile.csproj", "{8158679C-5F9F-4261-AF22-AA1FB80F18EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -333,6 +337,14 @@ Global
 		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE71EAB-4D22-4CFA-92C1-1ADA33F89BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7E10E8-301D-486D-9C9C-A1A50902D0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7E10E8-301D-486D-9C9C-A1A50902D0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7E10E8-301D-486D-9C9C-A1A50902D0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7E10E8-301D-486D-9C9C-A1A50902D0DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8158679C-5F9F-4261-AF22-AA1FB80F18EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8158679C-5F9F-4261-AF22-AA1FB80F18EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8158679C-5F9F-4261-AF22-AA1FB80F18EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8158679C-5F9F-4261-AF22-AA1FB80F18EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

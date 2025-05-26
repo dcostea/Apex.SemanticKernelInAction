@@ -14,30 +14,29 @@ using Services;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-const string RagFilesDirectory = @"C:\Temp\RAG_Files";
+const string RagFilesDirectory = @"Data";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddSingleton<IEmbeddingGenerator>(
-    sp => new OpenAIClient(configuration["OpenAI:ApiKey"]!)
+builder.Services.AddSingleton<IEmbeddingGenerator>(sp => 
+    new OpenAIClient(configuration["OpenAI:ApiKey"]!)
         .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"]!)
         .AsIEmbeddingGenerator());
 builder.Services.AddInMemoryVectorStoreRecordCollection<string, TextBlock>("sktest");
 builder.Services.AddVectorStoreTextSearch<TextBlock>();
-builder.Services.AddSingleton<IDataLoader, DataLoader>();
+builder.Services.AddSingleton<ITextLoader, TextLoader>();
 var kernel = builder.Build();
-
 
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
-var dataLoader = kernel.Services.GetRequiredService<IDataLoader>();
-await dataLoader.LoadTextAsync(RagFilesDirectory);
+var dataLoader = kernel.Services.GetRequiredService<ITextLoader>();
+await dataLoader.LoadAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > What would you like to know from the loaded texts? (Type 'exit' to end the session)");
+Console.WriteLine("Assistant > What would you like to know from the loaded texts? (Hit 'enter' key to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
@@ -47,8 +46,7 @@ var history = new ChatHistory("""
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
-    Temperature = 0.1,
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
+    Temperature = 0.1
 };
 
 var prompt = """
@@ -76,8 +74,6 @@ var promptTemplateConfig = new PromptTemplateConfig()
 var promptTemplateFactory = new HandlebarsPromptTemplateFactory();
 var promptTemplate = promptTemplateFactory.Create(promptTemplateConfig);
 
-bool continueChat = true;
-
 do
 {
     // Read the user question
@@ -85,16 +81,7 @@ do
     Console.Write("User > ");
     var query = Console.ReadLine();
 
-    if (string.IsNullOrEmpty(query))
-    {
-        continue;
-    }
-
-    if (string.Equals(query, "exit", StringComparison.OrdinalIgnoreCase))
-    {
-        continueChat = false;
-        continue;
-    }
+    if (string.IsNullOrEmpty(query)) break;
 
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write("\nAssistant > ");
@@ -111,26 +98,9 @@ do
     Console.WriteLine(renderedPrompt);
     Console.WriteLine("===========================================");
 
-    try
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        string fullMessage = string.Empty;
-        await foreach (var messageChunk in chat.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel))
-        {
-            Console.Write(messageChunk.Content);
-            fullMessage += messageChunk.Content;
-        }
-        Console.WriteLine("\n");
-
-        // Replace the last user message (which contains the full rendered prompt) with just the original question
-        history.Where(h => h.Role == AuthorRole.User).ToList().RemoveAt(0); // Remove the last user message
-        history.AddUserMessage(query); // Add back just the original question
-        history.AddAssistantMessage(fullMessage);
-    }
-    catch (Exception ex)
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"Call to LLM failed with error: {ex}");
-    }
+    Console.ForegroundColor = ConsoleColor.Green;
+    var response = await chat.GetChatMessageContentAsync(history, executionSettings, kernel);
+    Console.WriteLine(response.Content);
+    history.AddAssistantMessage(response.Content!);
 }
-while (continueChat);
+while (true);

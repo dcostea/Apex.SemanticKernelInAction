@@ -7,10 +7,10 @@ using UglyToad.PdfPig.DocumentLayoutAnalysis.PageSegmenter;
 
 namespace Services;
 
-internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vectorStoreRecordCollection,
-    IChatCompletionService chatCompletionService) : IDataLoader
+internal sealed class PdfLoader(VectorStoreCollection<string, TextBlock> vectorStoreCollection,
+    IChatCompletionService chatCompletionService) : IPdfLoader
 {
-    public async Task LoadPdfsAsync(string ragFilesDirectory)
+    public async Task LoadAsync(string ragFilesDirectory)
     {
         string[] pdfFiles = Directory.GetFiles(ragFilesDirectory, "*.pdf");
 
@@ -18,17 +18,17 @@ internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vector
         {
             string fileName = Path.GetFileName(pdfFile);
             Console.WriteLine($"Loading {fileName}...");
-            await IndexPdfAsync(pdfFile);
+            await IndexAsync(pdfFile);
             Console.WriteLine($"PDF {fileName} loading complete");
         }
     }
 
-    private async Task IndexPdfAsync(string pdfFile)
+    private async Task IndexAsync(string pdfFile)
     {
         var fileName = Path.GetFileName(pdfFile);
-        var absolutePath = new Uri(pdfFile).AbsoluteUri;
+        var absolutePath = pdfFile;
 
-        await vectorStoreRecordCollection.EnsureCollectionExistsAsync();
+        await vectorStoreCollection.EnsureCollectionExistsAsync();
 
         foreach (var rawContent in ReadRawContentsFromPdf(pdfFile))
         {
@@ -51,7 +51,7 @@ internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vector
                 ReferenceLink = $"{absolutePath}#page={textContent.PageNumber}",
             };
 
-            await vectorStoreRecordCollection.UpsertAsync(textBlock);
+            await vectorStoreCollection.UpsertAsync(textBlock);
             Console.WriteLine($"    Upserted text block with key '{textBlock.Key}' into VectorDB");
         }
     }
@@ -65,7 +65,6 @@ internal sealed class DataLoader(VectorStoreCollection<string, TextBlock> vector
         {
             Console.WriteLine($"  Read page {page.Number} of {totalPages}");
 
-            // do I really need to fetch images?
             foreach (var image in page.GetImages())
             {
                 if (image.TryGetPng(out var pngImageBytes))
