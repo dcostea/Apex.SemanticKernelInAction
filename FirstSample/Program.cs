@@ -25,7 +25,7 @@ var prompt = """
 
     ### Template  
     Use JSON array like [move1, move2, move3] for response.  
-    Respond only with the moves, without any additional explanations.  
+    Respond only with the permitted moves, without any additional explanations.  
     """;
 
 var response = await kernel.InvokePromptAsync(prompt);

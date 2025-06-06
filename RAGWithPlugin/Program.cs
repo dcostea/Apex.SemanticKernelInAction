@@ -31,7 +31,7 @@ builder.Services.AddSingleton<IAutoFunctionInvocationFilter, AugmentingFilter>()
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-kernel.Plugins.AddFromType<SearchHookingPlugin>();
+kernel.Plugins.AddFromType<SearchPlugin>();
 
 var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
@@ -40,11 +40,12 @@ var dataLoader = kernel.Services.GetRequiredService<ITextLoader>();
 await dataLoader.LoadAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > What would you like to know? (Hit 'enter' key to end the session)");
+Console.WriteLine("Assistant > What would you like to know? (hit 'enter' key to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
-    You are an assistant that responds to general questions.
+    You are an assistant that responds using ONLY the retrieved information.
+    If the information doesn't contain the answer, respond with 'I don't have enough information to answer this question.'
     """);
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
@@ -70,7 +71,7 @@ do
     if (string.IsNullOrEmpty(query)) break;
 
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.Write("\nAssistant > ");
+    Console.WriteLine("Assistant > ");
 
     var kernelArguments = new KernelArguments(executionSettings)
     {
@@ -80,7 +81,7 @@ do
     var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
     history.AddUserMessage(renderedPrompt);
     Console.ForegroundColor = ConsoleColor.DarkGray;
-    Console.WriteLine("\n===========================================");
+    Console.WriteLine("===========================================");
     Console.WriteLine(renderedPrompt);
     Console.WriteLine("===========================================");
 

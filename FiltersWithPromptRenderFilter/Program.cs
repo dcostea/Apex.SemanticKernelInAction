@@ -40,7 +40,7 @@ var prompt = """
     You are an AI assistant controlling a robot car.
 
     Your task is to break down complex commands into a sequence of these basic moves: {{$basic_moves}}.
-    Respond only with the moves, without any additional explanations.
+    Respond only with the permitted moves, without any additional explanations.
     Use the tools you know to perform the moves.
     
     But first set initial state to: {{stop}}

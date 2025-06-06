@@ -20,7 +20,7 @@ var kernel = builder.Build();
 var prompt = """
     Your task is to break down complex commands into a sequence basic moves such as {{$basic_moves}}.
     You have to break down the provided complex commands into basic moves you know.
-    Respond only with the moves, without any additional explanations.
+    Respond only with the permitted moves, without any additional explanations.
 
     Complex command:
     {{$input}}

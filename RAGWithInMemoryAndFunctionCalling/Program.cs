@@ -35,19 +35,20 @@ var dataLoader = kernel.Services.GetRequiredService<ITextLoader>();
 await dataLoader.LoadAsync(RagFilesDirectory);
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > What would you like to know from the loaded files? (Hit 'enter' key to end the session)");
+Console.WriteLine("Assistant > What would you like to know from the loaded files? (hit 'enter' key to end the session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
-    You are an assistant that responds to question using available information.
-    You can use the SearchPlugin-GetTextSearchResults tool tools to search into indexed documents.
-    But always include citations to the relevant information where it is referenced in the response.
+    You are an assistant who responds using ONLY the retrieved information from indexed documents.
+    You can use the SearchPlugin-GetTextSearchResults tool to search into indexed documents.
+    If the information doesn't contain the answer, respond with 'I don't have enough information to answer this question.'
+    Always include citations to the relevant information where it is referenced in the response.
     """);
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     Temperature = 0.1,
-    FunctionChoiceBehavior = FunctionChoiceBehavior.Required()
+    FunctionChoiceBehavior = FunctionChoiceBehavior.None()
 };
 
 var prompt = """
@@ -62,11 +63,9 @@ do
     Console.ForegroundColor = ConsoleColor.White;
     Console.Write("User > ");
     var query = Console.ReadLine();
-
     if (string.IsNullOrEmpty(query)) break;
-
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.Write("\nAssistant > ");
+    Console.WriteLine("Assistant > ");
 
     var kernelArguments = new KernelArguments(executionSettings)
     {
@@ -76,7 +75,7 @@ do
     var renderedPrompt = await promptTemplate.RenderAsync(kernel, kernelArguments);
     history.AddUserMessage(renderedPrompt);
     Console.ForegroundColor = ConsoleColor.DarkGray;
-    Console.WriteLine("\n===========================================");
+    Console.WriteLine("===========================================");
     Console.WriteLine(renderedPrompt);
     Console.WriteLine("===========================================");
 

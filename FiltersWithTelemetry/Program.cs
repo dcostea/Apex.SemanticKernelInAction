@@ -136,7 +136,7 @@ history.AddUserMessage("""
       {{backward 100}}
       {{stop}}
             
-    Respond only with the moves, without any additional explanations.
+    Respond only with the permitted moves, without any additional explanations.
     """
 );
 

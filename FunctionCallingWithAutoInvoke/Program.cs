@@ -38,7 +38,7 @@ history.AddSystemMessage("""
     """);
 history.AddUserMessage("""
     You have to break down the provided complex commands into basic moves you know.
-    Respond only with the moves, without any additional explanations.
+    Respond only with the permitted moves, without any additional explanations.
     Use the tools you know to perform the moves.
     
     Complex command:
