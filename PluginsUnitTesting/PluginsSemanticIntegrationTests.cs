@@ -1,6 +1,7 @@
-﻿using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Embeddings;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
+using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 namespace PluginsUnitTesting;
 
@@ -11,12 +12,13 @@ public class PluginsSemanticIntegrationTests
     {
         var configuration = new ConfigurationBuilder().AddUserSecrets<PluginsSemanticIntegrationTests>().Build();
 
+        #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var builder = Kernel.CreateBuilder();
         //builder.AddAzureOpenAIChatCompletion(
         //    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
         //    endpoint: configuration["AzureOpenAI:Endpoint"]!,
         //    apiKey: configuration["AzureOpenAI:ApiKey"]!);
-        //builder.AddAzureOpenAITextEmbeddingGeneration(
+        //builder.AddAzureOpenAIEmbeddingGenerator(
         //    deploymentName: "text-embedding-ada-002",
         //    modelId: "text-embedding-ada-002",
         //    endpoint: configuration["AzureOpenAI:Endpoint"]!,
@@ -24,9 +26,7 @@ public class PluginsSemanticIntegrationTests
         builder.AddOpenAIChatCompletion(
             modelId: configuration["OpenAI:ModelId"]!,
             apiKey: configuration["OpenAI:ApiKey"]!);
-        #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-        // Register a text embedding service
-        builder.AddOpenAITextEmbeddingGeneration(
+        builder.AddOpenAIEmbeddingGenerator(
             modelId: configuration["OpenAI:EmbeddingModelId"]!,
             apiKey: configuration["OpenAI:ApiKey"]!);
         //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
@@ -48,14 +48,16 @@ public class PluginsSemanticIntegrationTests
 
     private static async Task<float> CalculateSimilarity(Kernel kernel, string string1, string string2)
     {
-        #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-        var embeddingService = kernel.GetRequiredService<ITextEmbeddingGenerationService>();
+        // Get the text embedding generator
+        var textEmbeddingGenerator = kernel.GetRequiredService<IEmbeddingGenerator<string, Embedding<float>>>();
 
-        var embedding1 = await embeddingService.GenerateEmbeddingAsync(string1);
-        var embedding2 = await embeddingService.GenerateEmbeddingAsync(string2);
+        // Generate embeddings for both strings
+        var embedding1 = await textEmbeddingGenerator.GenerateAsync([ string1 ]);
+        var embedding2 = await textEmbeddingGenerator.GenerateAsync([ string2 ]);
 
-        return CosineSimilarity(embedding1, embedding2);
+        return CosineSimilarity(embedding1[0].Vector, embedding2[0].Vector);
     }
+
     private static float CosineSimilarity(ReadOnlyMemory<float> embedding1, ReadOnlyMemory<float> embedding2)
     {
         float dotProduct = 0, magnitude1 = 0, magnitude2 = 0;

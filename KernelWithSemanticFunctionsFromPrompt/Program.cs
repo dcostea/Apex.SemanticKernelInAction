@@ -34,7 +34,7 @@ Console.WriteLine($"""
       Name: {promptFunctionFromPrompt.Name}
       Description: '{promptFunctionFromPrompt.Description}'
       Plugin name: '{promptFunctionFromPrompt.PluginName}'
-      Execution settings: {string.Join(" ", promptFunctionFromPrompt.ExecutionSettings["default"].ExtensionData)}");
+      Execution settings: {string.Join(" ", promptFunctionFromPrompt.ExecutionSettings?["default"].ExtensionData ?? new Dictionary<string, object>())}
       Input variable: {string.Join("", promptFunctionFromPrompt.Metadata.Parameters.Select(p => $"\n    {p.Name} : {p.ParameterType!.Name} {(p.IsRequired ? "required" : "")} '{p.Description}'"))}
       Output variable: {promptFunctionFromPrompt.Metadata.ReturnParameter.Schema} {promptFunctionFromPrompt.Metadata.ReturnParameter.ParameterType} '{promptFunctionFromPrompt.Metadata.ReturnParameter.Description}'
     """);

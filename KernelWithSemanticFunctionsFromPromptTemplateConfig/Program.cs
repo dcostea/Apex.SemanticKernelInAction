@@ -50,8 +50,8 @@ Console.WriteLine($"""
     SEMANTIC FUNCTION:
       Name: {promptFunctionFromPromptTemplateConfig.Name}
       Description: '{promptFunctionFromPromptTemplateConfig.Description}'
-      Temperature: {(promptFunctionFromPromptTemplateConfig.ExecutionSettings["default"] as OpenAIPromptExecutionSettings)!.Temperature}
-      Max tokens: {(promptFunctionFromPromptTemplateConfig.ExecutionSettings["default"] as OpenAIPromptExecutionSettings)!.MaxTokens}
+      Temperature: {(promptFunctionFromPromptTemplateConfig.ExecutionSettings?["default"] as OpenAIPromptExecutionSettings)!.Temperature}
+      Max tokens: {(promptFunctionFromPromptTemplateConfig.ExecutionSettings?["default"] as OpenAIPromptExecutionSettings)!.MaxTokens}
       Input variable: {string.Join("", promptFunctionFromPromptTemplateConfig.Metadata.Parameters.Select(p => $"\n    {p.Name} : {p.ParameterType!.Name} {(p.IsRequired ? "required" : "")} '{p.Description}'"))}
       Output variable: {promptFunctionFromPromptTemplateConfig.Metadata.ReturnParameter.Schema} {promptFunctionFromPromptTemplateConfig.Metadata.ReturnParameter.ParameterType} '{promptFunctionFromPromptTemplateConfig.Metadata.ReturnParameter.Description}'
     """);

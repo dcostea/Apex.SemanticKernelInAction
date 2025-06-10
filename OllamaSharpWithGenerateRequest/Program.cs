@@ -6,6 +6,22 @@ const string ModelUri = "http://localhost:11434";
 const string Model = "mistral-small3.1:latest";
 var ollamaClient = new OllamaApiClient(new Uri(ModelUri), defaultModel: Model);
 
+var responseSchema = JsonSchema.FromText("""
+    {
+        "type": "object",
+        "properties": {
+            "steps": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "required": ["steps"],
+        "additionalProperties": false
+    }
+    """);
+
 var request = new GenerateRequest
 {
     System = """
@@ -18,14 +34,8 @@ var request = new GenerateRequest
         Complex command:
         "There is a tree directly in front of the car. Avoid it and then come back to the original path."
         """,
-    Format = new JsonSchemaBuilder()
-        .Type(SchemaValueType.Object)
-        .Properties(("steps", new JsonSchemaBuilder().Type(SchemaValueType.Array)
-        .Items(new JsonSchemaBuilder().Type(SchemaValueType.String))))
-        .Required("steps")
-        .AdditionalProperties(false)
-        .Build(),
     Stream = true,
+    Format = responseSchema, // Using the response schema to validate the output
     Options = new RequestOptions
     {
         Temperature = 0.1F,
@@ -34,11 +44,12 @@ var request = new GenerateRequest
     }
 };
 
-Console.WriteLine("=== Ollama Client with Response Format ===");
+Console.WriteLine("=== Ollama Client with Generate ===");
 
-Console.WriteLine($"RESPONSE: ");
+Console.Write($"RESPONSE: ");
 await foreach (var chunk in ollamaClient.GenerateAsync(request))
 {
     Console.Write(chunk?.Response);
 }
 Console.WriteLine();
+

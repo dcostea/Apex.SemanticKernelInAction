@@ -48,7 +48,7 @@ var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     Temperature = 0.1,
-    FunctionChoiceBehavior = FunctionChoiceBehavior.None()
+    FunctionChoiceBehavior = FunctionChoiceBehavior.None() // why none?
 };
 
 var prompt = """
