@@ -58,14 +58,13 @@
   <Project Path="PluginsWithNativeFunctions/6.2a PluginsWithNativeFunctions.csproj" />
   <Project Path="PluginsWithOpenApiFunctions/6.2d PluginsWithOpenApiFunctions.csproj" />
   <Project Path="PluginsWithSemanticFunctions/6.2b PluginsWithSemanticFunctions.csproj" />
-  <Project Path="RAGWithBingExplicitCalling/10.3 RAGWithBingExplicitCalling.csproj" />
-  <Project Path="RAGWithBingFunctionCalling/10.4 RAGWithBingFunctionCalling.csproj" />
-  <Project Path="RAGWithInMemoryAndFunctionCalling/10.6 RAGWithInMemoryFunctionCalling.csproj" />
-  <Project Path="RAGWithInMemoryExplicitCalling/10.5 RAGWithInMemoryExplicitCalling.csproj" />
-  <Project Path="RAGWithInMemoryExplicitCallingTextAndPdf/10.7 RAGWithInMemoryExplicitCallingTextAndPdf.csproj" />
-  <Project Path="RAGWithTextFile/10.1 RAGWithTextFile.csproj" />
-  <Project Path="RAGWithTextFilePlugin/10.2 RAGWithTextFilePlugin.csproj" />
+  <Project Path="RAGWithBingExplicitCalling/10.6 RAGWithBingExplicitCalling.csproj" />
+  <Project Path="RAGWithBingFunctionCalling/10.6a RAGWithBingFunctionCalling.csproj" />
+  <Project Path="RAGWithInMemoryAndFunctionCalling/10.10 RAGWithInMemoryFunctionCalling.csproj" />
+  <Project Path="RAGWithInMemoryExplicitCalling/10.9 RAGWithInMemoryExplicitCalling.csproj" />
+  <Project Path="RAGWithInMemoryExplicitCallingTextAndPdf/10.13 RAGWithInMemoryExplicitCallingTextAndPdf.csproj" />
+  <Project Path="RAGWithTextFile/10.3 RAGWithTextFile.csproj" />
+  <Project Path="RAGWithTextFilePlugin/10.5 RAGWithTextFilePlugin.csproj" />
   <Project Path="TextGeneration/2.1 TextGeneration.csproj" />
   <Project Path="TextGenerationWithKernelArguments/2.1a TextGenerationWithKernelArguments.csproj" />
-  <Project Path="VllmWithChatCompletion/11.8 VllmWithChatCompletion.csproj" Id="a6d323fc-35cf-408c-9be3-e2d880f3d866" />
 </Solution>
