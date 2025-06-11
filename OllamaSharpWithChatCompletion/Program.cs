@@ -1,5 +1,5 @@
 ﻿using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.Connectors.Ollama;
 using OllamaSharp;
 
 const string ModelUri = "http://localhost:11434";
@@ -9,13 +9,14 @@ var ollamaClient = new OllamaApiClient(new Uri(ModelUri), defaultModel: Model);
 #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 var chat = ollamaClient.AsChatCompletionService();
 
-var executionSettings = new OpenAIPromptExecutionSettings
+#pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+var executionSettings = new OllamaPromptExecutionSettings
 {
     Temperature = 0.1F,
     TopP = 0.95F,
-    MaxTokens = 2000,
-    ResponseFormat = "json"
+    NumPredict = 2000,
 };
+#pragma warning restore SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 var chatHistory = new ChatHistory("""
     You are an AI assistant controlling a robot car.

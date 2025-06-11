@@ -20,7 +20,7 @@
   <Project Path="FunctionCallingWithExplicitCalling/7.3 FunctionCallingWithExplicitCalling.csproj" />
   <Project Path="FunctionCallingWithMultiplePlugins/8.99 FunctionCallingWithMultiplePlugins.csproj" />
   <Project Path="Helper/Helpers.csproj" />
-  <Project Path="HuggingFaceWithChatCompletion/11.11 HuggingFaceWithChatCompletion.csproj" Id="abfeb5a0-9318-47d0-98c7-1032195fca6f" />
+  <Project Path="HuggingFaceWithChatCompletion/11.10 HuggingFaceWithChatCompletion.csproj" Id="abfeb5a0-9318-47d0-98c7-1032195fca6f" />
   <Project Path="Kernel/3.1a Kernel.csproj" />
   <Project Path="KernelWithAIServiceSelector/3.4a KernelWithAIServiceSelector.csproj" />
   <Project Path="KernelWithExecutionSettings/4.3b KernelWithExecutionSettings.csproj" />
@@ -40,13 +40,13 @@
   <Project Path="KernelWithStreaming/3.1d KernelWithStreaming.csproj" />
   <Project Path="LLamaSharpWithKernelAndChatCompletion/11.2 LLamaSharpWithKernelAndChatCompletion.csproj" />
   <Project Path="LLamaSharpWithKernelAndTextGeneration/11.1 LLamaSharpWithKernelAndTextGeneration.csproj" />
-  <Project Path="MistralWithChatCompletion/11.13 MistralWithChatCompletion.csproj" Id="e6763ddd-877c-48ea-b9d8-d0c0a80eba19" />
-  <Project Path="OllamaSharpWithChatCompletion/11.5 OllamaSharpWithChatCompletion.csproj" />
+  <Project Path="MistralWithChatCompletion/11.12 MistralWithChatCompletion.csproj" Id="e6763ddd-877c-48ea-b9d8-d0c0a80eba19" />
+  <Project Path="OllamaSharpWithChatCompletion/11.5d OllamaSharpWithChatCompletion.csproj" />
   <Project Path="OllamaSharpWithChatRequest/11.5b OllamaSharpWithChatRequest.csproj" />
   <Project Path="OllamaSharpWithChatRequestAndTools/11.5c OllamaSharpWithChatRequestAndTools.csproj" Id="b9b6c18f-82e9-427c-8a60-ee7068561ed7" />
   <Project Path="OllamaSharpWithGenerateRequest/11.5a OllamaSharpWithGenerateRequest.csproj" />
-  <Project Path="OllamaSharpWithKernelAndChatCompletion/11.7 OllamaSharpWithKernelAndChatCompletion.csproj" />
-  <Project Path="OllamaSharpWithKernelAndTextGeneration/11.6 OllamaSharpWithKernelAndTextGeneration.csproj" />
+  <Project Path="OllamaSharpWithKernelAndChatCompletion/11.6 OllamaSharpWithKernelAndChatCompletion.csproj" />
+  <Project Path="OllamaSharpWithKernelAndTextGeneration/11.5 OllamaSharpWithKernelAndTextGeneration.csproj" />
   <Project Path="OnnxWithKernel/11.3 OnnxWithKernel.csproj" />
   <Project Path="OnnxWithKernelAndChatHistory/11.4 OnnxWithKernelAndChatHistory.csproj" />
   <Project Path="Plugins/Plugins.csproj" />

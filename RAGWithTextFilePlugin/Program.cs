@@ -34,7 +34,6 @@ var executionSettings = new OpenAIPromptExecutionSettings
 
 var prompt = """
     Question: {{$query}}
-    Context: {{$context}}
     """;
 var promptTemplateFactory = new KernelPromptTemplateFactory();
 var promptTemplate = promptTemplateFactory.Create(new PromptTemplateConfig(prompt));
