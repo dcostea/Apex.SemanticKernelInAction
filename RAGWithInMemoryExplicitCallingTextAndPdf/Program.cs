@@ -15,7 +15,8 @@ using System.Text;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-const string RagFilesDirectory = @"Data";
+//const string RagFilesDirectory = @"Data";
+const string RagFilesDirectory = @"C:\Temp\RAG_Files";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(

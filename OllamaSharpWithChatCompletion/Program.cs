@@ -16,7 +16,6 @@ var executionSettings = new OllamaPromptExecutionSettings
     TopP = 0.95F,
     NumPredict = 2000,
 };
-#pragma warning restore SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 var chatHistory = new ChatHistory("""
     You are an AI assistant controlling a robot car.

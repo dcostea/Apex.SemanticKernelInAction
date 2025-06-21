@@ -1,70 +1,113 @@
 <Solution>
+  <Folder Name="/01. Generative AI/">
+    <Project Path="FirstSample/1.1 FirstSample.csproj" />
+  </Folder>
+  <Folder Name="/02. First Project/">
+    <Project Path="Chatbot/2.3 Chatbot.csproj" />
+    <Project Path="ChatbotStreamingWithSemanticFunction/2.6 ChatbotStreamingWithSemanticFunction.csproj" />
+    <Project Path="ChatbotWithHistory/2.4 ChatbotWithHistory.csproj" />
+    <Project Path="ChatbotWithSemanticFunction/2.5 ChatbotWithSemanticFunction.csproj" />
+    <Project Path="ChatCompletion/2.2 ChatCompletion.csproj" />
+    <Project Path="Copilot/2.7 Copilot.csproj" />
+    <Project Path="TextGeneration/2.1 TextGeneration.csproj" />
+    <Project Path="TextGenerationWithKernelArguments/2.1a TextGenerationWithKernelArguments.csproj" />
+  </Folder>
+  <Folder Name="/03. Kernel/">
+    <Project Path="Kernel/3.1a Kernel.csproj" />
+    <Project Path="KernelWithAIServiceSelector/3.4a KernelWithAIServiceSelector.csproj" />
+    <Project Path="KernelWithExecutionSettings/4.3b KernelWithExecutionSettings.csproj" />
+    <Project Path="KernelWithHandlebarsPromptTemplate/4.5c KernelWithHandlebarsPromptTemplate.csproj" />
+    <Project Path="KernelWithJsonResponse/3.1b KernelWithJsonResponse.csproj" />
+    <Project Path="KernelWithKernelArguments/4.3a KernelWithKernelArguments.csproj" />
+    <Project Path="KernelWithLiquidPromptTemplate/4.5b KernelWithLiquidPromptTemplate.csproj" />
+    <Project Path="KernelWithMessages/4.2a KernelWithMessages.csproj" />
+    <Project Path="KernelWithMultipleServices/3.1c KernelWithMultipleServices.csproj" />
+    <Project Path="KernelWithPromptTemplate/4.5a KernelWithPromptTemplate.csproj" />
+    <Project Path="KernelWithPromptyFunction/4.5d KernelWithPromptyFunction.csproj" />
+    <Project Path="KernelWithStreaming/3.1d KernelWithStreaming.csproj" />
+  </Folder>
+  <Folder Name="/04. Chat Completion/" />
+  <Folder Name="/05. Functions/">
+    <Project Path="KernelWithNativeFunctions/5.1a KernelWithNativeFunctions.csproj" />
+    <Project Path="KernelWithSemanticFunctions/5.1b KernelWithSemanticFunctions.csproj" />
+    <Project Path="KernelWithSemanticFunctionsFromPrompt/5.1d KernelWithSemanticFunctionsFromPrompt.csproj" />
+    <Project Path="KernelWithSemanticFunctionsFromPromptTemplateConfig/5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig.csproj" />
+    <Project Path="KernelWithSemanticFunctionsFromYaml/5.1e KernelWithSemanticFunctionsFromYaml.csproj" />
+  </Folder>
+  <Folder Name="/06. Plugins/">
+    <Project Path="PluginsUnitTesting/6.5a PluginsTesting.csproj" />
+    <Project Path="PluginsWithBuiltIn/6.4a PluginsWithBuiltIn.csproj" />
+    <Project Path="PluginsWithFunctionChaining/6.3a PluginsWithFunctionChaining.csproj" />
+    <Project Path="PluginsWithFunctionNesting/6.3b PluginsWithFunctionNesting.csproj" />
+    <Project Path="PluginsWithHybridFunctions/6.2c PluginsWithHybridFunctions.csproj" />
+    <Project Path="PluginsWithNativeFunctions/6.2a PluginsWithNativeFunctions.csproj" />
+    <Project Path="PluginsWithOpenApiFunctions/6.2d PluginsWithOpenApiFunctions.csproj" />
+    <Project Path="PluginsWithSemanticFunctions/6.2b PluginsWithSemanticFunctions.csproj" />
+  </Folder>
+  <Folder Name="/07. Function Calling (Explicit Calling)/">
+    <Project Path="FunctionCallingWithExplicitCalling/7.3 FunctionCallingWithExplicitCalling.csproj" />
+  </Folder>
+  <Folder Name="/08. Function Calling/">
+    <Project Path="FunctionCallingWithAutoInvoke/8.5 FunctionCallingWithAutoInvoke.csproj" />
+    <Project Path="FunctionCallingWithBehavior/8.4 FunctionCallingWithBehavior.csproj" />
+    <Project Path="FunctionCallingWithBehaviorOptions/8.6 FunctionCallingWithBehaviorOptions.csproj" />
+    <Project Path="FunctionCallingWithMultiplePlugins/8.99 FunctionCallingWithMultiplePlugins.csproj" />
+  </Folder>
+  <Folder Name="/09. Filters/">
+    <Project Path="FiltersArchitecture/9.2 FiltersArchitecture.csproj" />
+    <Project Path="FiltersWithAutoFunctionInvocationFilter/9.12 FiltersWithAutoFunctionInvocationFilter.csproj" />
+    <Project Path="FiltersWithFunctionInvocationFilter/9.7 FiltersWithFunctionInvocationFilter.csproj" />
+    <Project Path="FiltersWithPromptRenderFilter/9.10 FiltersWithPromptRenderFilter.csproj" />
+    <Project Path="FiltersWithTelemetry/9.13 FiltersWithTelemetry.csproj" />
+  </Folder>
+  <Folder Name="/10. RAG/">
+    <Project Path="RAGWithBingExplicitCalling/10.06 RAGWithBingExplicitCalling.csproj" />
+    <Project Path="RAGWithBingFunctionCalling/10.06a RAGWithBingFunctionCalling.csproj" />
+    <Project Path="RAGWithInMemoryAndFunctionCalling/10.10 RAGWithInMemoryFunctionCalling.csproj" />
+    <Project Path="RAGWithInMemoryExplicitCalling/10.09 RAGWithInMemoryExplicitCalling.csproj" />
+    <Project Path="RAGWithInMemoryExplicitCallingTextAndPdf/10.13 RAGWithInMemoryExplicitCallingTextAndPdf.csproj" />
+    <Project Path="RAGWithTextFile/10.03 RAGWithTextFile.csproj" />
+    <Project Path="RAGWithTextFilePlugin/10.05 RAGWithTextFilePlugin.csproj" />
+  </Folder>
+  <Folder Name="/11. Open Source LLMs/">
+    <Project Path="HuggingFaceWithChatCompletion/11.10 HuggingFaceWithChatCompletion.csproj" Id="abfeb5a0-9318-47d0-98c7-1032195fca6f" />
+    <Project Path="LLamaSharpWithKernelAndChatCompletion/11.02 LLamaSharpWithKernelAndChatCompletion.csproj" />
+    <Project Path="LLamaSharpWithKernelAndTextGeneration/11.01 LLamaSharpWithKernelAndTextGeneration.csproj" />
+    <Project Path="MistralWithChatCompletion/11.12 MistralWithChatCompletion.csproj" Id="e6763ddd-877c-48ea-b9d8-d0c0a80eba19" />
+    <Project Path="OllamaSharpWithChatCompletion/11.05d OllamaSharpWithChatCompletion.csproj" />
+    <Project Path="OllamaSharpWithChatRequest/11.05b OllamaSharpWithChatRequest.csproj" />
+    <Project Path="OllamaSharpWithChatRequestAndTools/11.05c OllamaSharpWithChatRequestAndTools.csproj" Id="b9b6c18f-82e9-427c-8a60-ee7068561ed7" />
+    <Project Path="OllamaSharpWithGenerateRequest/11.05a OllamaSharpWithGenerateRequest.csproj" />
+    <Project Path="OllamaSharpWithKernelAndChatCompletion/11.06 OllamaSharpWithKernelAndChatCompletion.csproj" />
+    <Project Path="OllamaSharpWithKernelAndTextGeneration/11.05 OllamaSharpWithKernelAndTextGeneration.csproj" />
+    <Project Path="OnnxWithKernel/11.03 OnnxWithKernel.csproj" />
+    <Project Path="OnnxWithKernelAndChatHistory/11.04 OnnxWithKernelAndChatHistory.csproj" />
+  </Folder>
+  <Folder Name="/12. Agents/">
+    <Project Path="AzureAIAgent/12.14 AzureAIAgent.csproj" Id="154eafc3-9d15-4a11-b520-85b0197b03c0" />
+    <Project Path="AzureAIAgentWithCodeInterpreter/12.16 AzureAIAgentWithCodeInterpreter.csproj" Id="cf1a74c0-28cf-44de-a17e-4ac630923246" />
+    <Project Path="AzureAIAgentWithFileSearch/12.17 AzureAIAgentWithFileSearch.csproj" Id="97384316-db20-4ab4-8fc7-a16182e19456" />
+    <Project Path="AzureAIAgentWithPlugins/12.15 AzureAIAgentWithPlugins.csproj" Id="098f2d98-229b-4674-ab41-64ab34b2b039" />
+    <Project Path="AzureAIAgentWithResponseFormat/12.18 AzureAIAgentWithResponseFormat.csproj" Id="9ba3b8f3-338f-4eef-bf9b-67bbd9224773" />
+    <Project Path="ChatCompletionAgent/12.02 ChatCompletionAgent.csproj" Id="95715503-5156-415e-a4cd-3cf61b57e807" />
+    <Project Path="ChatCompletionAgentSimple/12.01 ChatCompletionAgentSimple.csproj" Id="09bcfdd2-8c41-4eef-99db-26f1893f6e9e" />
+    <Project Path="ChatCompletionAgentWithContextualFunctionProvider/12.04 ChatCompletionAgentWithContextualFunctionProvider.csproj" Id="90710aac-e4c1-439a-bb2b-5f951174a587" />
+    <Project Path="ChatCompletionAgentWithFunctionCalling/12.03 ChatCompletionAgentWithPlugins.csproj" Id="181097a8-fd28-4ddb-b825-440beea7aba0" />
+    <Project Path="ChatCompletionAgentWithHistoryAndReducer/12.04a ChatCompletionAgentWithHistoryAndReducer.csproj" Id="18915dcc-d3f0-40d4-8e70-2533bce8ed64" />
+    <Project Path="ChatCompletionAgentWithOllama/12.06 ChatCompletionAgentWithOllama.csproj" Id="20fecf2e-5d98-4a54-b076-2be0de39b5d7" />
+    <Project Path="ChatCompletionAgentWithTextSearchProvider/12.05 ChatCompletionAgentWithTextSearchProvider.csproj" Id="acbb718b-d9b2-4ce8-babb-23c624fdc150" />
+    <Project Path="ChatCompletionAgentWithThreads/12.03 ChatCompletionAgentWithThreads.csproj" Id="f65df832-6d66-40fe-89af-f3b210da0c20" />
+    <Project Path="ChatCompletionAgentWithWhiteboardProvider/12.05a ChatCompletionAgentWithWhiteboardProvider.csproj" Id="dab5bf5d-49d4-439c-a17c-8966625acb5f" />
+    <Project Path="OpenAIAssistantAgent/12.07 OpenAIAssistantAgent.csproj" />
+    <Project Path="OpenAIAssistantAgentFromYaml/12.12 OpenAIAssistantAgentFromYaml.csproj" Id="db2fd305-1270-4832-ac53-5c460f77e2c8" />
+    <Project Path="OpenAIAssistantAgentWithCodeInterpreter/12.09 OpenAIAssistantAgentWithCodeInterpreter.csproj" Id="c91b350d-2605-4613-9ff4-cbc8e98c1a92" />
+    <Project Path="OpenAIAssistantAgentWithFileSearch/12.11 OpenAIAssistantAgentWithFileSearch.csproj" Id="04368d01-7759-47bb-afc7-ac41bc301c02" />
+    <Project Path="OpenAIAssistantAgentWithPlugins/12.08 OpenAIAssistantAgentWithPlugins.csproj" Id="6c1d76ac-faae-48ce-9cbd-c9d7ed50de3c" />
+    <Project Path="OpenAIResponseAgent/12.13 OpenAIResponseAgent.csproj" Id="e4584c7b-0d4e-4f3b-8baa-c9438a31373b" />
+  </Folder>
   <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" />
-  <Project Path="Chatbot/2.3 Chatbot.csproj" />
   <Project Path="ChatbotService/x.1 ChatbotServiceSample (unfinished).csproj" />
-  <Project Path="ChatbotStreamingWithSemanticFunction/2.6 ChatbotStreamingWithSemanticFunction.csproj" />
-  <Project Path="ChatbotWithHistory/2.4 ChatbotWithHistory.csproj" />
-  <Project Path="ChatbotWithSemanticFunction/2.5 ChatbotWithSemanticFunction.csproj" />
-  <Project Path="ChatCompletion/2.2 ChatCompletion.csproj" />
   <Project Path="ChatCompletionWithVision/2.8 ChatCompletionWithVisionSample (unfinished).csproj" />
-  <Project Path="Copilot/2.7 Copilot.csproj" />
-  <Project Path="FiltersArchitecture/9.2 FiltersArchitecture.csproj" />
-  <Project Path="FiltersWithAutoFunctionInvocationFilter/9.12 FiltersWithAutoFunctionInvocationFilter.csproj" />
-  <Project Path="FiltersWithFunctionInvocationFilter/9.7 FiltersWithFunctionInvocationFilter.csproj" />
-  <Project Path="FiltersWithPromptRenderFilter/9.10 FiltersWithPromptRenderFilter.csproj" />
-  <Project Path="FiltersWithTelemetry/9.13 FiltersWithTelemetry.csproj" />
-  <Project Path="FirstSample/1.1 FirstSample.csproj" />
-  <Project Path="FunctionCallingWithAutoInvoke/8.5 FunctionCallingWithAutoInvoke.csproj" />
-  <Project Path="FunctionCallingWithBehavior/8.4 FunctionCallingWithBehavior.csproj" />
-  <Project Path="FunctionCallingWithBehaviorOptions/8.6 FunctionCallingWithBehaviorOptions.csproj" />
-  <Project Path="FunctionCallingWithExplicitCalling/7.3 FunctionCallingWithExplicitCalling.csproj" />
-  <Project Path="FunctionCallingWithMultiplePlugins/8.99 FunctionCallingWithMultiplePlugins.csproj" />
   <Project Path="Helper/Helpers.csproj" />
-  <Project Path="HuggingFaceWithChatCompletion/11.10 HuggingFaceWithChatCompletion.csproj" Id="abfeb5a0-9318-47d0-98c7-1032195fca6f" />
-  <Project Path="Kernel/3.1a Kernel.csproj" />
-  <Project Path="KernelWithAIServiceSelector/3.4a KernelWithAIServiceSelector.csproj" />
-  <Project Path="KernelWithExecutionSettings/4.3b KernelWithExecutionSettings.csproj" />
-  <Project Path="KernelWithHandlebarsPromptTemplate/4.5c KernelWithHandlebarsPromptTemplate.csproj" />
-  <Project Path="KernelWithJsonResponse/3.1b KernelWithJsonResponse.csproj" />
-  <Project Path="KernelWithKernelArguments/4.3a KernelWithKernelArguments.csproj" />
-  <Project Path="KernelWithLiquidPromptTemplate/4.5b KernelWithLiquidPromptTemplate.csproj" />
-  <Project Path="KernelWithMessages/4.2a KernelWithMessages.csproj" />
-  <Project Path="KernelWithMultipleServices/3.1c KernelWithMultipleServices.csproj" />
-  <Project Path="KernelWithNativeFunctions/5.1a KernelWithNativeFunctions.csproj" />
-  <Project Path="KernelWithPromptTemplate/4.5a KernelWithPromptTemplate.csproj" />
-  <Project Path="KernelWithPromptyFunction/4.5d KernelWithPromptyFunction.csproj" />
-  <Project Path="KernelWithSemanticFunctions/5.1b KernelWithSemanticFunctions.csproj" />
-  <Project Path="KernelWithSemanticFunctionsFromPrompt/5.1d KernelWithSemanticFunctionsFromPrompt.csproj" />
-  <Project Path="KernelWithSemanticFunctionsFromPromptTemplateConfig/5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig.csproj" />
-  <Project Path="KernelWithSemanticFunctionsFromYaml/5.1e KernelWithSemanticFunctionsFromYaml.csproj" />
-  <Project Path="KernelWithStreaming/3.1d KernelWithStreaming.csproj" />
-  <Project Path="LLamaSharpWithKernelAndChatCompletion/11.2 LLamaSharpWithKernelAndChatCompletion.csproj" />
-  <Project Path="LLamaSharpWithKernelAndTextGeneration/11.1 LLamaSharpWithKernelAndTextGeneration.csproj" />
-  <Project Path="MistralWithChatCompletion/11.12 MistralWithChatCompletion.csproj" Id="e6763ddd-877c-48ea-b9d8-d0c0a80eba19" />
-  <Project Path="OllamaSharpWithChatCompletion/11.5d OllamaSharpWithChatCompletion.csproj" />
-  <Project Path="OllamaSharpWithChatRequest/11.5b OllamaSharpWithChatRequest.csproj" />
-  <Project Path="OllamaSharpWithChatRequestAndTools/11.5c OllamaSharpWithChatRequestAndTools.csproj" Id="b9b6c18f-82e9-427c-8a60-ee7068561ed7" />
-  <Project Path="OllamaSharpWithGenerateRequest/11.5a OllamaSharpWithGenerateRequest.csproj" />
-  <Project Path="OllamaSharpWithKernelAndChatCompletion/11.6 OllamaSharpWithKernelAndChatCompletion.csproj" />
-  <Project Path="OllamaSharpWithKernelAndTextGeneration/11.5 OllamaSharpWithKernelAndTextGeneration.csproj" />
-  <Project Path="OnnxWithKernel/11.3 OnnxWithKernel.csproj" />
-  <Project Path="OnnxWithKernelAndChatHistory/11.4 OnnxWithKernelAndChatHistory.csproj" />
   <Project Path="Plugins/Plugins.csproj" />
-  <Project Path="PluginsUnitTesting/6.5a PluginsTesting.csproj" />
-  <Project Path="PluginsWithBuiltIn/6.4a PluginsWithBuiltIn.csproj" />
-  <Project Path="PluginsWithFunctionChaining/6.3a PluginsWithFunctionChaining.csproj" />
-  <Project Path="PluginsWithFunctionNesting/6.3b PluginsWithFunctionNesting.csproj" />
-  <Project Path="PluginsWithHybridFunctions/6.2c PluginsWithHybridFunctions.csproj" />
-  <Project Path="PluginsWithNativeFunctions/6.2a PluginsWithNativeFunctions.csproj" />
-  <Project Path="PluginsWithOpenApiFunctions/6.2d PluginsWithOpenApiFunctions.csproj" />
-  <Project Path="PluginsWithSemanticFunctions/6.2b PluginsWithSemanticFunctions.csproj" />
-  <Project Path="RAGWithBingExplicitCalling/10.6 RAGWithBingExplicitCalling.csproj" />
-  <Project Path="RAGWithBingFunctionCalling/10.6a RAGWithBingFunctionCalling.csproj" />
-  <Project Path="RAGWithInMemoryAndFunctionCalling/10.10 RAGWithInMemoryFunctionCalling.csproj" />
-  <Project Path="RAGWithInMemoryExplicitCalling/10.9 RAGWithInMemoryExplicitCalling.csproj" />
-  <Project Path="RAGWithInMemoryExplicitCallingTextAndPdf/10.13 RAGWithInMemoryExplicitCallingTextAndPdf.csproj" />
-  <Project Path="RAGWithTextFile/10.3 RAGWithTextFile.csproj" />
-  <Project Path="RAGWithTextFilePlugin/10.5 RAGWithTextFilePlugin.csproj" />
-  <Project Path="TextGeneration/2.1 TextGeneration.csproj" />
-  <Project Path="TextGenerationWithKernelArguments/2.1a TextGenerationWithKernelArguments.csproj" />
 </Solution>
