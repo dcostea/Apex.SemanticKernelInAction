@@ -37,7 +37,7 @@ OpenAIAssistantAgent agent = new(assistant, assistantClient)
         You are an assistant who responds including citations to the relevant information where it is referenced in the response.
         """,
     Description = "A robot car assistant.",
-    LoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Information)),
+    LoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Trace)),
 };
 
 var query = "What was the average temperature on 2nd of June?";

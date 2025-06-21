@@ -1,13 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Agents;
-using Microsoft.SemanticKernel.Agents.OpenAI;
+using Microsoft.SemanticKernel.Agents.AzureAI;
 using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 #pragma warning disable SKEXP0110 // OpenAIAssistantAgentFactory is experimental.
-OpenAIAssistantAgentFactory factory = new();
+AzureAIAgentFactory factory = new();
+
+PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!, new DefaultAzureCredential());
 
 var builder = Kernel.CreateBuilder();
 //builder.AddAzureOpenAIChatCompletion(
@@ -18,6 +23,7 @@ builder.AddOpenAIChatCompletion(
     modelId: configuration["OpenAI:ModelId"]!,
     apiKey: configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+builder.Services.AddSingleton(client);
 var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
@@ -25,7 +31,7 @@ kernel.ImportPluginFromType<MotorsPlugin>();
 var promptTemplateFactory = new KernelPromptTemplateFactory();
 
 var agent = await factory.CreateAgentFromYamlAsync("""
-    type: openai_assistant
+    type: foundry_agent
     name: RobotCarAgent
     description: Robot Car Agent
     instructions: |
@@ -33,10 +39,7 @@ var agent = await factory.CreateAgentFromYamlAsync("""
         The available robot car permitted moves are {{$basic_moves}}.
         Respond only with the permitted moves, without any additional explanations.
     model:
-        id: ${OpenAI:ModelId}
-        connection:
-            type: openai
-            api_key: ${OpenAI:ApiKey}
+        id: ${AzureOpenAIAgent:DeploymentName}
     inputs:
         basic_moves:
             description: The basic moves of a robot car.

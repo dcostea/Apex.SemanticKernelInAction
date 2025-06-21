@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Agents;
 using Microsoft.SemanticKernel.Agents.AzureAI;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -12,11 +14,14 @@ PersistentAgent definition = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     tools: [new CodeInterpreterToolDefinition()]);
 #pragma warning disable SKEXP0110 // AzureAIAgent is experimental
-AzureAIAgent agent = new(definition, client)
+
+var motorsPlugin = KernelPluginFactory.CreateFromType<MotorsPlugin>();
+
+AzureAIAgent agent = new(definition, client, plugins: [motorsPlugin])
 {
     Name = "RobotCarAgent",
     Description = "A robot car that can perform basic moves",
-    Arguments = new()
+    Arguments = new(new OpenAIPromptExecutionSettings { FunctionChoiceBehavior = FunctionChoiceBehavior.Auto() })
     {
         ["basic_moves"] = "forward, backward, turn left, turn right, and stop"
     },

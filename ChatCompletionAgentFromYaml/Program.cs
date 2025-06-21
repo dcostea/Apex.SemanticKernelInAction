@@ -1,13 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Agents;
-using Microsoft.SemanticKernel.Agents.OpenAI;
 using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-
-#pragma warning disable SKEXP0110 // OpenAIAssistantAgentFactory is experimental.
-OpenAIAssistantAgentFactory factory = new();
 
 var builder = Kernel.CreateBuilder();
 //builder.AddAzureOpenAIChatCompletion(
@@ -22,10 +18,11 @@ var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 
-var promptTemplateFactory = new KernelPromptTemplateFactory();
+#pragma warning disable SKEXP0110 // ChatCompletionAgentFactory is experimental.
+ChatCompletionAgentFactory factory = new();
 
 var agent = await factory.CreateAgentFromYamlAsync("""
-    type: openai_assistant
+    type: chat_completion_agent
     name: RobotCarAgent
     description: Robot Car Agent
     instructions: |
@@ -33,20 +30,28 @@ var agent = await factory.CreateAgentFromYamlAsync("""
         The available robot car permitted moves are {{$basic_moves}}.
         Respond only with the permitted moves, without any additional explanations.
     model:
-        id: ${OpenAI:ModelId}
-        connection:
-            type: openai
-            api_key: ${OpenAI:ApiKey}
+        options:
+            temperature: 0.1
     inputs:
         basic_moves:
             description: The basic moves of a robot car.
             required: true
             default: forward, backward, turn left, turn right, and stop
+    tools:
+      - id: MotorsPlugin.forward
+        type: function
+      - id: MotorsPlugin.backward
+        type: function
+      - id: MotorsPlugin.turn_left
+        type: function
+      - id: MotorsPlugin.turn_right
+        type: function
+      - id: MotorsPlugin.stop
+        type: function
     template:
         format: semantic-kernel
-    """, 
-    new AgentCreationOptions() { Kernel = kernel, PromptTemplateFactory = promptTemplateFactory },
-    configuration);
+    """,
+    new AgentCreationOptions { Kernel = kernel });
 
 var query = "There is a tree directly in front of the car. Avoid it and then come back to the original path.";
 

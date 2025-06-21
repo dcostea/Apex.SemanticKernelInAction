@@ -18,7 +18,7 @@ OpenAIAssistantAgent agent = new(assistant, assistantClient, [motorsPlugin])
 {
     Name = "RobotCarAgent",
     Description = "A robot car that can perform basic moves",
-    LoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Information)),
+    LoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Warning)),
     RunOptions = new RunCreationOptions
     {
         ToolConstraint = ToolConstraint.Auto,
