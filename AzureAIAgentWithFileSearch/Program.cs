@@ -23,13 +23,13 @@ foreach (var filePath in filePaths)
 
 PersistentAgentsVectorStore fileStore = await client.VectorStores.CreateVectorStoreAsync(fileIds);
 
-PersistentAgent definition = await client.Administration.CreateAgentAsync(
+PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     tools: [new FileSearchToolDefinition()],
     toolResources: new() { FileSearch = new() { VectorStoreIds = { fileStore.Id } } });
 #pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 
-AzureAIAgent agent = new(definition, client)
+AzureAIAgent agent = new(persistentAgent, client)
 {
     Name = "RobotCarAgent",
     Description = "A robot car that can perform basic moves",
@@ -46,14 +46,17 @@ AzureAIAgent agent = new(definition, client)
     )),
 };
 
+AzureAIAgentThread agentThread = new(client);
+
 var query = "There is a tree directly in front of the car. Avoid it and then come back to the original path.";
 
 Console.WriteLine("RESPONSE: ");
-await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsync(query))
+await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsync(query, agentThread))
 {
     Console.WriteLine(response.Message.Content);
 }
 
+await agentThread.DeleteAsync();
 await client.Administration.DeleteAgentAsync(agent.Id);
 await client.VectorStores.DeleteVectorStoreAsync(fileStore.Id);
 foreach (var fileId in fileIds)

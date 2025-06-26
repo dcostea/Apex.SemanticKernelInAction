@@ -56,9 +56,10 @@ ChatHistoryAgentThread agentThread = new();
 
 #pragma warning disable SKEXP0110 // AIContextProviders is experimental
 #pragma warning disable SKEXP0130 // ContextualFunctionProvider is experimental
+var vectorStore = new InMemoryVectorStore(new InMemoryVectorStoreOptions { EmbeddingGenerator = embeddingGenerator });
 agentThread.AIContextProviders.Add(
     new ContextualFunctionProvider(
-        vectorStore: new InMemoryVectorStore(new InMemoryVectorStoreOptions { EmbeddingGenerator = embeddingGenerator }),
+        vectorStore,
         vectorDimensions: 1536,
         functions: [..fireDetectorPlugin, ..rainDetectorPlugin, ..sensorsPlugin, ..maintenancePlugin, ..motorsPlugin, ],
         maxNumberOfFunctions: 5,

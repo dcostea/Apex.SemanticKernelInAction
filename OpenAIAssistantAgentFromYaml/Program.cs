@@ -23,28 +23,8 @@ var kernel = builder.Build();
 kernel.ImportPluginFromType<MotorsPlugin>();
 
 var promptTemplateFactory = new KernelPromptTemplateFactory();
-
-var agent = await factory.CreateAgentFromYamlAsync("""
-    type: openai_assistant
-    name: RobotCarAgent
-    description: Robot Car Agent
-    instructions: |
-        You are an AI assistant controlling a robot car.
-        The available robot car permitted moves are {{$basic_moves}}.
-        Respond only with the permitted moves, without any additional explanations.
-    model:
-        id: ${OpenAI:ModelId}
-        connection:
-            type: openai
-            api_key: ${OpenAI:ApiKey}
-    inputs:
-        basic_moves:
-            description: The basic moves of a robot car.
-            required: true
-            default: forward, backward, turn left, turn right, and stop
-    template:
-        format: semantic-kernel
-    """, 
+var yamlContent = File.ReadAllText("ChatCompletionAgent.yaml");
+var agent = await factory.CreateAgentFromYamlAsync(yamlContent, 
     new AgentCreationOptions() { Kernel = kernel, PromptTemplateFactory = promptTemplateFactory },
     configuration);
 

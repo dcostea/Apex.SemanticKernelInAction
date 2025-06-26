@@ -8,12 +8,13 @@ using Microsoft.SemanticKernel.Agents.AzureAI;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!, new DefaultAzureCredential());
-PersistentAgent definition = await client.Administration.CreateAgentAsync(
+BinaryData responseFormat = BinaryData.FromString("""{ "type": "json_object" }""");
+PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
-    responseFormat: BinaryData.FromString("""{ "type": "json_object" }"""));
+    responseFormat: responseFormat);
         
 #pragma warning disable SKEXP0110 // AzureAIAgent is experimental
-AzureAIAgent agent = new(definition, client)
+AzureAIAgent agent = new(persistentAgent, client)
 {
     Name = "RobotCarAgent",
     Description = "A robot car that can perform basic moves",

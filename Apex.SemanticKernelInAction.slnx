@@ -84,13 +84,14 @@
     <Project Path="OnnxWithKernelAndChatHistory/11.04 OnnxWithKernelAndChatHistory.csproj" />
   </Folder>
   <Folder Name="/12. Agents/">
-    <Project Path="AzureAIAgent/12.16 AzureAIAgent.csproj" Id="154eafc3-9d15-4a11-b520-85b0197b03c0" />
-    <Project Path="AzureAIAgentFromYaml/12.20 AzureAIAgentFromYaml.csproj" Id="fbce7ac3-2a9c-45a2-8069-c0f625c3f678" />
-    <Project Path="AzureAIAgentWithCodeInterpreter/12.17 AzureAIAgentWithCodeInterpreter.csproj" Id="cf1a74c0-28cf-44de-a17e-4ac630923246" />
-    <Project Path="AzureAIAgentWithFileSearch/12.18 AzureAIAgentWithFileSearch.csproj" Id="97384316-db20-4ab4-8fc7-a16182e19456" />
-    <Project Path="AzureAIAgentWithResponseFormat/12.19 AzureAIAgentWithResponseFormat.csproj" Id="9ba3b8f3-338f-4eef-bf9b-67bbd9224773" />
+    <Project Path="AggregateAgentsFromYaml/AggregateAgentsFromYaml.csproj" Id="91801e74-a1ef-4f6c-aa6a-9101c6a988b4" />
+    <Project Path="AzureAIAgent/12.14 AzureAIAgent.csproj" Id="154eafc3-9d15-4a11-b520-85b0197b03c0" />
+    <Project Path="AzureAIAgentFromYaml/12.23 AzureAIAgentFromYaml.csproj" Id="fbce7ac3-2a9c-45a2-8069-c0f625c3f678" />
+    <Project Path="AzureAIAgentWithCodeInterpreter/12.15 AzureAIAgentWithCodeInterpreter.csproj" Id="cf1a74c0-28cf-44de-a17e-4ac630923246" />
+    <Project Path="AzureAIAgentWithFileSearch/12.16 AzureAIAgentWithFileSearch.csproj" Id="97384316-db20-4ab4-8fc7-a16182e19456" />
+    <Project Path="AzureAIAgentWithResponseFormat/12.17 AzureAIAgentWithResponseFormat.csproj" Id="9ba3b8f3-338f-4eef-bf9b-67bbd9224773" />
     <Project Path="ChatCompletionAgent/12.03 ChatCompletionAgent.csproj" Id="95715503-5156-415e-a4cd-3cf61b57e807" />
-    <Project Path="ChatCompletionAgentFromYaml/12.10 ChatCompletionAgentFromYaml.csproj" Id="3aba7afb-f370-4eef-abbc-024bd5879b33" />
+    <Project Path="ChatCompletionAgentFromYaml/12.19 ChatCompletionAgentFromYaml.csproj" Id="3aba7afb-f370-4eef-abbc-024bd5879b33" />
     <Project Path="ChatCompletionAgentSimple/12.02 ChatCompletionAgentSimple.csproj" Id="09bcfdd2-8c41-4eef-99db-26f1893f6e9e" />
     <Project Path="ChatCompletionAgentWithContextualFunctionProvider/12.07 ChatCompletionAgentWithContextualFunctionProvider.csproj" Id="90710aac-e4c1-439a-bb2b-5f951174a587" />
     <Project Path="ChatCompletionAgentWithHistoryAndReducer/12.06a ChatCompletionAgentWithHistoryAndReducer.csproj" Id="18915dcc-d3f0-40d4-8e70-2533bce8ed64" />
@@ -98,11 +99,19 @@
     <Project Path="ChatCompletionAgentWithTextSearchProvider/12.08 ChatCompletionAgentWithTextSearchProvider.csproj" Id="acbb718b-d9b2-4ce8-babb-23c624fdc150" />
     <Project Path="ChatCompletionAgentWithThreads/12.06 ChatCompletionAgentWithThreads.csproj" Id="f65df832-6d66-40fe-89af-f3b210da0c20" />
     <Project Path="ChatCompletionAgentWithWhiteboardProvider/12.06a ChatCompletionAgentWithWhiteboardProvider.csproj" Id="dab5bf5d-49d4-439c-a17c-8966625acb5f" />
-    <Project Path="OpenAIAssistantAgent/12.11 OpenAIAssistantAgent.csproj" />
-    <Project Path="OpenAIAssistantAgentFromYaml/12.15 OpenAIAssistantAgentFromYaml.csproj" Id="db2fd305-1270-4832-ac53-5c460f77e2c8" />
-    <Project Path="OpenAIAssistantAgentWithCodeInterpreter/12.12 OpenAIAssistantAgentWithCodeInterpreter.csproj" Id="c91b350d-2605-4613-9ff4-cbc8e98c1a92" />
-    <Project Path="OpenAIAssistantAgentWithFileSearch/12.14 OpenAIAssistantAgentWithFileSearch.csproj" Id="04368d01-7759-47bb-afc7-ac41bc301c02" />
-    <Project Path="OpenAIResponseAgent/12.14a OpenAIResponseAgent.csproj" Id="e4584c7b-0d4e-4f3b-8baa-c9438a31373b" />
+    <Project Path="OpenAIAssistantAgent/12.10 OpenAIAssistantAgent.csproj" />
+    <Project Path="OpenAIAssistantAgentFromYaml/12.21 OpenAIAssistantAgentFromYaml.csproj" Id="db2fd305-1270-4832-ac53-5c460f77e2c8" />
+    <Project Path="OpenAIAssistantAgentWithCodeInterpreter/12.11 OpenAIAssistantAgentWithCodeInterpreter.csproj" Id="c91b350d-2605-4613-9ff4-cbc8e98c1a92" />
+    <Project Path="OpenAIAssistantAgentWithFileSearch/12.13 OpenAIAssistantAgentWithFileSearch.csproj" Id="04368d01-7759-47bb-afc7-ac41bc301c02" />
+    <Project Path="OpenAIResponseAgent/12.13a OpenAIResponseAgent.csproj" Id="e4584c7b-0d4e-4f3b-8baa-c9438a31373b" />
+  </Folder>
+  <Folder Name="/13. Agents Orchestration/">
+    <Project Path="AgentsWithConcurrentOrchestration/13.2 AgentsWithConcurrentOrchestration.csproj" Id="816d6e97-e200-4460-83fe-2aa8db849f81" />
+    <Project Path="AgentsWithGroupChatOrchestration/13.3 AgentsWithGroupChatOrchestration.csproj" Id="cf1a5b73-8e39-4824-95a0-8c7b7e233287" />
+    <Project Path="AgentsWithGroupChatOrchestrationAndManager/13.4 AgentsWithGroupChatOrchestrationAndManager.csproj" Id="abfdcf0d-14ad-4f89-9f8c-b2c51686892c" />
+    <Project Path="AgentsWithHandoffOrchestration/13.5 AgentsWithHandoffOrchestration.csproj" Id="ac70778a-dd32-4480-bc5c-de78d1ca9ffa" />
+    <Project Path="AgentsWithMagenticOrchestration/13.6 AgentsWithMagenticOrchestration.csproj" Id="551c7a29-d684-4c9e-a0e0-dcf592be9d64" />
+    <Project Path="AgentsWithSequentialOrchestration/13.1 AgentsWithSequentialOrchestration.csproj" Id="daade0ff-d543-4cf5-ba8d-67492e22a485" />
   </Folder>
   <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" />
   <Project Path="ChatbotService/x.1 ChatbotServiceSample (unfinished).csproj" />

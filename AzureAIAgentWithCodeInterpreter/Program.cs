@@ -10,14 +10,14 @@ using Plugins.Native;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!, new DefaultAzureCredential());
-PersistentAgent definition = await client.Administration.CreateAgentAsync(
+PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     tools: [new CodeInterpreterToolDefinition()]);
 #pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 
 var motorsPlugin = KernelPluginFactory.CreateFromType<MotorsPlugin>();
 
-AzureAIAgent agent = new(definition, client, plugins: [motorsPlugin])
+AzureAIAgent agent = new(persistentAgent, client, plugins: [motorsPlugin])
 {
     Name = "RobotCarAgent",
     Description = "A robot car that can perform basic moves",

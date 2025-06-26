@@ -10,7 +10,8 @@ var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build()
 
 const string ModelUri = "http://localhost:11434";
 //const string Model = "mistral-small3.1:latest";
-//const string Model = "llama3.2:latest";
+//const string Model = "magistral:24b";
+//const string Model = "mistral-small3.2:24b";
 const string Model = "qwen3:14b";
 
 var builder = Kernel.CreateBuilder();
@@ -19,7 +20,7 @@ builder.AddOllamaChatCompletion(
     modelId: Model,
     endpoint: new Uri(ModelUri))
 .Build();
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Warning));
+builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
@@ -51,23 +52,29 @@ ChatCompletionAgent agent = new()
     LoggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>(),
 };
 
-var userPrompt = """
-    Complex command:
-    "{{$input}}"
+var query = """
+    "There is a tree directly in front of the car. Avoid it and then come back to the original path."
+    /no_think
     """;
 
-var query = "There is a tree directly in front of the car. Avoid it and then come back to the original path.";
+var options = new AgentInvokeOptions
+{
+    AdditionalInstructions = """
+    Always call a tool if it can answer the user's question.
+
+    Available tools:
+      MotorsPlugin-forward
+      MotorsPlugin-backward
+      MotorsPlugin-turn_left
+      MotorsPlugin-turn_right
+      MotorsPlugin-stop
+
+    Do not answer directly. Only call a tool if possible.
+    """
+};
 
 Console.WriteLine("RESPONSE: ");
-await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsync(userPrompt, 
-    options: new AgentInvokeOptions 
-    {
-        KernelArguments = new()
-        {
-            ["input"] = query
-        },
-        AdditionalInstructions = "/no_think"
-    }))
+await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsync(query, options: options))
 {
     Console.WriteLine(response.Message.Content);
 }

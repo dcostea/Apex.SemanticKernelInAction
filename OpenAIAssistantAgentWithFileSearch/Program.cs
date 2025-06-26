@@ -14,7 +14,7 @@ var assistant = await assistantClient.CreateAssistantAsync(
     configuration["OpenAI:ModelId"]!,
     enableFileSearch: true);
 
-var client = OpenAIAssistantAgent.CreateOpenAIClient(new ApiKeyCredential(configuration["OpenAI:ApiKey"]!));
+var openAIClient = OpenAIAssistantAgent.CreateOpenAIClient(new ApiKeyCredential(configuration["OpenAI:ApiKey"]!));
 
 const string RagFilesDirectory = @"Data";
 string[] filePaths = Directory.GetFiles(RagFilesDirectory);
@@ -23,12 +23,12 @@ foreach (var filePath in filePaths)
 {
     string fileName = Path.GetFileName(filePath);
     using FileStream stream = File.OpenRead(filePath);
-    string fileId = await client.UploadAssistantFileAsync(stream, fileName);
+    string fileId = await openAIClient.UploadAssistantFileAsync(stream, fileName);
     fileIds.Add(fileId);
 }
-string vectorStoreId = await client.CreateVectorStoreAsync(fileIds, waitUntilCompleted: true);
+string vectorStoreId = await openAIClient.CreateVectorStoreAsync(fileIds, waitUntilCompleted: true);
 
-AgentThread thread = new OpenAIAssistantAgentThread(assistantClient, vectorStoreId: vectorStoreId);
+OpenAIAssistantAgentThread thread = new (assistantClient, vectorStoreId: vectorStoreId);
 
 OpenAIAssistantAgent agent = new(assistant, assistantClient)
 {
@@ -49,8 +49,8 @@ await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsy
 }
 
 await thread.DeleteAsync();
-await client.DeleteVectorStoreAsync(vectorStoreId);
+await openAIClient.DeleteVectorStoreAsync(vectorStoreId);
 foreach (var fileId in fileIds)
 {
-    await client.DeleteFileAsync(fileId);
+    await openAIClient.DeleteFileAsync(fileId);
 }

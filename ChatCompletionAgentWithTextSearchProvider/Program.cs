@@ -26,7 +26,7 @@ var embeddingGenerator = new OpenAIClient(configuration["OpenAI:ApiKey"]!)
     .AsIEmbeddingGenerator();
 var vectorStore = new InMemoryVectorStore(new() { EmbeddingGenerator = embeddingGenerator });
 #pragma warning disable SKEXP0130 // TextSearchStore is experimental
-using var textSearchStore = new TextSearchStore<string>(vectorStore, collectionName: "FinancialData", vectorDimensions: 1536);
+using var textSearchStore = new TextSearchStore<string>(vectorStore, collectionName: "WeatherData", vectorDimensions: 1536);
 await textSearchStore.UpsertTextAsync(
 [
     "June 1, 2025, Morning: 14°C, partly cloudy, wind 8 km/h, dry. Afternoon: 20°C, mostly sunny, wind 12 km/h, no rain. Night: 13°C, clear, wind 6 km/h, calm.",
