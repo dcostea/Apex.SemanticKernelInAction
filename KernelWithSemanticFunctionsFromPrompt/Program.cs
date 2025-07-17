@@ -6,12 +6,12 @@ var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build()
 
 var kernel = Kernel.CreateBuilder()
 //.AddAzureOpenAIChatCompletion(
-//deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-//endpoint: configuration["AzureOpenAI:Endpoint"]!,
-//apiKey: configuration["AzureOpenAI:ApiKey"]!)
+//configuration["AzureOpenAI:DeploymentName"]!,
+//configuration["AzureOpenAI:Endpoint"]!,
+//configuration["AzureOpenAI:ApiKey"]!)
 .AddOpenAIChatCompletion(
-     modelId: configuration["OpenAI:ModelId"]!,
-     apiKey: configuration["OpenAI:ApiKey"]!)
+     configuration["OpenAI:ModelId"]!,
+     configuration["OpenAI:ApiKey"]!)
 .Build();
 
 // Define paths

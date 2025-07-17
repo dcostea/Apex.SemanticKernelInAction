@@ -2,24 +2,51 @@
 using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace AgentsWithGroupChatOrchestration;
-#pragma warning disable SKEXP0110
+
 public sealed class ApprovalGroupChatManager : RoundRobinGroupChatManager
 {
-    private readonly string _approverName;
-    public ApprovalGroupChatManager(string approverName)
+    public override async ValueTask<GroupChatManagerResult<bool>> ShouldTerminate(
+        ChatHistory history, CancellationToken cancellationToken = default)
     {
-        _approverName = approverName;
-    }
+        bool isApproved = history.LastOrDefault()?.Content?.Contains("APPROVED", StringComparison.InvariantCultureIgnoreCase) == true
+            && history.LastOrDefault()?.Content?.Contains("NOT APPROVED", StringComparison.InvariantCultureIgnoreCase) == false;
 
-    public override ValueTask<GroupChatManagerResult<bool>> ShouldTerminate(ChatHistory history, CancellationToken cancellationToken = default)
-    {
-        var last = history.LastOrDefault();
-#pragma warning disable SKEXP0001
-        bool shouldTerminate = last?.AuthorName == _approverName &&
-            last.Content?.Contains("tea", StringComparison.OrdinalIgnoreCase) == true;
-        return ValueTask.FromResult(new GroupChatManagerResult<bool>(shouldTerminate)
+        // Approval termination
+        if (isApproved)
         {
-            Reason = shouldTerminate ? "Approved by reviewer." : "Not yet approved."
+            var terminationMessage = $"Termination: [APPROVED]";
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(terminationMessage);
+            Console.ResetColor();
+
+            return await ValueTask.FromResult(new GroupChatManagerResult<bool>(true)
+            {
+                Reason = terminationMessage
+            });
+        }
+
+
+        // Maximum invocation count termination
+        var shouldTerminate = await base.ShouldTerminate(history, cancellationToken);
+
+        if (shouldTerminate.Value)
+        {
+            var terminationMessage = $"Termination: Maximum number of invocations ({MaximumInvocationCount}) reached.";
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(terminationMessage);
+            Console.ResetColor();
+
+            return await ValueTask.FromResult(new GroupChatManagerResult<bool>(true)
+            {
+                Reason = terminationMessage
+            });
+        }
+
+        return await ValueTask.FromResult(new GroupChatManagerResult<bool>(false)
+        {
+            Reason = "Awaiting approval"
         });
     }
 }

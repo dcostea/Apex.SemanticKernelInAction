@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Agents.Orchestration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
@@ -6,80 +7,127 @@ using Microsoft.SemanticKernel.Agents;
 using Microsoft.SemanticKernel.Agents.Orchestration;
 using Microsoft.SemanticKernel.Agents.Orchestration.Concurrent;
 using Microsoft.SemanticKernel.Agents.Runtime.InProcess;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var builder = Kernel.CreateBuilder();
-//builder.AddAzureOpenAIChatCompletion(
-//    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-//    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-//    apiKey: configuration["AzureOpenAI:ApiKey"]!);
-builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+builder.AddAzureOpenAIChatCompletion(
+    configuration["AzureOpenAI:DeploymentName"]!,
+    configuration["AzureOpenAI:Endpoint"]!,
+    configuration["AzureOpenAI:ApiKey"]!);
+//builder.AddOpenAIChatCompletion(
+//    configuration["OpenAI:ModelId"]!,
+//    configuration["OpenAI:ApiKey"]!);
+builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
 var kernel = builder.Build();
 
-ChatCompletionAgent navigatorAgent = new()
-{
-    Name = "RobotCarAgent",
-    Description = "A robot car that can perform basic moves",
-    LoggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>(),
-    Kernel = kernel,
-    Template = new KernelPromptTemplateFactory()
-        .Create(new PromptTemplateConfig("""
-            You are an AI assistant controlling a robot car capable of performing basic moves: {{$basic_moves}}.
-            You have to break down the provided complex commands into basic moves you know.
-            Respond only with the permitted moves, without any additional explanations.
-            """)),
-    Arguments = new()
-    {
-        ["basic_moves"] = "forward, backward, turn left, turn right, and stop"
-    }
-};
+var loggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>();
+var logger = loggerFactory.CreateLogger("Microsoft.SemanticKernel");
 
-ChatCompletionAgent meteoAgent = new()
+ChatCompletionAgent environmentAgent = new()
 {
-    Name = "RobotCarAgent",
-    Description = "A robot car that can perform basic moves",
-    LoggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>(),
-    Kernel = kernel,
-    Template = new KernelPromptTemplateFactory()
-        .Create(new PromptTemplateConfig("""
-            You are an AI assistant responsible for meteo weather reports.
-            Respond only from the provided context.
-            """)),
-    Arguments = new()
-    {
+    Name = "EnvironmentAgent",
+    Description = "Environmental specialist that monitors weather and atmospheric conditions",
+    Kernel = kernel.Clone(),
+    //Kernel = kernel,
+    //UseImmutableKernel = true,
+    Instructions = """
+        ## PERSONA
+        You are the Environment Agent, that reads sensors and provide environmental report.
+        Before any exploration steps, you must read sensors for temperature, humidity, rain drops, and wind speed.
+
+        ## ACTIONS
+        1. Read sensors for temperature, humidity, rain drops, wind speed (use SensorsPlugin tools)
+        2. Provide clear environmental report for other agents to use
         
-    }
+        ## OUTPUT TEMPLATE
+        Respond only with the environmental report, without any additional explanations.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.5F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
 };
+environmentAgent.Kernel.Plugins.AddFromType<SensorsPlugin>();
+
+ChatCompletionAgent fireSafetyAgent = new()
+{
+    Name = "FireSafetyAgent",
+    Description = "Fire Safety Agent that assesses fire danger",
+    Kernel = kernel.Clone(),
+    //Kernel = kernel,
+    //UseImmutableKernel = true,
+    Instructions = """
+        ## PERSONA
+        You are the Fire Safety Agent, that monitors fire conditions and provide fire safety clearance.
+
+        ## ACTIONS
+        1. Activate fire emergency protocols for dangerous conditions detection (call fire detector)
+        2. Grant or deny fire safety clearance based on environmental conditions
+
+        ## OUTPUT TEMPLATE
+        Respond with the fire safety clearance.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.2F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
+};
+fireSafetyAgent.Kernel.Plugins.AddFromType<FireDetectorPlugin>();
+
+ChatCompletionAgent rainSafetyAgent = new()
+{
+    Name = "RainSafetyAgent",
+    Description = "Rain Safety Agent that assesses rain danger",
+    Kernel = kernel.Clone(),
+    //Kernel = kernel,
+    //UseImmutableKernel = true,
+    Instructions = """
+        ## PERSONA
+        You are the Rain Safety Agent, that monitors rain conditions and provide rain safety clearance.
+
+        ## ACTIONS
+        1. Activate rain emergency protocols for dangerous conditions detection (call rain detector)
+        2. Grant or deny rain safety clearance based on environmental conditions
+
+        ## OUTPUT TEMPLATE
+        Respond with the rain safety clearance.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.2F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
+};
+rainSafetyAgent.Kernel.Plugins.AddFromType<RainDetectorPlugin>();
+
+OrchestrationMonitor monitor = new(logger);
 
 #pragma warning disable SKEXP0110
-ConcurrentOrchestration orchestration = new(
-    navigatorAgent,
-    meteoAgent)
+ConcurrentOrchestration orchestration = new(environmentAgent, fireSafetyAgent, rainSafetyAgent)
 {
-    ResponseCallback = ResponseCallback,
-    LoggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>(),
+    ResponseCallback = monitor.ResponseCallback,
 };
 
-var query = "There is a tree directly in front of the car. Avoid it and then come back to the original path.";
+var query = """
+    MISSION COMMAND: Exploration Trip
+    Assess the environmental conditions and ensure safety clearance.
+    """;
 
 InProcessRuntime runtime = new();
 await runtime.StartAsync();
 
 Console.WriteLine($"\n# INPUT: {query}\n");
 OrchestrationResult<string[]> result = await orchestration.InvokeAsync(query, runtime);
-_ = await result.GetValueAsync();
+string[] responses = await result.GetValueAsync(TimeSpan.FromMinutes(1));
+Console.WriteLine($"\n# RESPONSES: \n---\n{string.Join("\n---\n", responses)}");
 
 await runtime.RunUntilIdleAsync();
 
-
-static ValueTask ResponseCallback(ChatMessageContent response)
-{
-#pragma warning disable SKEXP0001
-    Console.WriteLine($"[{response.AuthorName}] {response.Content}");
-    //History.Add(response);
-    return ValueTask.CompletedTask;
-}

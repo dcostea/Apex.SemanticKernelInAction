@@ -10,13 +10,13 @@ var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build()
 
 var builder = Kernel.CreateBuilder();
 builder.AddAzureOpenAIChatCompletion(
-    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-    apiKey: configuration["AzureOpenAI:ApiKey"]!,
+    configuration["AzureOpenAI:DeploymentName"]!,
+    configuration["AzureOpenAI:Endpoint"]!,
+    configuration["AzureOpenAI:ApiKey"]!,
     serviceId: "OPENAI");
 builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!,
+    configuration["OpenAI:ModelId"]!,
+    configuration["OpenAI:ApiKey"]!,
     serviceId: "AZURE");
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 builder.Services.AddSingleton<IAIServiceSelector>(new CustomAIServiceSelector("AZURE"));

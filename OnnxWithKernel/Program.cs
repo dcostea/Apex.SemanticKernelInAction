@@ -9,7 +9,7 @@ using Microsoft.SemanticKernel.Connectors.Onnx;
 const string ModelPath = @"c:\Users\dcost\.foundry\cache\models\Microsoft\qwen2.5-14b-instruct-cuda-gpu\v3";
 
 var builder = Kernel.CreateBuilder();
-#pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+#pragma warning disable SKEXP0070
 builder.AddOnnxRuntimeGenAIChatCompletion(
     modelPath: ModelPath,
     modelId: "onnx");

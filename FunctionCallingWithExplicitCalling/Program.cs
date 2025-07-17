@@ -15,13 +15,13 @@ var builder = Kernel.CreateBuilder();
 
 // Add Azure OpenAI as the chat completion provider
 builder.AddAzureOpenAIChatCompletion(
-    deploymentName: configuration["AzureOpenAI:DeploymentName"]!, // Azure OpenAI deployment name
-    endpoint: configuration["AzureOpenAI:Endpoint"]!, // Azure OpenAI endpoint
-    apiKey: configuration["AzureOpenAI:ApiKey"]! // Azure OpenAI API key
+    configuration["AzureOpenAI:DeploymentName"]!, // Azure OpenAI deployment name
+    configuration["AzureOpenAI:Endpoint"]!, // Azure OpenAI endpoint
+    configuration["AzureOpenAI:ApiKey"]! // Azure OpenAI API key
 );
 //builder.AddOpenAIChatCompletion(
-//    modelId: configuration["OpenAI:ModelId"]!, // OpenAI model ID
-//    apiKey: configuration["OpenAI:ApiKey"]! // OpenAI API key
+//    configuration["OpenAI:ModelId"]!, // OpenAI model ID
+//    configuration["OpenAI:ApiKey"]! // OpenAI API key
 //);
 // builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();

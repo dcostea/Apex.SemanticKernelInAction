@@ -15,13 +15,12 @@ using System.Text;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-//const string RagFilesDirectory = @"Data";
-const string RagFilesDirectory = @"C:\Temp\RAG_Files";
+const string RagFilesDirectory = @"Data";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!);
+    configuration["OpenAI:ModelId"]!,
+    configuration["OpenAI:ApiKey"]!);
 builder.Services.AddSingleton<IEmbeddingGenerator>(sp => 
     new OpenAIClient(configuration["OpenAI:ApiKey"]!)
         .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"]!)
@@ -32,13 +31,13 @@ builder.Services.AddSingleton<ITextLoader, TextLoader>();
 builder.Services.AddSingleton<IPdfLoader, PdfLoader>();
 var kernel = builder.Build();
 
-var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
-kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
-
 var pdfDataLoader = kernel.Services.GetRequiredService<IPdfLoader>();
 await pdfDataLoader.LoadAsync(RagFilesDirectory);
 var textDataLoader = kernel.Services.GetRequiredService<ITextLoader>();
 await textDataLoader.LoadAsync(RagFilesDirectory);
+
+var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSearch<TextBlock>>();
+kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (hit 'enter' key to end the chat session)");

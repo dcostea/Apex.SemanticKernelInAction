@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AgentsWithHandoffOrchestrationSimple": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

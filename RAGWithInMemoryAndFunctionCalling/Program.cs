@@ -17,8 +17,8 @@ const string RagFilesDirectory = @"Data";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!);
+    configuration["OpenAI:ModelId"]!,
+    configuration["OpenAI:ApiKey"]!);
 builder.Services.AddSingleton<IEmbeddingGenerator>(sp => 
     new OpenAIClient(configuration["OpenAI:ApiKey"]!)
         .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"]!)

@@ -7,12 +7,12 @@ using Microsoft.SemanticKernel.TextGeneration;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 //var textGeneration = new AzureOpenAIChatCompletionService(
-//    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-//    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-//    apiKey: configuration["AzureOpenAI:ApiKey"]!);
+//    configuration["AzureOpenAI:DeploymentName"]!,
+//    configuration["AzureOpenAI:Endpoint"]!,
+//    configuration["AzureOpenAI:ApiKey"]!);
 var chatCompletion = new OpenAIChatCompletionService(
-     modelId: configuration["OpenAI:ModelId"]!,
-     apiKey: configuration["OpenAI:ApiKey"]!);
+     configuration["OpenAI:ModelId"]!,
+     configuration["OpenAI:ApiKey"]!);
 
 var prompt = """
     <message role="system">

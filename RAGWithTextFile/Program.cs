@@ -12,8 +12,8 @@ const string SourceFilePath = @"Data";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
-    modelId: configuration["OpenAI:ModelId"]!,
-    apiKey: configuration["OpenAI:ApiKey"]!);
+    configuration["OpenAI:ModelId"]!,
+    configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 

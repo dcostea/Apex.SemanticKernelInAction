@@ -6,7 +6,7 @@ namespace Plugins.Native;
 [Description("Fire detection and response plugin.")]
 public class FireDetectorPlugin
 {
-    private const int Delay = 2000; // 2 seconds delay for mocking an action
+    private const int Delay = 500; // x seconds delay for mocking an action
 
     [KernelFunction("capture_camera_feed"), Description("Use computer vision to visually confirm fire presence and size.")]
     public async Task<string> CaptureCameraFeed()
@@ -17,7 +17,7 @@ public class FireDetectorPlugin
         var feed = isFire == 0
             ? "No fire detected in the camera feed."
             : "Fire detected in the camera feed!";
-        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] ACTION: CAMERA FEED {feed}");
+        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] FIRE DETECTOR: CAMERA FEED {feed}");
         await Task.Delay(Delay);
         return await Task.FromResult(feed);
     }
@@ -25,21 +25,21 @@ public class FireDetectorPlugin
     [KernelFunction("sound_alarm"), Description("Trigger an audible or visual alarm to warn nearby humans or systems.")]
     public async Task SoundAlarm()
     {
-        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] ACTION: Sounding fire alarm!");
+        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] FIRE DETECTOR: Sounding fire alarm!");
         await Task.Delay(Delay);
     }
 
     [KernelFunction("start_water_sprinkle"), Description("Activate sprinklers to suppress the fire.")]
     public async Task StartWaterSprinkle()
     {
-        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] ACTION: Starting water sprinkle.");
+        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] FIRE DETECTOR: Starting water sprinkle.");
         await Task.Delay(Delay);
     }
 
     [KernelFunction("stop_water_sprinkle"), Description("Stop sprinklers when fire is extinguished.")]
     public async Task StopWaterSprinkle()
     {
-        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] ACTION: Stopping water sprinkle.");
+        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] FIRE DETECTOR: Stopping water sprinkle.");
         await Task.Delay(Delay);
     }
 }

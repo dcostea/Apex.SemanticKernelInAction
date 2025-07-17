@@ -15,20 +15,20 @@ public class PluginsSemanticIntegrationTests
         #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var builder = Kernel.CreateBuilder();
         //builder.AddAzureOpenAIChatCompletion(
-        //    deploymentName: configuration["AzureOpenAI:DeploymentName"]!,
-        //    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-        //    apiKey: configuration["AzureOpenAI:ApiKey"]!);
+        //    configuration["AzureOpenAI:DeploymentName"]!,
+        //    configuration["AzureOpenAI:Endpoint"]!,
+        //    configuration["AzureOpenAI:ApiKey"]!);
         //builder.AddAzureOpenAIEmbeddingGenerator(
         //    deploymentName: "text-embedding-ada-002",
         //    modelId: "text-embedding-ada-002",
-        //    endpoint: configuration["AzureOpenAI:Endpoint"]!,
-        //    apiKey: configuration["AzureOpenAI:ApiKey"]!);
+        //    configuration["AzureOpenAI:Endpoint"]!,
+        //    configuration["AzureOpenAI:ApiKey"]!);
         builder.AddOpenAIChatCompletion(
-            modelId: configuration["OpenAI:ModelId"]!,
-            apiKey: configuration["OpenAI:ApiKey"]!);
+            configuration["OpenAI:ModelId"]!,
+            configuration["OpenAI:ApiKey"]!);
         builder.AddOpenAIEmbeddingGenerator(
             modelId: configuration["OpenAI:EmbeddingModelId"]!,
-            apiKey: configuration["OpenAI:ApiKey"]!);
+            configuration["OpenAI:ApiKey"]!);
         //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
         var kernel = builder.Build();
 
