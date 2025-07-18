@@ -23,8 +23,7 @@ builder.AddAzureOpenAIChatCompletion(
 builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
 var kernel = builder.Build();
 
-var transientPlugin = kernel.Plugins.AddFromType<TransientPlugin>();
-
+var transientPlugin = kernel.Clone().Plugins.AddFromType<TransientPlugin>();
 KernelFunction incrementingFunction = transientPlugin["increment_number"];
 KernelFunction loadCurrentNumberFunction = transientPlugin["load_current_number"];
 KernelFunction saveCurrentNumberFunction = transientPlugin["save_current_number"];
@@ -59,9 +58,10 @@ ChatCompletionAgent starterAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 2000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([saveCurrentNumberFunction, saveStopConditionFunction])
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
+starterAgent.Kernel.Plugins.AddFromFunctions("TempStarterPlugin", [saveCurrentNumberFunction, saveStopConditionFunction]);
 
 ChatCompletionAgent incrementorAgent = new()
 {
@@ -90,9 +90,10 @@ ChatCompletionAgent incrementorAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([loadCurrentNumberFunction, saveCurrentNumberFunction, incrementingFunction])
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
+incrementorAgent.Kernel.Plugins.AddFromFunctions("TempIncrementorPlugin", [loadCurrentNumberFunction, saveCurrentNumberFunction, incrementingFunction]);
 
 ChatCompletionAgent checkerAgent = new()
 {
@@ -121,9 +122,10 @@ ChatCompletionAgent checkerAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([loadCurrentNumberFunction, loadStopConditionFunction])
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
+checkerAgent.Kernel.Plugins.AddFromFunctions("TempCheckerPlugin", [loadCurrentNumberFunction, loadStopConditionFunction]);
 
 OrchestrationHandoffs handoffs = new OrchestrationHandoffs(starterAgent)
     .Add(starterAgent, incrementorAgent)
@@ -145,6 +147,7 @@ OrchestrationMonitor monitor = new(logger);
 HandoffOrchestration orchestration = new(handoffs, starterAgent, incrementorAgent, checkerAgent)
 {
     ResponseCallback = monitor.ResponseCallback,
+    //StreamingResponseCallback = monitor.StreamingResponseCallback,
     LoggerFactory = loggerFactory,
 };
 
