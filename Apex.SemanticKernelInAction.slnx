@@ -106,20 +106,24 @@
     <Project Path="OpenAIResponseAgent/12.13a OpenAIResponseAgent.csproj" Id="e4584c7b-0d4e-4f3b-8baa-c9438a31373b" />
   </Folder>
   <Folder Name="/13. Agents Orchestration/">
-    <Project Path="AgentsWithConcurrentOrchestration/13.2 AgentsWithConcurrentOrchestration.csproj" Id="816d6e97-e200-4460-83fe-2aa8db849f81" />
-    <Project Path="AgentsWithConcurrentOrchestrationWithStructuredOutput/13.2a AgentsWithConcurrentOrchestrationWithStructuredOutput.csproj" Id="b84c2b09-7ef4-4bbd-9e4d-0784ee06b628" />
-    <Project Path="AgentsWithGroupChatOrchestration/13.3 AgentsWithGroupChatOrchestration.csproj" Id="b790724b-00a8-4266-a418-9f9f614bda42" />
-    <Project Path="AgentsWithGroupChatOrchestrationWithGroupChatManager/13.3a AgentsWithGroupChatOrchestrationWithGroupChatManager.csproj" Id="c6c38934-8e5f-4e84-8ceb-c577c5a98052" />
-    <Project Path="AgentsWithGroupChatOrchestrationWithHumanInput/13.3b AgentsWithGroupChatOrchestrationWithHumanInput.csproj" Id="0f01350f-ad5a-4515-ad78-b6a89ed0f195" />
-    <Project Path="AgentsWithHandoffOrchestration/13.4 AgentsWithHandoffOrchestration.csproj" Id="0b4a96a9-f963-4b20-b220-6265a7d69adb" />
-    <Project Path="AgentsWithHandoffOrchestrationComplex/13.4d AgentsWithHandoffOrchestrationComplex (DELETE).csproj" Id="ac70778a-dd32-4480-bc5c-de78d1ca9ffa" />
-    <Project Path="AgentsWithHandoffOrchestrationIncrementor/13.4b AgentsWithHandoffOrchestrationIncrementor.csproj" Id="2408e3f1-8053-49a4-b1b2-ba36cc115c7a" />
-    <Project Path="AgentsWithHandoffOrchestrationIncrementorPatched/13.4cAgentsWithHandoffOrchestrationIncrementorPatched.csproj" Id="e2acb26e-9751-43a4-840b-6538b3343715" />
-    <Project Path="AgentsWithHandoffOrchestrationSimple/13.4a AgentsWithHandoffOrchestrationSimple.csproj" Id="6666bd56-697a-4310-a019-b4fbe7a411d5" />
-    <Project Path="AgentsWithHandoffOrchestrationWithHumanInput/13.4d AgentsWithHandoffOrchestrationWithHumanInput.csproj" Id="d3af1c1d-b1a7-4900-82b6-a9aa8d2ac96f" />
-    <Project Path="AgentsWithMagenticOrchestration/13.5 AgentsWithMagenticOrchestration.csproj" Id="551c7a29-d684-4c9e-a0e0-dcf592be9d64" />
+    <Project Path="AgentsWithConcurrentOrchestration/13.3 AgentsWithConcurrentOrchestration.csproj" Id="816d6e97-e200-4460-83fe-2aa8db849f81" />
+    <Project Path="AgentsWithConcurrentOrchestrationWithStructuredOutput/13.4 AgentsWithConcurrentOrchestrationWithStructuredOutput.csproj" Id="b84c2b09-7ef4-4bbd-9e4d-0784ee06b628" />
     <Project Path="AgentsWithSequentialOrchestration/13.1 AgentsWithSequentialOrchestration.csproj" Id="daade0ff-d543-4cf5-ba8d-67492e22a485" />
-    <Project Path="AgentsWithSequentialOrchestrationWithStructuredOutput/13.1a AgentsWithSequentialOrchestrationWithStructuredOutput.csproj" Id="b6ae6c9d-03c4-40f5-8787-ee07d1ee1c45" />
+    <Project Path="AgentsWithSequentialOrchestrationWithStructuredOutput/13.2 AgentsWithSequentialOrchestrationWithStructuredOutput.csproj" Id="b6ae6c9d-03c4-40f5-8787-ee07d1ee1c45" />
+  </Folder>
+  <Folder Name="/14 Advanced Agents Orchestration/">
+    <Project Path="AgentsWithGroupChatOrchestration/14.01 AgentsWithGroupChatOrchestration.csproj" Id="b790724b-00a8-4266-a418-9f9f614bda42" />
+    <Project Path="AgentsWithGroupChatOrchestrationWithGroupChatManager/14.02 AgentsWithGroupChatOrchestrationWithGroupChatManager.csproj" Id="f71e71d0-bd7d-4183-b9fe-cdbe030d0eb0" />
+    <Project Path="AgentsWithGroupChatOrchestrationWithHumanInput/14.04 AgentsWithGroupChatOrchestrationWithHumanInput.csproj" Id="0f01350f-ad5a-4515-ad78-b6a89ed0f195" />
+    <Project Path="AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager/14.03 AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager.csproj" Id="c6c38934-8e5f-4e84-8ceb-c577c5a98052" />
+    <Project Path="AgentsWithHandoffOrchestrationWithPersistentBaton/14.06 AgentsWithHandoffOrchestrationWithPersistentBaton.csproj" Id="0b4a96a9-f963-4b20-b220-6265a7d69adb" />
+    <Project Path="AgentsWithHandoffOrchestration/14.05 AgentsWithHandoffOrchestration.csproj" Id="45d29017-ddba-48c5-a480-9ad344e78438" />
+    <Project Path="AgentsWithHandoffOrchestrationComplex/14.08e AgentsWithHandoffOrchestrationComplex (DELETE).csproj" Id="ac70778a-dd32-4480-bc5c-de78d1ca9ffa" />
+    <Project Path="AgentsWithHandoffOrchestrationIncrementor/14.08b AgentsWithHandoffOrchestrationIncrementor.csproj" Id="2408e3f1-8053-49a4-b1b2-ba36cc115c7a" />
+    <Project Path="AgentsWithHandoffOrchestrationIncrementorPatched/14.08cAgentsWithHandoffOrchestrationIncrementorPatched.csproj" Id="e2acb26e-9751-43a4-840b-6538b3343715" />
+    <Project Path="AgentsWithHandoffOrchestrationSimple/14.08a AgentsWithHandoffOrchestrationSimple.csproj" Id="6666bd56-697a-4310-a019-b4fbe7a411d5" />
+    <Project Path="AgentsWithHandoffOrchestrationWithHumanInput/14.07 AgentsWithHandoffOrchestrationWithHumanInput.csproj" Id="d3af1c1d-b1a7-4900-82b6-a9aa8d2ac96f" />
+    <Project Path="AgentsWithMagenticOrchestration/14.09 AgentsWithMagenticOrchestration.csproj" Id="551c7a29-d684-4c9e-a0e0-dcf592be9d64" />
   </Folder>
   <Project Path="Agents/Agents.csproj" Id="a51ce1a1-8677-4bae-af3a-22cba0d527c0" />
   <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" />

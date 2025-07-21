@@ -1,50 +1,21 @@
-﻿using AgentsWithConcurrentOrchestration;
-using Microsoft.Extensions.Logging;
-using Microsoft.SemanticKernel.Agents.Orchestration.GroupChat;
+﻿using Microsoft.SemanticKernel.Agents.Orchestration.GroupChat;
 using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace AgentsWithGroupChatOrchestration;
 
-public sealed class ApprovalGroupChatManager : RoundRobinGroupChatManager
+public class ApprovalGroupChatManager(OrchestrationMonitor monitor) : RoundRobinGroupChatManager
 {
-    private readonly OrchestrationMonitor _monitor;
-
-    public ApprovalGroupChatManager(OrchestrationMonitor monitor)
-    {
-        _monitor = monitor;
-    }
-
-    //public override ValueTask<GroupChatManagerResult<bool>> ShouldRequestUserInput(ChatHistory history, CancellationToken cancellationToken = default)
-    //{
-    //    string? lastAgent = history.LastOrDefault()?.AuthorName;
-
-    //    if (lastAgent is null)
-    //    {
-    //        return ValueTask.FromResult(new GroupChatManagerResult<bool>(false) { Reason = "No agents have spoken yet." });
-    //    }
-
-    //    if (lastAgent == "MotorsAgent")
-    //    {
-    //        return ValueTask.FromResult(new GroupChatManagerResult<bool>(true) { Reason = "User input is needed after the MotorsAgent's message." });
-    //    }
-
-    //    return ValueTask.FromResult(new GroupChatManagerResult<bool>(false) { Reason = "User input is not needed until the MotorsAgent's message." });
-    //}
-
     public override async ValueTask<GroupChatManagerResult<bool>> ShouldTerminate(
         ChatHistory history, CancellationToken cancellationToken = default)
     {
-        string approvalState = _monitor.Approved ? "[APPROVED]" : "[NOT APPROVED]";
-        string executionState = _monitor.Executed ? "[EXECUTED]" : "[NOT EXECUTED]";
-        string stateMessage = $"State[{InvocationCount}]: {approvalState} {executionState}";
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine(stateMessage);
-        Console.ResetColor();
+        // Extract approval state from the last message, except for messages from "MotorsAgent"
+        ////var lastNonMotorsAgentMessage = history.LastOrDefault(h => h.AuthorName != "MotorsAgent")?.Content;
+        ////bool isApproved = lastNonMotorsAgentMessage?.Contains("APPROVED", StringComparison.InvariantCultureIgnoreCase) ?? false;
 
         // Approval termination
-        if (_monitor.Approved && _monitor.Executed)
+        if (monitor.IsApproved)
         {
-            var terminationMessage = $"Termination: {approvalState} and {executionState}";
+            var terminationMessage = $"Termination: [APPROVED]";
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(terminationMessage);
@@ -56,9 +27,9 @@ public sealed class ApprovalGroupChatManager : RoundRobinGroupChatManager
             });
         }
 
-        // Maximum invocation count termination
+        // Maximum invocation count termination (first invoke the base method to update the invocation counter)
         var shouldTerminate = await base.ShouldTerminate(history, cancellationToken);
-        
+
         if (shouldTerminate.Value)
         {
             var terminationMessage = $"Termination: Maximum number of invocations ({MaximumInvocationCount}) reached.";

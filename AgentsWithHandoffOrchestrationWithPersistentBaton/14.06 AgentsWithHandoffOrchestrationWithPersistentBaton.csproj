@@ -16,11 +16,11 @@
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.60.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Orchestration" Version="1.60.0-preview" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Runtime.InProcess" Version="1.60.0-preview" />
-    <PackageReference Include="Seq.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Agents\Agents.csproj" />
+    <ProjectReference Include="..\Helper\Helpers.csproj" />
     <ProjectReference Include="..\Plugins\Plugins.csproj" />
   </ItemGroup>
 

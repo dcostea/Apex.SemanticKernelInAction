@@ -1,4 +1,5 @@
 ﻿using AgentsWithGroupChatOrchestration;
+using AgentsWithConcurrentOrchestration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -8,7 +9,6 @@ using Microsoft.SemanticKernel.Agents.Orchestration;
 using Microsoft.SemanticKernel.Agents.Orchestration.GroupChat;
 using Microsoft.SemanticKernel.Agents.Runtime.InProcess;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
@@ -20,7 +20,12 @@ builder.AddAzureOpenAIChatCompletion(
 //builder.AddOpenAIChatCompletion(
 //    configuration["OpenAI:ModelId"]!,
 //    configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
+builder.Services.AddLogging(logging =>
+{
+    logging.SetMinimumLevel(LogLevel.Trace);
+    ////logging.AddConsole();
+    logging.AddSeq("http://localhost:5341");
+});
 var kernel = builder.Build();
 
 var loggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>();
@@ -88,18 +93,11 @@ ChatCompletionAgent motorsAgent = new()
         FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
-motorsAgent.Kernel.Plugins.AddFromType<MotorsPlugin>();
 
-var monitor = new OrchestrationMonitor();
-var manager = new ApprovalGroupChatManager(monitor)
+var monitor = new OrchestrationMonitor(motorsAgent.Kernel);
+var manager = new MonitoredApprovalGroupChatManager(monitor) 
 {
     MaximumInvocationCount = 10,
-    //InteractiveCallback = () =>
-    //{
-    //    ChatMessageContent input = new(AuthorRole.User, "In addition to what NavigatorAgent decides, increase the distance from objects from 5 to 10 meters for basic moves!");
-    //    Console.WriteLine($"\n# USER INPUT: {input.Content}\n");
-    //    return ValueTask.FromResult(input);
-    //}
 };
 
 GroupChatOrchestration orchestration = new(manager, motorsAgent, navigatorAgent)
@@ -109,18 +107,19 @@ GroupChatOrchestration orchestration = new(manager, motorsAgent, navigatorAgent)
 };
 
 var query = """
-    # MISSION COMMAND: Exploration Trip
+    # MISSION COMMAND:
     "There is a tree directly in front of the car. Avoid it and then come back to the original path. The distance to the tree is 50 meters."
     """;
 
 InProcessRuntime runtime = new();
 await runtime.StartAsync();
 
-Console.WriteLine($"\n# INPUT: {query}\n");
+Console.WriteLine($"\n# USER INPUT: {query}\n");
 OrchestrationResult<string> result = await orchestration.InvokeAsync(query, runtime);
-string response = await result.GetValueAsync();
+string response = await result.GetValueAsync(TimeSpan.FromMinutes(5));
 Console.WriteLine($"\n# RESPONSE: {response}");
 
 Console.ResetColor();
 
 await runtime.RunUntilIdleAsync();
+

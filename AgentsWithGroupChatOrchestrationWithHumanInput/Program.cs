@@ -41,19 +41,17 @@ ChatCompletionAgent navigatorAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         # PERSONA
-        You are the NavigatorAgent responsible for approving basic moves sequences for the robot car.
+        You are the NavigatorAgent responsible for approving or denying the proposed sequences of basic moves for the robot car.
 
         # ACTIONS
-        1. Ask for the basic moves sequence provided from MotorsAgent
-        2. If the basic moves sequence is optimal and safe then respond with "APPROVED"
-        3. If the basic moves sequence is not optimal or is unsafe respond immediately with suggested improvements
+        1. If the `proposed sequence` IS NOT optimal (see optimality rule below), respond with "DENIED" followed by optimality tips.
+        2. Otherwise, if the `proposed sequence` IS optimal, respond with "APPROVED" immediately.
 
-        # CONSTRAINTS
-        ALWAYS keep at least 5 m distance from obstacles, the basic moves for robot car must be safe
-        The basic moves sequence must be optimal, you may use sharp diagonal turns (e.g., 30°, 45°, 60°)
-        
-        # OUTPUT
-        ALWAYS respond to MotorsAgent requests with either "APPROVED" or suggested improvements.
+        # RULES
+        - Optimality rule: Utilize turning angles of 30°, 45°, or 60° for efficient pathing.
+
+        # OUTPUT TEMPLATE
+        ALWAYS respond with "APPROVED" or "DENIED: followed by optimality tips"
         """,
     Arguments = new(new OpenAIPromptExecutionSettings
     {
@@ -62,34 +60,42 @@ ChatCompletionAgent navigatorAgent = new()
     })
 };
 
-ChatCompletionAgent motorsAgent = new() 
+ChatCompletionAgent motorsAgent = new()
 {
     Name = "MotorsAgent",
-    Description = "Motors that execute basic moves sequences for the robot car.",
+    Description = "Motors controller",
     Kernel = kernel.Clone(),
     LoggerFactory = loggerFactory,
     //Kernel = kernel,
     //UseImmutableKernel = true,
     Instructions = """
         # PERSONA
-        You are the MotorsAgent responsible for executing basic moves sequences for the robot car.
+        You are the MotorsAgent responsible for controlling the robot car motors.
+        The permitted basic moves are: forward, backward, turn left, turn right, and stop.
 
         # ACTIONS
-        1. Break down (if they are not already basic!) the complex command into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
-        2. ONLY IF APPROVED by NavigatorAgent, execute the sequence of basic moves
-
+        1. Break down mission command into a sequence of basic moves (considering the optimality suggestions from NavigatorAgent, if any).
+        2. If "APPROVED" by NavigatorAgent: respond with the final sequence and execute it using MotorsPlugin.
+        3. OTHERWISE, if "DENIED" by NavigatorAgent: revise the sequence based on feedback and resubmit for approval.
+        
+        # CONSTRAINTS
+        - ALWAYS wait for NavigatorAgent approval before executing any sequence.
+        - NEVER respond with "APPROVED".
+        - NEVER execute a "DENIED" sequence.
+                
         # OUTPUT TEMPLATE
-        Include duration or distance parameter (e.g., "forward 2m", "turn left 45°") with each basic move, except for `stop` move.
+        Respond with the `proposed sequence` or with the approved `final sequence`.
         """,
     Arguments = new(new OpenAIPromptExecutionSettings
     {
-        Temperature = 0.2F,
+        Temperature = 0.1F,
         MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
 
-var monitor = new OrchestrationMonitor();
-var manager = new ApprovalGroupChatManager(monitor) 
+var monitor = new OrchestrationMonitor(motorsAgent.Kernel);
+var manager = new MonitoredApprovalGroupChatManager(monitor) 
 {
     MaximumInvocationCount = 10,
     InteractiveCallback = monitor.InteractiveCallback

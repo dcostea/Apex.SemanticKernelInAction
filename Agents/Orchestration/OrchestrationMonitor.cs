@@ -19,7 +19,7 @@ public class OrchestrationMonitor
         Console.WriteLine("\n# HUMAN INPUT:");
         string? input = Console.ReadLine();
         ChatMessageContent userMessage = new(AuthorRole.User, input);
-        //ChatMessageContent userMessage = new(AuthorRole.User, "The sequence is NOT APPROVED!");
+        //ChatMessageContent userMessage = new(AuthorRole.User, "The sequence is DENIED!");
 
         return ValueTask.FromResult(userMessage);
     }

@@ -8,6 +8,7 @@ using Microsoft.SemanticKernel.Agents.Orchestration;
 using Microsoft.SemanticKernel.Agents.Orchestration.Handoff;
 using Microsoft.SemanticKernel.Agents.Runtime.InProcess;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Plugins;
 using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
@@ -22,6 +23,12 @@ builder.AddAzureOpenAIChatCompletion(
 //    configuration["OpenAI:ApiKey"]!);
 builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
 var kernel = builder.Build();
+
+// Just creating an isolated plugin with the neede functions
+var transientPlugin = kernel.Clone().Plugins.AddFromType<TransientPlugin>();
+
+KernelFunction loadSafetyClearanceFunction = transientPlugin["load_safety_clearance"];
+KernelFunction saveSafetyClearanceFunction = transientPlugin["save_safety_clearance"];
 
 var loggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>();
 var logger = loggerFactory.CreateLogger("Microsoft.SemanticKernel");
@@ -38,7 +45,7 @@ ChatCompletionAgent commanderAgent = new()
         Your responsibility is to control the flow.
 
         ## CRITICAL ACTIONS
-        1. ALWAYS FIRST load the `safety clearance`
+        1. ALWAYS FIRST load the `safety clearance` using tool ```load_safety_clearance```
         2. IF the mission is complete, DO NOT transfer to SafetyAgent, respond with mission status.
         3. IF the `safety clearance` is denied, DO NOT transfer to SafetyAgent, respond with mission status.
         4. IF there is no `safety clearance` THEN transfer to SafetyAgent to generate it.
@@ -51,8 +58,10 @@ ChatCompletionAgent commanderAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 2000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([loadSafetyClearanceFunction])
     })
 };
+commanderAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
 
 ChatCompletionAgent safetyAgent = new()
 {
@@ -68,7 +77,8 @@ ChatCompletionAgent safetyAgent = new()
         1. Read all available sensors immediately using SensorsPlugin tools
         2. Activate the FireDetectorPlugin tool using the data from sensors
         3. Assemble a `safety clearance` based on the fire detectors result (granted or denied).
-        4. IF clearance is granted THEN hand off the `safety clearance` and the missin command to MotorsAgent
+        4. ALWAYS save the `safety clearance` using tool ```save_safety_clearance``` with argument `safety clearance`
+        5. IF clearance is granted THEN hand off the `safety clearance` and the missin command to MotorsAgent
 
         ## CONSTRAINTS
         - DO NOT stop the task or the flow.
@@ -78,11 +88,12 @@ ChatCompletionAgent safetyAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([saveSafetyClearanceFunction])
     })
 };
 safetyAgent.Kernel.Plugins.AddFromType<SensorsPlugin>();
 safetyAgent.Kernel.Plugins.AddFromType<FireDetectorPlugin>();
+safetyAgent.Kernel.ImportPluginFromFunctions("TempTransient", [saveSafetyClearanceFunction]);
 
 ChatCompletionAgent motorsAgent = new()
 {
@@ -105,10 +116,11 @@ ChatCompletionAgent motorsAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([loadSafetyClearanceFunction])
     })
 };
 motorsAgent.Kernel.Plugins.AddFromType<MotorsPlugin>();
+motorsAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
 
 ChatCompletionAgent summarizerAgent = new()
 {
@@ -129,8 +141,10 @@ ChatCompletionAgent summarizerAgent = new()
     {
         Temperature = 0.1F,
         MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([loadSafetyClearanceFunction])
     })
 };
+summarizerAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
 
 var monitor = new OrchestrationMonitor(logger);
 //var manager = new ApprovalGroupChatManager(monitor, logger);
@@ -170,75 +184,3 @@ Console.ResetColor();
 
 await runtime.RunUntilIdleAsync();
 
-/*
- 
-# USER INPUT: MISSION COMMAND:
-"There is a tree directly in front of the car. Avoid it and then come back to the original path. The distance to the tree is 50 meters."
-
-You need safety clearance granted to proceed with the mission command!
-
-[CommanderAgent]
-  - ToolCall: HandoffPlugin-transfer_to_SafetyAgent
---------------------------------------------------
-[07:30:39:762] SENSORS: READING Temperature: 27 Celsius degrees.
-[07:30:40:276] SENSORS: READING Infrared Radiation: 44
-[07:30:40:783] SENSORS: READING Humidity: 5 %
-[07:30:41:298] SENSORS: READING Droplet Level: Medium
-[07:30:41:810] SENSORS: READING Wind speed: 94 kmph
-[07:30:42:316] SENSORS: READING Wind direction: NorthWest
-[07:30:43:524] FIRE DETECTOR: CAMERA FEED No fire detected in the camera feed.
-[SafetyAgent]
-  - ToolCall: SensorsPlugin-read_temperature
-  - ToolCall: SensorsPlugin-read_infrared_radiation
-  - ToolCall: SensorsPlugin-read_humidity
-  - ToolCall: SensorsPlugin-read_droplet_level
-  - ToolCall: SensorsPlugin-read_wind_speed
-  - ToolCall: SensorsPlugin-read_wind_direction
-[SafetyAgent]
-  - ToolCall: FireDetectorPlugin-capture_camera_feed
-[SafetyAgent]
-  - ToolCall: HandoffPlugin-transfer_to_MotorsAgent
---------------------------------------------------
-[07:30:47:275] MOTORS: Forward: 50m
-[07:30:50:017] MOTORS: TurnLeft: 90°
-[07:30:52:841] MOTORS: Forward: 10m
-[07:30:55:709] MOTORS: TurnRight: 90°
-[07:30:58:462] MOTORS: Forward: 50m
-[07:31:01:748] MOTORS: TurnRight: 90°
-[07:31:04:718] MOTORS: Forward: 10m
-[07:31:07:506] MOTORS: TurnLeft: 90°
-[07:31:10:328] MOTORS: Stop
-
-# RESPONSE: The robot car successfully avoided the tree and returned to its original path.
-[MotorsAgent]
-  - Content: **MISSION COMMAND Breakdown:**
-Avoid the tree safely and return to the original path. Safety clearance granted. Proceeding with the moves.
-
-**Executing moves:**
-
-1. Move forward 50 meters to the tree.
-2. Turn to avoid the obstacle (preferably 90°).
-3. Move a safe distance past the tree.
-4. Turn back onto the original path.
-5. Move to align with where the car originally was directly behind the tree.
-6. Reorient to the original path.
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-turn_left [angle, 90]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-forward [distance, 10]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-turn_right [angle, 90]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-forward [distance, 50]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-turn_right [angle, 90]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-forward [distance, 10]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-turn_left [angle, 90]
-[MotorsAgent]
-  - ToolCall: MotorsPlugin-stop
-[MotorsAgent]
-  - ToolCall: HandoffPlugin-end_task_with_summary [summary, The robot car successfully avoided the tree and returned to its original path.]
---------------------------------------------------
- */

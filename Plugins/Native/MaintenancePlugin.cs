@@ -6,7 +6,7 @@ namespace Plugins.Native;
 [Description("Maintenance plugin for robot car.")]
 public class MaintenancePlugin
 {
-    private const int Delay = 500; // x seconds delay for mocking an action
+    private const int Delay = 500; // milliseconds delay for mocking an action
 
     [KernelFunction("calibrate_sensors"), Description("Calibrates all sensors on the robot car.")]
     public async Task<string> CalibrateSensors()
