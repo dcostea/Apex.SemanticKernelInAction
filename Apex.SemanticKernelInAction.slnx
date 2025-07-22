@@ -118,7 +118,6 @@
     <Project Path="AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager/14.03 AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager.csproj" Id="c6c38934-8e5f-4e84-8ceb-c577c5a98052" />
     <Project Path="AgentsWithHandoffOrchestrationWithPersistentBaton/14.06 AgentsWithHandoffOrchestrationWithPersistentBaton.csproj" Id="0b4a96a9-f963-4b20-b220-6265a7d69adb" />
     <Project Path="AgentsWithHandoffOrchestration/14.05 AgentsWithHandoffOrchestration.csproj" Id="45d29017-ddba-48c5-a480-9ad344e78438" />
-    <Project Path="AgentsWithHandoffOrchestrationComplex/14.08e AgentsWithHandoffOrchestrationComplex (DELETE).csproj" Id="ac70778a-dd32-4480-bc5c-de78d1ca9ffa" />
     <Project Path="AgentsWithHandoffOrchestrationIncrementor/14.08b AgentsWithHandoffOrchestrationIncrementor.csproj" Id="2408e3f1-8053-49a4-b1b2-ba36cc115c7a" />
     <Project Path="AgentsWithHandoffOrchestrationIncrementorPatched/14.08cAgentsWithHandoffOrchestrationIncrementorPatched.csproj" Id="e2acb26e-9751-43a4-840b-6538b3343715" />
     <Project Path="AgentsWithHandoffOrchestrationSimple/14.08a AgentsWithHandoffOrchestrationSimple.csproj" Id="6666bd56-697a-4310-a019-b4fbe7a411d5" />

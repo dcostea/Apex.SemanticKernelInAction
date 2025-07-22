@@ -24,142 +24,151 @@ builder.AddAzureOpenAIChatCompletion(
 builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
 var kernel = builder.Build();
 
-// Just creating an isolated plugin with the neede functions
-var transientPlugin = kernel.Clone().Plugins.AddFromType<TransientPlugin>();
-
-KernelFunction loadSafetyClearanceFunction = transientPlugin["load_safety_clearance"];
-KernelFunction saveSafetyClearanceFunction = transientPlugin["save_safety_clearance"];
-
 var loggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>();
 var logger = loggerFactory.CreateLogger("Microsoft.SemanticKernel");
 
-ChatCompletionAgent commanderAgent = new()
+ChatCompletionAgent environmentAgent = new()
 {
-    Name = "CommanderAgent",
-    Description = "Commander agent",
+    Name = "EnvironmentAgent",
+    Description = "Environment agent that assembles the environment report",
     Kernel = kernel.Clone(),
     //UseImmutableKernel = true,
+    //Kernel = kernel,
     Instructions = """
         ## PERSONA
-        You are CommanderAgent, an agent that starts the mission.
-        Your responsibility is to control the flow.
+        You are the EnvironmentAgent, a specialist responsible for assembling the environment report from sensor data.
+
+        ## ACTIONS
+        1. Read the sensor data and prepare the `environment report` using SensorsPlugin tools
+            - temperature
+            - humidity
+            - wind speed
+        2. ALWAYS save the `environment report` using ```save_environment_report``` tool with argument `environment report`
+        3. IF the temperature is higher than 50° Celsius" call ```HandoffPlugin-transfer_to_FireSafetyAgent``` to transfer to FireSafetyAgent
+        4. IF the humidity is higher than 70%" call ```HandoffPlugin-transfer_to_RainSafetyAgent``` to transfer to RainSafetyAgent
+        5. IF the humidity is lower than 70% and temperature is lower than 50° Celsius" call ```HandoffPlugin-transfer_to_MotorsAgent``` to transfer to MotorsAgent
+
+        ## OUTPUT TEMPLATE
+        Respond with the `environment report`.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.1F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
+};
+environmentAgent.Kernel.Plugins.AddFromType<SensorsPlugin>();
+environmentAgent.Kernel.Plugins.AddFromType<TransientPlugin>();
+
+ChatCompletionAgent fireSafetyAgent = new()
+{
+    Name = "FireSafetyAgent",
+    Description = "Fire safety agent that ensures safe operations",
+    Kernel = kernel.Clone(),
+    //UseImmutableKernel = true,
+    //Kernel = kernel,
+    Instructions = """
+        ## PERSONA
+        You are the FireSafetyAgent, a specialist responsible for preparing the fire safety report.
 
         ## CRITICAL ACTIONS
-        1. ALWAYS FIRST load the `safety clearance` using tool ```load_safety_clearance```
-        2. IF the mission is complete, DO NOT transfer to SafetyAgent, respond with mission status.
-        3. IF the `safety clearance` is denied, DO NOT transfer to SafetyAgent, respond with mission status.
-        4. IF there is no `safety clearance` THEN transfer to SafetyAgent to generate it.
+        1. Read the environmental report using ```load_environment_report``` and activate the FireDetectorPlugin tool with data from it
+        2. Conclude the `fire safety report` based on the fire detectors result.
+        3. Save the `fire safety report` using tool ```save_fire_safety_report``` with argument `fire safety report`
+        4. ALWAYS call ```HandoffPlugin-transfer_to_MotorsAgent``` to transfer to MotorsAgent.
 
-        ## CONSTRAINTS
-        - DO NOT attempt to load or save any reports, as this is not your responsibility.
-        - NEVER hand off to SafetyAgent if the safety clearance is denied or mission is complete.
+        ## OUTPUT TEMPLATE
+        Respond with the `fire safety report`.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.1F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
+};
+fireSafetyAgent.Kernel.Plugins.AddFromType<FireDetectorPlugin>();
+fireSafetyAgent.Kernel.Plugins.AddFromType<TransientPlugin>();
+
+ChatCompletionAgent rainSafetyAgent = new()
+{
+    Name = "RainSafetyAgent",
+    Description = "Rain safety agent that ensures safe operations",
+    Kernel = kernel.Clone(),
+    //UseImmutableKernel = true,
+    //Kernel = kernel,
+    Instructions = """
+        ## PERSONA
+        You are the RainSafetyAgent, a specialist responsible for preparing the rain safety report.
+
+        ## CRITICAL ACTIONS
+        1. Read the environmental report using ```load_environment_report``` and activate the RainDetectorPlugin tool with data from it
+        2. Conclude the `rain safety report` based on the rain detectors result.
+        3. Save the `rain safety report` using tool ```save_rain_safety_report``` with argument `rain safety report`
+        4. ALWAYS call ```HandoffPlugin-transfer_to_MotorsAgent``` to transfer to MotorsAgent.
+
+        ## OUTPUT TEMPLATE
+        Respond with the `rain safety report`.
+        """,
+    Arguments = new(new OpenAIPromptExecutionSettings
+    {
+        Temperature = 0.1F,
+        MaxTokens = 1000,
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+    })
+};
+rainSafetyAgent.Kernel.Plugins.AddFromType<RainDetectorPlugin>();
+rainSafetyAgent.Kernel.Plugins.AddFromType<TransientPlugin>();
+
+var monitor = new OrchestrationMonitor(logger);
+//var manager = new ApprovalGroupChatManager(monitor, logger);
+
+ChatCompletionAgent motorsAgent = new()
+{
+    Name = "MotorsAgent",
+    Description = "Motors Agent",
+    Kernel = kernel.Clone(),
+    //Kernel = kernel,
+    //UseImmutableKernel = true,
+    Instructions = """
+        # PERSONA
+        You are the MotorsAgent responsible for controlling the robot car motors.
+        The permitted basic moves are: forward, backward, turn left, turn right, and stop.
+        
+        # ACTIONS
+        1. ALWAYS call ```load_fire_safety_report``` and ```load_rain_safety_report```
+        2. IF no safety reports are found, proceed with the mission command.
+        3. OTHERWISE integrate the safety reports in the mission command (e.g., if safety reports advice to stop, or proceed cautiously, you proceed immediately)
+        4. Break down mission command into a sequence of basic moves and respond with the reasoning how you integrated the safety report AND with the basic moves sequence.
+        5. Execute basic moves using the corresponding functions (using MotorsPlugin tools)
+        
+        ## OUTPUT TEMPLATE
+        Respond with the movements, and with integration reasoning.
         """,
     Arguments = new(new OpenAIPromptExecutionSettings
     {
         Temperature = 0.1F,
         MaxTokens = 2000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([loadSafetyClearanceFunction])
-    })
-};
-commanderAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
-
-ChatCompletionAgent safetyAgent = new()
-{
-    Name = "SafetyAgent",
-    Description = "Safety agent that ensures safe operations",
-    Kernel = kernel.Clone(),
-    //UseImmutableKernel = true,
-    Instructions = """
-        ## PERSONA
-        You are the SafetyAgent, a specialist responsible for granting or denying the safety clearance.
-
-        ## CRITICAL ACTIONS
-        1. Read all available sensors immediately using SensorsPlugin tools
-        2. Activate the FireDetectorPlugin tool using the data from sensors
-        3. Assemble a `safety clearance` based on the fire detectors result (granted or denied).
-        4. ALWAYS save the `safety clearance` using tool ```save_safety_clearance``` with argument `safety clearance`
-        5. IF clearance is granted THEN hand off the `safety clearance` and the missin command to MotorsAgent
-
-        ## CONSTRAINTS
-        - DO NOT stop the task or the flow.
-        - CANNOT initiate movement commands
-        """,
-    Arguments = new(new OpenAIPromptExecutionSettings
-    {
-        Temperature = 0.1F,
-        MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([saveSafetyClearanceFunction])
-    })
-};
-safetyAgent.Kernel.Plugins.AddFromType<SensorsPlugin>();
-safetyAgent.Kernel.Plugins.AddFromType<FireDetectorPlugin>();
-safetyAgent.Kernel.ImportPluginFromFunctions("TempTransient", [saveSafetyClearanceFunction]);
-
-ChatCompletionAgent motorsAgent = new()
-{
-    Name = "MotorsAgent",
-    Description = "Motors controller",
-    Kernel = kernel.Clone(),
-    LoggerFactory = loggerFactory,
-    //Kernel = kernel,
-    //UseImmutableKernel = true,
-    Instructions = """
-        ## PERSONA
-        You are the MotorsAgent controlling a robot car capable of performing basic moves.
-
-        ## CRITICAL ACTIONS
-        1. Break down the MISSION COMMAND into basic moves like: forward, backward, turn_left, turn_right, stop.
-        2. Respond only with the permitted moves, without any additional explanations.
-        3. Execute the sequence of basic moves immediately.
-        """,
-    Arguments = new(new OpenAIPromptExecutionSettings
-    {
-        Temperature = 0.1F,
-        MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Required([loadSafetyClearanceFunction])
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
     })
 };
 motorsAgent.Kernel.Plugins.AddFromType<MotorsPlugin>();
-motorsAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
-
-ChatCompletionAgent summarizerAgent = new()
-{
-    Name = "SummarizerAgent",
-    Description = "Summarizes the flow",
-    LoggerFactory = loggerFactory,
-    Kernel = kernel.Clone(),
-    //UseImmutableKernel = true,
-    Instructions = """
-        ## PERSONA
-        You are the SummarizerAgent.
-        Your responsibility is to summarize the flow of the mission.
-
-        ## CRITICAL ACTIONS
-        1. Respond immediately with the final outcome of the mission
-        """,
-    Arguments = new(new OpenAIPromptExecutionSettings
-    {
-        Temperature = 0.1F,
-        MaxTokens = 1000,
-        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([loadSafetyClearanceFunction])
-    })
-};
-summarizerAgent.Kernel.ImportPluginFromFunctions("TempTransient", [loadSafetyClearanceFunction]);
-
-var monitor = new OrchestrationMonitor(logger);
-//var manager = new ApprovalGroupChatManager(monitor, logger);
+motorsAgent.Kernel.Plugins.AddFromType<TransientPlugin>();
 
 HandoffOrchestration orchestration = new(
-     OrchestrationHandoffs.StartWith(commanderAgent)
-        .Add(commanderAgent, safetyAgent, "Transfer to this agent if no safety clearance")
-        .Add(safetyAgent, summarizerAgent, "Transfer to this agent if the safety clearance is denied")
-        .Add(safetyAgent, motorsAgent)
+     OrchestrationHandoffs.StartWith(environmentAgent)
+        .Add(environmentAgent, fireSafetyAgent)
+        .Add(environmentAgent, rainSafetyAgent)
+        .Add(environmentAgent, motorsAgent)
+        .Add(fireSafetyAgent, motorsAgent)
+        .Add(rainSafetyAgent, motorsAgent)
         ,
-    commanderAgent,
-    safetyAgent,
-    motorsAgent,
-    summarizerAgent
-)
+    environmentAgent,
+    fireSafetyAgent,
+    rainSafetyAgent,
+    motorsAgent
+    )
 {
     ResponseCallback = monitor.ResponseCallback,
     LoggerFactory = loggerFactory,
@@ -169,7 +178,7 @@ var query = """
     MISSION COMMAND:
     "There is a tree directly in front of the car. Avoid it and then come back to the original path. The distance to the tree is 50 meters."
 
-    You need safety clearance granted to proceed with the mission command!
+    You need safety report to proceed with the mission command!
     """;
 
 InProcessRuntime runtime = new();
@@ -183,4 +192,3 @@ Console.WriteLine($"\n# RESPONSE: {response}");
 Console.ResetColor();
 
 await runtime.RunUntilIdleAsync();
-
