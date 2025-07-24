@@ -5,15 +5,8 @@ using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace AgentsWithGroupChatOrchestration;
 
-public class MonitoredApprovalGroupChatManager : RoundRobinGroupChatManager
+public class MonitoredApprovalGroupChatManager(OrchestrationMonitor monitor) : RoundRobinGroupChatManager
 {
-    private readonly OrchestrationMonitor _monitor;
-
-    public MonitoredApprovalGroupChatManager(OrchestrationMonitor monitor)
-    {
-        _monitor = monitor;
-    }
-
     public override ValueTask<GroupChatManagerResult<bool>> ShouldRequestUserInput(ChatHistory history, CancellationToken cancellationToken = default)
     {
         string? lastAgent = history.LastOrDefault()?.AuthorName;
@@ -37,7 +30,7 @@ public class MonitoredApprovalGroupChatManager : RoundRobinGroupChatManager
         // We can skip the very first user message in the history, which is the initial INPUT
         var lastUserMessage = history.Skip(1)?.LastOrDefault(h => h.Role == AuthorRole.User)?.Content;
         var isApprovedByHuman = lastUserMessage?.Contains("APPROVED", StringComparison.InvariantCultureIgnoreCase) ?? false;
-        string approvalState = isApprovedByHuman || _monitor.IsApproved
+        string approvalState = isApprovedByHuman || monitor.IsApproved
             ? "[APPROVED]" 
             : "[DENIED]";
 
@@ -47,7 +40,7 @@ public class MonitoredApprovalGroupChatManager : RoundRobinGroupChatManager
         Console.ResetColor();
 
         // Approval termination
-        if ((_monitor.IsApproved || isApprovedByHuman) && history.LastOrDefault()?.AuthorName == "MotorsAgent")
+        if ((monitor.IsApproved || isApprovedByHuman) && history.LastOrDefault()?.AuthorName == "MotorsAgent")
         {
             var terminationMessage = $"Termination: {approvalState}";
 

@@ -94,12 +94,6 @@ var monitor = new OrchestrationMonitor();
 var manager = new ApprovalGroupChatManager(monitor)
 {
     MaximumInvocationCount = 10,
-    //InteractiveCallback = () =>
-    //{
-    //    ChatMessageContent input = new(AuthorRole.User, "In addition to what NavigatorAgent decides, increase the distance from objects from 5 to 10 meters for basic moves!");
-    //    Console.WriteLine($"\n# USER INPUT: {input.Content}\n");
-    //    return ValueTask.FromResult(input);
-    //}
 };
 
 GroupChatOrchestration orchestration = new(manager, motorsAgent, navigatorAgent)

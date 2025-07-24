@@ -31,9 +31,9 @@ ChatCompletionAgent navigatorAgent = new()
     Name = "NavigatorAgent",
     Description = "Navigator that reviews navigation routes",
     Kernel = kernel.Clone(),
-    LoggerFactory = loggerFactory,
+    //LoggerFactory = loggerFactory,
     //Kernel = kernel,
-    //UseImmutableKernel = true,
+    UseImmutableKernel = true,
     Instructions = """
         # PERSONA
         You are the NavigatorAgent responsible for approving or denying the proposed sequences of basic moves for the robot car.
@@ -118,42 +118,3 @@ Console.WriteLine($"\n# RESPONSE: {response}");
 Console.ResetColor();
 
 await runtime.RunUntilIdleAsync();
-
-
-/*
-
- * -------------------------------------------------
- GroupChatOrchestration with RoundRobin: Not Like a Series of Sequential Orchestrators
-No, GroupChatOrchestration with RoundRobinGroupChatManager is fundamentally different from a series of Sequential Orchestrators. While they may appear similar on the surface, they operate on completely different architectural principles that create distinct behaviors and capabilities.
-
-Key Architectural Differences
-Context Sharing Model
-GroupChatOrchestration: All agents participate in a shared conversation history. Every agent can see what all other agents have said throughout the entire conversation. Think of it like a conference room meeting where everyone hears everything that's been discussed.
-
-Sequential Orchestration: Agents operate in a linear pipeline where each agent only receives the output from the previous agent as input. Each agent processes this input independently without access to the broader conversation context.
-
-Communication Pattern
-GroupChatOrchestration with RoundRobin:
-
-Agents take turns speaking into a shared conversation space
-
-The RoundRobinGroupChatManager cycles through agents in order, but each agent responds to the entire conversation context
-
-MaximumInvocationCount limits the total number of agent responses across all participants
-
-Sequential Orchestration:
-
-Agents pass their output directly to the next agent in the sequence
-
-Each agent only sees the immediate previous agent's output
-
-The flow is unidirectional and deterministic
-
-Why the Confusion Arises
-The confusion comes from observing the execution order in RoundRobin, which appears sequential. However, the underlying mechanics are completely different:
- 
-Conclusion
-While both patterns can achieve similar outcomes in certain scenarios, they're architecturally distinct. GroupChatOrchestration with RoundRobin creates collaborative dialogue, while Sequential Orchestration creates processing pipelines. The choice between them should be based on whether you need shared collaborative context or structured data transformation.
-
-Your exploration scenario actually benefited more from Sequential Orchestration because you needed a clear dependency chain (Environment → Safety → Motors) rather than collaborative discussion. The "silent agent" issues you experienced were exactly because GroupChatOrchestration wasn't the right architectural pattern for your pipeline-based workflow.
- */

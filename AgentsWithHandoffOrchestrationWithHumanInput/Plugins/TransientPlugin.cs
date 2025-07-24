@@ -6,9 +6,9 @@ namespace Plugins;
 
 public class TransientPlugin
 {
-    public static string? FireSafetyReport { get; set; } = null;
-    public static string? RainSafetyReport { get; set; } = null;
-    public static string? EnvironmentReport { get; set; } = null;
+    public static string? FireSafetyReport { get; set; }
+    public static string? RainSafetyReport { get; set; }
+    public static string? EnvironmentReport { get; set; }
 
     [KernelFunction("load_fire_safety_report")]
     [Description("Load fire safety report")]

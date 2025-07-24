@@ -5,19 +5,12 @@ using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace AgentsWithGroupChatOrchestration;
 
-public class MonitoredApprovalGroupChatManager : RoundRobinGroupChatManager
+public class MonitoredApprovalGroupChatManager(OrchestrationMonitor monitor) : RoundRobinGroupChatManager
 {
-    private readonly OrchestrationMonitor _monitor;
-
-    public MonitoredApprovalGroupChatManager(OrchestrationMonitor monitor)
-    {
-        _monitor = monitor;
-    }
-
     public override async ValueTask<GroupChatManagerResult<bool>> ShouldTerminate(
         ChatHistory history, CancellationToken cancellationToken = default)
     {
-        string approvalState = _monitor.IsApproved 
+        string approvalState = monitor.IsApproved 
             ? "[APPROVED]" 
             : "[DENIED]";
         string stateMessage = $"State[{InvocationCount}]: {approvalState}";
@@ -26,7 +19,7 @@ public class MonitoredApprovalGroupChatManager : RoundRobinGroupChatManager
         Console.ResetColor();
 
         // Approval termination
-        if (_monitor.IsApproved && history.LastOrDefault()?.AuthorName == "MotorsAgent")
+        if (monitor.IsApproved && history.LastOrDefault()?.AuthorName == "MotorsAgent")
         {
             var terminationMessage = $"Termination: {approvalState}";
 
