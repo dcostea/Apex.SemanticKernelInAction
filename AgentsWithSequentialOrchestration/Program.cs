@@ -35,7 +35,7 @@ ChatCompletionAgent environmentAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Environment Agent, that reads sensors and provide environmental report.
+        You are the Environment Agent that reads sensors and provide environmental report.
         Before any exploration steps, you must read sensors for temperature, humidity, rain drops, and wind speed.
 
         ## ACTIONS
@@ -63,7 +63,7 @@ ChatCompletionAgent safetyAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Safety Agent, that analysis the environmental report and provide safety clearance.
+        You are the Safety Agent that analysis the environmental report and provide safety clearance.
 
         ## ACTIONS
         1. Analyze the environmental report for any danger (fire or rain)
@@ -92,7 +92,7 @@ ChatCompletionAgent motorsAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Motors Agent, that controlls the robot car.
+        You are the Motors Agent that controls the robot car.
 
         ## ACTIONS
         1. If safety clearance is denied (not granted), STOP immediately

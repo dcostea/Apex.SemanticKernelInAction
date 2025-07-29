@@ -42,7 +42,7 @@ ChatCompletionAgent fireSafetyAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Fire Safety Agent, that analyzis the environmental data and provide fire safety clearance.
+        You are the Fire Safety Agent that analyzis the environmental data and provide fire safety clearance.
         
         ## ACTIONS
         1. Activate emergency protocols if dangerous conditions detected (call fire detector)
@@ -72,7 +72,7 @@ ChatCompletionAgent rainSafetyAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Rain Safety Agent, that analyzis the environmental data and provide rain safety clearance.
+        You are the Rain Safety Agent that analyzis the environmental data and provide rain safety clearance.
 
         ## ACTIONS
         1. Activate emergency protocols if dangerous conditions detected (call rain detector)

@@ -20,7 +20,7 @@ builder.AddOpenAIChatCompletion(
     configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 builder.Services.AddSingleton<IPromptRenderFilter, PromptHijackingFilter>(); // the order matters!
-builder.Services.AddSingleton<IPromptRenderFilter, PromptVerboseFilter>();
+builder.Services.AddSingleton<IPromptRenderFilter, PromptAuditFilter>();
 var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();

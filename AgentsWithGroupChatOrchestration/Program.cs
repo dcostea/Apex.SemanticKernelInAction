@@ -31,9 +31,9 @@ ChatCompletionAgent navigatorAgent = new()
     Name = "NavigatorAgent",
     Description = "Navigator that reviews navigation routes",
     Kernel = kernel.Clone(),
-    //LoggerFactory = loggerFactory,
+    LoggerFactory = loggerFactory,
     //Kernel = kernel,
-    UseImmutableKernel = true,
+    //UseImmutableKernel = true,
     Instructions = """
         # PERSONA
         You are the NavigatorAgent responsible for approving or denying the proposed sequences of basic moves for the robot car.

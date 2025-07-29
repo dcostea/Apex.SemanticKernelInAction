@@ -20,7 +20,7 @@ builder.AddOpenAIChatCompletion(
     configuration["OpenAI:ModelId"]!,
     configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
-builder.Services.AddSingleton<IAutoFunctionInvocationFilter, AutoFunctionCallsVerboseFilter>();
+builder.Services.AddSingleton<IAutoFunctionInvocationFilter, AutoFunctionCallsAuditFilter>();
 var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();

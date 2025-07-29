@@ -126,6 +126,10 @@
     <Project Path="AgentsWithHandoffOrchestrationWithPersistentBaton/15.02 AgentsWithHandoffOrchestrationWithPersistentBaton.csproj" />
     <Project Path="AgentsWithMagenticOrchestration/15.09 AgentsWithMagenticOrchestration.csproj" />
   </Folder>
+  <Folder Name="/16. MCP/">
+    <Project Path="McpClientSample/16.02 McpClientSample.csproj" Id="5190ae86-04ce-4680-9b3a-58fcaf38ebad" />
+    <Project Path="McpServerSample/16.01 McpServerSample.csproj" Id="8cc1073e-429f-4694-9b86-317dddf3a1f6" />
+  </Folder>
   <Project Path="Agents/Agents.csproj" Id="a51ce1a1-8677-4bae-af3a-22cba0d527c0" />
   <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" />
   <Project Path="ChatbotService/x.1 ChatbotServiceSample (unfinished).csproj" />

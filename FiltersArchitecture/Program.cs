@@ -25,7 +25,7 @@ builder.Services.AddSingleton<IFunctionInvocationFilter, SecondFunctionFilter>()
 builder.Services.AddSingleton<IFunctionInvocationFilter, ThirdFunctionFilter>();
 var kernel = builder.Build();
 
-//kernel.FunctionInvocationFilters.Add(new FunctionVerboseFilter());
+//kernel.FunctionInvocationFilters.Add(new FunctionAuditFilter());
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 

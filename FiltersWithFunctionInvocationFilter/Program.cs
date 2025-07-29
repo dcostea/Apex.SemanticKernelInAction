@@ -23,10 +23,10 @@ builder.AddOpenAIChatCompletion(
 builder.Services.AddSingleton<IFunctionInvocationFilter, BackwardConfirmationFilter>();
 builder.Services.AddSingleton<IFunctionInvocationFilter, HumanInTheLoopFilter>();
 builder.Services.AddSingleton<IFunctionInvocationFilter, MissingArgumentFilter>();
-builder.Services.AddSingleton<IFunctionInvocationFilter, FunctionVerboseFilter>();
+builder.Services.AddSingleton<IFunctionInvocationFilter, FunctionAuditFilter>();
 var kernel = builder.Build();
 
-//kernel.FunctionInvocationFilters.Add(new FunctionVerboseFilter());
+//kernel.FunctionInvocationFilters.Add(new FunctionAuditFilter());
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 

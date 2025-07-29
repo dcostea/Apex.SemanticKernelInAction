@@ -35,7 +35,7 @@ ChatCompletionAgent environmentAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Environment Agent, that reads sensors and provide environmental report.
+        You are the Environment Agent that reads sensors and provide environmental report.
         Before any exploration steps, you must read sensors for temperature, humidity, rain drops, and wind speed.
 
         ## ACTIONS
@@ -63,7 +63,7 @@ ChatCompletionAgent fireSafetyAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Fire Safety Agent, that monitors fire conditions and provide fire safety clearance.
+        You are the Fire Safety Agent that monitors fire conditions and provide fire safety clearance.
 
         ## ACTIONS
         1. Activate fire emergency protocols for dangerous conditions detection (call fire detector)
@@ -90,7 +90,7 @@ ChatCompletionAgent rainSafetyAgent = new()
     //UseImmutableKernel = true,
     Instructions = """
         ## PERSONA
-        You are the Rain Safety Agent, that monitors rain conditions and provide rain safety clearance.
+        You are the Rain Safety Agent that monitors rain conditions and provide rain safety clearance.
 
         ## ACTIONS
         1. Activate rain emergency protocols for dangerous conditions detection (call rain detector)

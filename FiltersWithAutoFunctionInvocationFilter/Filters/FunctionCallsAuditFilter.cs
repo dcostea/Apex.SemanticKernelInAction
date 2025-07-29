@@ -2,7 +2,7 @@
 
 namespace Filters;
 
-public sealed class AutoFunctionCallsVerboseFilter : IAutoFunctionInvocationFilter
+public sealed class AutoFunctionCallsAuditFilter : IAutoFunctionInvocationFilter
 {
     public async Task OnAutoFunctionInvocationAsync(AutoFunctionInvocationContext context, Func<AutoFunctionInvocationContext, Task> next)
     {

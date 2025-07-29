@@ -20,7 +20,7 @@ builder.AddAzureOpenAIChatCompletion(
 //builder.AddOpenAIChatCompletion(
 //    configuration["OpenAI:ModelId"]!,
 //    configuration["OpenAI:ApiKey"]!);
-builder.Services.AddLogging(logging => { logging.AddConsole().SetMinimumLevel(LogLevel.Warning); });
+builder.Services.AddLogging(logging => logging.AddConsole().SetMinimumLevel(LogLevel.Warning));
 var kernel = builder.Build();
 
 var loggerFactory = kernel.Services.GetRequiredService<ILoggerFactory>();
