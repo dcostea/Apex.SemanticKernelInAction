@@ -26,10 +26,8 @@ var embeddingGenerator = new OpenAIClient(configuration["OpenAI:ApiKey"]!)
     .AsIEmbeddingGenerator();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
-#pragma warning disable SKEXP0001 // AsChatClient is experimental
 var chatClient = chat.AsChatClient();
 
-#pragma warning disable SKEXP0130 // WhiteboardProvider is experimental
 var whiteboardProvider = new WhiteboardProvider(chatClient);
 
 ////var chatHistoryReducer = new ChatHistorySummarizationReducer(chat, targetCount: 3, thresholdCount: 2);

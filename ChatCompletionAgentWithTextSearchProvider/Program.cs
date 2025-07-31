@@ -25,7 +25,6 @@ var embeddingGenerator = new OpenAIClient(configuration["OpenAI:ApiKey"]!)
     .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"])
     .AsIEmbeddingGenerator();
 var vectorStore = new InMemoryVectorStore(new() { EmbeddingGenerator = embeddingGenerator });
-#pragma warning disable SKEXP0130 // TextSearchStore is experimental
 using var textSearchStore = new TextSearchStore<string>(vectorStore, collectionName: "WeatherData", vectorDimensions: 1536);
 await textSearchStore.UpsertTextAsync(
 [
@@ -43,7 +42,6 @@ await textSearchStore.UpsertTextAsync(
 
 ChatHistoryAgentThread agentThread = new();
 var textSearchProvider = new TextSearchProvider(textSearchStore);
-#pragma warning disable SKEXP0110 // AIContextProviders is experimental
 agentThread.AIContextProviders.Add(textSearchProvider);
 
 ChatCompletionAgent agent = new()

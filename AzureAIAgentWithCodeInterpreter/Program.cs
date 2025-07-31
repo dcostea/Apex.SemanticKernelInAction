@@ -13,7 +13,6 @@ PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!,
 PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     tools: [new CodeInterpreterToolDefinition()]);
-#pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 
 var motorsPlugin = KernelPluginFactory.CreateFromType<MotorsPlugin>();
 

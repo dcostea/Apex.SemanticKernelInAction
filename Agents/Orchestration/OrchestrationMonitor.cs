@@ -27,7 +27,6 @@ public class OrchestrationMonitor
     public ValueTask ResponseCallback(ChatMessageContent message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
-        #pragma warning disable SKEXP0001
         Console.WriteLine($"[{message.AuthorName}]");
         _logger.LogDebug("[{messageAuthorName}] {messageContent}", message.AuthorName, message.Content);
 

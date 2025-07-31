@@ -110,7 +110,6 @@ rainSafetyAgent.Kernel.Plugins.AddFromType<RainDetectorPlugin>();
 
 OrchestrationMonitor monitor = new(logger);
 
-#pragma warning disable SKEXP0110
 ConcurrentOrchestration orchestration = new(environmentAgent, fireSafetyAgent, rainSafetyAgent)
 {
     ResponseCallback = monitor.ResponseCallback,

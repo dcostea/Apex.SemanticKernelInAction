@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AgentsWithHandoffOrchestrationWithHumanInput\14.07 AgentsWithHandoffOrchestrationWithHumanInput.csproj" />
     <ProjectReference Include="..\Plugins\Plugins.csproj" />
   </ItemGroup>
 

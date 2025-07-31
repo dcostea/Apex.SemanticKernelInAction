@@ -6,10 +6,8 @@ const string ModelUri = "http://localhost:11434";
 const string Model = "mistral-small3.1:latest";
 var ollamaClient = new OllamaApiClient(new Uri(ModelUri), defaultModel: Model);
 
-#pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 var chat = ollamaClient.AsChatCompletionService();
 
-#pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 var executionSettings = new OllamaPromptExecutionSettings
 {
     Temperature = 0.1F,

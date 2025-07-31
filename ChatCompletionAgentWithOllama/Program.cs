@@ -15,7 +15,6 @@ const string ModelUri = "http://localhost:11434";
 const string Model = "qwen3:14b";
 
 var builder = Kernel.CreateBuilder();
-#pragma warning disable SKEXP0070
 builder.AddOllamaChatCompletion(
     modelId: Model,
     endpoint: new Uri(ModelUri))
@@ -25,7 +24,6 @@ var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 
-#pragma warning disable SKEXP0001 // RetainArgumentTypes is experimental
 var executionSettings = new OllamaPromptExecutionSettings
 {
     Temperature = 0.1F,

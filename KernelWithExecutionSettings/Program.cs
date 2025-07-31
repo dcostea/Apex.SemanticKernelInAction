@@ -18,7 +18,6 @@ builder.AddOpenAIChatCompletion(
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-#pragma warning disable SKEXP0010 // Logprobs, and TopLogprobs are experimental and they needs to be enabled explicitly
 var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
 {
     MaxTokens = 100, // maximum number of tokens to generate, the excess will be truncated

@@ -73,8 +73,6 @@ var kernelArguments = new KernelArguments
     ["history"] = chatMessages
 };
 
-#pragma warning disable SKEXP0040 // CreateFunctionFromPrompty is experimental and it needs to be enabled explicitly
-
 var promptyFunction = kernel.CreateFunctionFromPrompty(promptyTemplate);
 // querying using using prompt function invocation and kernel arguments
 var result = await kernel.InvokeAsync(promptyFunction, kernelArguments);

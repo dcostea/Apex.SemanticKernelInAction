@@ -18,7 +18,6 @@ var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 
-#pragma warning disable SKEXP0110 // ChatCompletionAgentFactory is experimental.
 ChatCompletionAgentFactory factory = new();
 var yamlContent = File.ReadAllText("ChatCompletionAgent.yaml");
 var agent = await factory.CreateAgentFromYamlAsync(yamlContent, new AgentCreationOptions { Kernel = kernel });

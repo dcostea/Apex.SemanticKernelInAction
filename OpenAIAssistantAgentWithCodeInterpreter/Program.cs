@@ -8,7 +8,6 @@ using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-#pragma warning disable OPENAI001 // AssistantClient is experimental.
 var assistantClient = new AssistantClient(configuration["OpenAI:ApiKey"]!);
 var assistant = await assistantClient.CreateAssistantAsync(configuration["OpenAI:ModelId"]!, enableCodeInterpreter: true);
 

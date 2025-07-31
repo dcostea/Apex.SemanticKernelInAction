@@ -21,7 +21,6 @@ var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 
-#pragma warning disable SKEXP0001 // RetainArgumentTypes is experimental
 ChatCompletionAgent agent = new()
 {
     Name = "RobotCarAgent",

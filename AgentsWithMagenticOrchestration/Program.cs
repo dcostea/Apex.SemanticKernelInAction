@@ -100,8 +100,6 @@ motorsAgent.Kernel.Plugins.AddFromType<MotorsPlugin>();
 
 OrchestrationMonitor monitor = new(logger);
 
-#pragma warning disable SKEXP0110
-
 var chat = kernel2.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings();
 

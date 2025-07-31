@@ -18,10 +18,18 @@ public class SearchPlugin
         foreach (var txtFile in txtFiles)
         {
             var textFileName = Path.GetFileName(txtFile);
-            Console.WriteLine($"Loading {textFileName}...");
-            var text = await File.ReadAllTextAsync(txtFile);
-            context.Append(text);
-            Console.WriteLine($"Text {textFileName} loading complete");
+
+            try
+            {
+                Console.WriteLine($"Loading {textFileName}...");
+                var text = await File.ReadAllTextAsync(txtFile);
+                context.Append(text);
+                Console.WriteLine($"Text {textFileName} loading complete");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Text {textFileName} reading error!");
+            }
         }
 
         return await Task.FromResult(context.ToString());

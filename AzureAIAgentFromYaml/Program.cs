@@ -9,7 +9,6 @@ using Plugins.Native;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-#pragma warning disable SKEXP0110 // OpenAIAssistantAgentFactory is experimental.
 AzureAIAgentFactory factory = new();
 
 PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!, new DefaultAzureCredential());

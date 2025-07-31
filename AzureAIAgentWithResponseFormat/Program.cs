@@ -13,7 +13,6 @@ PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     responseFormat: responseFormat);
         
-#pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 AzureAIAgent agent = new(persistentAgent, client)
 {
     Name = "RobotCarAgent",

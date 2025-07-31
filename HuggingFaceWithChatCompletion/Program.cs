@@ -18,7 +18,6 @@ const string Model = "microsoft/phi-4";
 //const string Model = "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B";
 
 var builder = Kernel.CreateBuilder();
-#pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 //https://huggingface.co/models?inference_provider=hf-inference
 builder.AddHuggingFaceChatCompletion(

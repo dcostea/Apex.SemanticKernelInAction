@@ -20,7 +20,6 @@ var kernel = builder.Build();
 
 var logger = kernel.Services.GetRequiredService<ILogger<Program>>();
 
-#pragma warning disable SKEXP0010 // ResponseFormat is experimental and it needs to be enabled explicitly
 var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
 {
     ResponseFormat = typeof(StepsResult), // model response can be formatted as json_object

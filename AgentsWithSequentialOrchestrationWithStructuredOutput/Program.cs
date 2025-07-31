@@ -117,8 +117,6 @@ ChatCompletionAgent motorsAgent = new()
 };
 // We do not need to add MotorsPlugin here, as we expect a structured output from MotorsAgent
 
-#pragma warning disable SKEXP0110
-
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {

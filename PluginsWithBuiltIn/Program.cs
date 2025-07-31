@@ -16,7 +16,6 @@ builder.AddAzureOpenAIChatCompletion(
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Debug));
 var kernel = builder.Build();
 
-#pragma warning disable SKEXP0050 // OpenApiFunctionExecutionParameters is experimental and it needs to be enabled explicitly
 var bingConnector = new BingConnector(configuration["BingSearchKey"]!);
 var bingPlugin = new WebSearchEnginePlugin(bingConnector);
 kernel.ImportPluginFromObject(bingPlugin, "bing");

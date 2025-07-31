@@ -9,7 +9,6 @@ var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build()
 
 PersistentAgentsClient client = new(configuration["AzureOpenAIAgent:Endpoint"]!, new DefaultAzureCredential());
 PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(configuration["AzureOpenAIAgent:DeploymentName"]!);
-#pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 AzureAIAgent agent = new(persistentAgent, client)
 {
     Name = "RobotCarAgent",

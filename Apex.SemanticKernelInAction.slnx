@@ -15,18 +15,19 @@
   <Folder Name="/03. Kernel/">
     <Project Path="Kernel/3.1a Kernel.csproj" />
     <Project Path="KernelWithAIServiceSelector/3.4a KernelWithAIServiceSelector.csproj" />
+    <Project Path="KernelWithJsonResponse/3.1b KernelWithJsonResponse.csproj" />
+    <Project Path="KernelWithMultipleServices/3.1c KernelWithMultipleServices.csproj" />
+    <Project Path="KernelWithStreaming/3.1d KernelWithStreaming.csproj" />
+  </Folder>
+  <Folder Name="/04. Chat Completion/">
     <Project Path="KernelWithExecutionSettings/4.3b KernelWithExecutionSettings.csproj" />
     <Project Path="KernelWithHandlebarsPromptTemplate/4.5c KernelWithHandlebarsPromptTemplate.csproj" />
-    <Project Path="KernelWithJsonResponse/3.1b KernelWithJsonResponse.csproj" />
     <Project Path="KernelWithKernelArguments/4.3a KernelWithKernelArguments.csproj" />
     <Project Path="KernelWithLiquidPromptTemplate/4.5b KernelWithLiquidPromptTemplate.csproj" />
     <Project Path="KernelWithMessages/4.2a KernelWithMessages.csproj" />
-    <Project Path="KernelWithMultipleServices/3.1c KernelWithMultipleServices.csproj" />
     <Project Path="KernelWithPromptTemplate/4.5a KernelWithPromptTemplate.csproj" />
     <Project Path="KernelWithPromptyFunction/4.5d KernelWithPromptyFunction.csproj" />
-    <Project Path="KernelWithStreaming/3.1d KernelWithStreaming.csproj" />
   </Folder>
-  <Folder Name="/04. Chat Completion/" />
   <Folder Name="/05. Functions/">
     <Project Path="KernelWithNativeFunctions/5.1a KernelWithNativeFunctions.csproj" />
     <Project Path="KernelWithSemanticFunctions/5.1b KernelWithSemanticFunctions.csproj" />
@@ -35,7 +36,7 @@
     <Project Path="KernelWithSemanticFunctionsFromYaml/5.1e KernelWithSemanticFunctionsFromYaml.csproj" />
   </Folder>
   <Folder Name="/06. Plugins/">
-    <Project Path="PluginsUnitTesting/6.5a PluginsTesting.csproj" />
+    <Project Path="PluginsUnitTesting/6.5 PluginsTesting.csproj" />
     <Project Path="PluginsWithBuiltIn/6.4a PluginsWithBuiltIn.csproj" />
     <Project Path="PluginsWithFunctionChaining/6.3a PluginsWithFunctionChaining.csproj" />
     <Project Path="PluginsWithFunctionNesting/6.3b PluginsWithFunctionNesting.csproj" />
@@ -98,7 +99,7 @@
     <Project Path="ChatCompletionAgentWithOllama/12.09 ChatCompletionAgentWithOllama.csproj" Id="20fecf2e-5d98-4a54-b076-2be0de39b5d7" />
     <Project Path="ChatCompletionAgentWithTextSearchProvider/12.08 ChatCompletionAgentWithTextSearchProvider.csproj" Id="acbb718b-d9b2-4ce8-babb-23c624fdc150" />
     <Project Path="ChatCompletionAgentWithThreads/12.06 ChatCompletionAgentWithThreads.csproj" Id="f65df832-6d66-40fe-89af-f3b210da0c20" />
-    <Project Path="ChatCompletionAgentWithWhiteboardProvider/12.06a ChatCompletionAgentWithWhiteboardProvider.csproj" Id="dab5bf5d-49d4-439c-a17c-8966625acb5f" />
+    <Project Path="ChatCompletionAgentWithWhiteboardProvider/12.06b ChatCompletionAgentWithWhiteboardProvider.csproj" Id="dab5bf5d-49d4-439c-a17c-8966625acb5f" />
     <Project Path="OpenAIAssistantAgent/12.10 OpenAIAssistantAgent.csproj" />
     <Project Path="OpenAIAssistantAgentFromYaml/12.21 OpenAIAssistantAgentFromYaml.csproj" Id="db2fd305-1270-4832-ac53-5c460f77e2c8" />
     <Project Path="OpenAIAssistantAgentWithCodeInterpreter/12.11 OpenAIAssistantAgentWithCodeInterpreter.csproj" Id="c91b350d-2605-4613-9ff4-cbc8e98c1a92" />
@@ -132,8 +133,6 @@
   </Folder>
   <Project Path="Agents/Agents.csproj" Id="a51ce1a1-8677-4bae-af3a-22cba0d527c0" />
   <Project Path="AspireServiceDefaults/AspireServiceDefaults.csproj" />
-  <Project Path="ChatbotService/x.1 ChatbotServiceSample (unfinished).csproj" />
-  <Project Path="ChatCompletionWithVision/2.8 ChatCompletionWithVisionSample (unfinished).csproj" />
   <Project Path="Helper/Helpers.csproj" />
   <Project Path="Plugins/Plugins.csproj" />
 </Solution>

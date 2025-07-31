@@ -12,7 +12,6 @@ public class PluginsSemanticIntegrationTests
     {
         var configuration = new ConfigurationBuilder().AddUserSecrets<PluginsSemanticIntegrationTests>().Build();
 
-        #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var builder = Kernel.CreateBuilder();
         //builder.AddAzureOpenAIChatCompletion(
         //    configuration["AzureOpenAI:DeploymentName"]!,

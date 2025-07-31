@@ -8,7 +8,6 @@ const string ModelUri = "http://localhost:11434";
 const string Model = "qwen3:14b";
 
 var builder = Kernel.CreateBuilder();
-#pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 builder.AddOllamaTextGeneration(
     modelId: Model,
     endpoint: new Uri(ModelUri));

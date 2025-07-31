@@ -18,8 +18,6 @@ builder.AddOpenAIChatCompletion(
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-#pragma warning disable SKEXP0001 // ServiceId property is experimental and it needs to be enabled explicitly
-
 var kernelArguments = new KernelArguments(
     new OpenAIPromptExecutionSettings
     {

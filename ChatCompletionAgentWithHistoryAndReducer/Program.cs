@@ -18,7 +18,6 @@ builder.AddOpenAIChatCompletion(
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Debug));
 var kernel = builder.Build();
 
-#pragma warning disable SKEXP0110 // HistoryReducer is experimental
 ChatCompletionAgent agent = new()
 {
     Name = "RobotCarAgent",

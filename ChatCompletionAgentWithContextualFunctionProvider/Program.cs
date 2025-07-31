@@ -33,7 +33,6 @@ var embeddingGenerator = new OpenAIClient(configuration["OpenAI:ApiKey"]!)
     .GetEmbeddingClient(configuration["OpenAI:EmbeddingModelId"])
     .AsIEmbeddingGenerator();
 
-#pragma warning disable SKEXP0001 // RetainArgumentTypes is experimental
 ChatCompletionAgent agent = new()
 {
     Name = "RobotCarAgent",
@@ -54,8 +53,6 @@ ChatCompletionAgent agent = new()
 
 ChatHistoryAgentThread agentThread = new();
 
-#pragma warning disable SKEXP0110 // AIContextProviders is experimental
-#pragma warning disable SKEXP0130 // ContextualFunctionProvider is experimental
 var vectorStore = new InMemoryVectorStore(new InMemoryVectorStoreOptions { EmbeddingGenerator = embeddingGenerator });
 agentThread.AIContextProviders.Add(
     new ContextualFunctionProvider(

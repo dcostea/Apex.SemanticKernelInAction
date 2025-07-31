@@ -93,8 +93,6 @@ ChatCompletionAgent rainSafetyAgent = new()
 };
 rainSafetyAgent.Kernel.Plugins.AddFromType<RainDetectorPlugin>();
 
-#pragma warning disable SKEXP0110
-
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var executionSettings = new OpenAIPromptExecutionSettings
 {

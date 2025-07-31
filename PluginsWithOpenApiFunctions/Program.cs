@@ -18,8 +18,6 @@ builder.AddOpenAIChatCompletion(
 builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 
-#pragma warning disable SKEXP0040 // OpenApiFunctionExecutionParameters is experimental and it needs to be enabled explicitly
-
 // Import an Open API plugin from a URL.
 var plugin = await kernel.CreatePluginFromOpenApiAsync(
     "RobotCarAPI",

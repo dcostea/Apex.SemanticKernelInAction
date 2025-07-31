@@ -27,7 +27,6 @@ PersistentAgent persistentAgent = await client.Administration.CreateAgentAsync(
     configuration["AzureOpenAIAgent:DeploymentName"]!,
     tools: [new FileSearchToolDefinition()],
     toolResources: new() { FileSearch = new() { VectorStoreIds = { fileStore.Id } } });
-#pragma warning disable SKEXP0110 // AzureAIAgent is experimental
 
 AzureAIAgent agent = new(persistentAgent, client)
 {
