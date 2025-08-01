@@ -36,7 +36,7 @@
     <Project Path="KernelWithSemanticFunctionsFromYaml/5.1e KernelWithSemanticFunctionsFromYaml.csproj" />
   </Folder>
   <Folder Name="/06. Plugins/">
-    <Project Path="PluginsUnitTesting/6.5 PluginsTesting.csproj" />
+    <Project Path="PluginsTesting/6.5 PluginsTesting.csproj" />
     <Project Path="PluginsWithBuiltIn/6.4a PluginsWithBuiltIn.csproj" />
     <Project Path="PluginsWithFunctionChaining/6.3a PluginsWithFunctionChaining.csproj" />
     <Project Path="PluginsWithFunctionNesting/6.3b PluginsWithFunctionNesting.csproj" />

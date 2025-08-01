@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 
-namespace PluginsUnitTesting;
+namespace PluginsTesting;
 
 public class PluginsSemanticIntegrationTests
 {

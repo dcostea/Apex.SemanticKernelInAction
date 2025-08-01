@@ -1,30 +1,41 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using ModelContextProtocol.Server;
 using Plugins.Native;
-using System.ComponentModel;
 
-Console.WriteLine("Starting MCP Server...");
+var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-var builder = Host.CreateEmptyApplicationBuilder(settings: null);
+var kernelBuilder = Kernel.CreateBuilder();
+kernelBuilder.AddAzureOpenAIChatCompletion(
+configuration["AzureOpenAI:DeploymentName"]!,
+configuration["AzureOpenAI:Endpoint"]!,
+configuration["AzureOpenAI:ApiKey"]!);
+//builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
+var kernel = kernelBuilder.Build();
 
-IKernelBuilder kernelBuilder = builder.Services.AddKernel();
-kernelBuilder.Plugins.AddFromType<MotorsPlugin>();
-//kernelBuilder.Plugins.AddFromType<SensorsPlugin>();
+kernel.Plugins.AddFromType<MotorsPlugin>();
 
+var builder = Host.CreateEmptyApplicationBuilder(null);
 builder.Services
     .AddMcpServer()
     .WithStdioServerTransport()
     .WithToolsFromAssembly();
 
-await builder.Build().RunAsync();
-
-[McpServerToolType]                     // marks the class for server discovery
-public static class EchoTool
+// Register the kernel plugin functions as mcp tools
+foreach (var plugin in kernel.Plugins)
 {
-    [McpServerTool,                     // MCP attribute
-     KernelFunction,                    // optional SK attribute (makes it an SK function too)
-     Description("Echoes the provided message back to the caller.")]
-    public static string Echo(string message) => $"echo: {message}";
+    foreach (var function in plugin)
+    {
+        var mcpTool = McpServerTool.Create(function);
+        builder.Services.AddSingleton(mcpTool);
+    }
 }
+
+var app = builder.Build();
+
+Console.WriteLine("MCP Server is running...");
+
+await app.RunAsync();

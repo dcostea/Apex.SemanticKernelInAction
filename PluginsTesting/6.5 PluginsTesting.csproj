@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <UserSecretsId>03178d60-8dbc-4f22-89c5-60d2cd1718b8</UserSecretsId>
-    <NoWarn>$(NoWarn);SKEXP0010</NoWarn>
+    <NoWarn>$(NoWarn);SKEXP0010;SKEXP0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +24,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+
+    <PackageReference Include="Microsoft.Extensions.AI" Version="9.7.1" />
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="9.7.1" />
+    <PackageReference Include="Microsoft.Extensions.AI.Evaluation" Version="9.7.0" />
+    <PackageReference Include="Microsoft.Extensions.AI.Evaluation.Quality" Version="9.7.0" />
+
   </ItemGroup>
 
   <ItemGroup>
