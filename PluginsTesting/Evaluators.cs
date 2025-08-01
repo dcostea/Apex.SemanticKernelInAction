@@ -5,29 +5,11 @@ using Microsoft.Extensions.AI.Evaluation.Quality;
 using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using System;
 
 namespace PluginsTesting;
 
 public class Evaluators
 {
-
-    /* 
-     Evaluator Predictions:
-CoherenceEvaluator: ✅ PASS (logical sequence)
-RelevanceEvaluator: ❌ FAIL (ignores tree avoidance)
-CompletenessEvaluator: ❌ FAIL (missing avoidance steps)
-GroundednessEvaluator: ✅ PASS (uses permitted moves)
-FluencyEvaluator: ✅ PASS (clear format)
-    * 
-
-     * relevancy, CompletenessEvaluator
-1. forward (1 meter)
-2. stop  
-3. forward (100 meter)
-
-     */
-
     [Fact]
     public async Task CoherenceEvaluator_CoherentResponse()
     {
