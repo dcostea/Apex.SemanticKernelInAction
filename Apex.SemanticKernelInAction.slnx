@@ -67,6 +67,8 @@
     <Project Path="RAGWithInMemoryAndFunctionCalling/10.10 RAGWithInMemoryFunctionCalling.csproj" />
     <Project Path="RAGWithInMemoryExplicitCalling/10.09 RAGWithInMemoryExplicitCalling.csproj" />
     <Project Path="RAGWithInMemoryExplicitCallingTextAndPdf/10.13 RAGWithInMemoryExplicitCallingTextAndPdf.csproj" />
+    <Project Path="RAGWithPluginKernelMemory/10.15 RAGWithPluginKernelMemory.csproj" Id="787869ca-3932-4c13-9402-f990d93dc764" />
+    <Project Path="RAGWithServerlessKernelMemory/10.14 RAGWithServerlessKernelMemory.csproj" Id="fc699d21-ffa6-43b2-b888-9eea4fd33ff6" />
     <Project Path="RAGWithTextFile/10.03 RAGWithTextFile.csproj" />
     <Project Path="RAGWithTextFilePlugin/10.05 RAGWithTextFilePlugin.csproj" />
   </Folder>

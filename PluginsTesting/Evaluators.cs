@@ -20,11 +20,14 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
 
-        List<ChatMessage> history = 
+        List<ChatMessage> history =
         [
             new(
                 ChatRole.System,
@@ -43,7 +46,7 @@ public class Evaluators
                 """)
         ];
 
-        ChatResponse response = new (new ChatMessage(ChatRole.Assistant, """
+        ChatResponse response = new(new ChatMessage(ChatRole.Assistant, """
             1. turn right (90°)
             2. forward (1 meter)
             3. turn left (90°)
@@ -72,6 +75,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -99,7 +105,7 @@ public class Evaluators
             Turn left because trees are green and I like the color, 
             forward 2 steps but watch for rain clouds, stop if you hear music, 
             backward might work better on Tuesdays when the moon is full, 
-            the car needs to turn right eventually but first check if your shoes.
+            the car needs to turn right eventually but first check your shoes.
             """));
 
         var coherenceEvaluator = new CoherenceEvaluator();
@@ -121,6 +127,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -173,6 +182,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -221,6 +233,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -262,8 +277,8 @@ public class Evaluators
 
         var groundednessEvaluator = new GroundednessEvaluator();
         EvaluationResult result = await groundednessEvaluator.EvaluateAsync(
-            history, 
-            response, 
+            history,
+            response,
             new ChatConfiguration(chat),
             [baselineResponseForGroundedness]);
         NumericMetric groundedness = result.Get<NumericMetric>(GroundednessEvaluator.GroundednessMetricName);
@@ -283,6 +298,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -307,7 +325,7 @@ public class Evaluators
         ];
 
         ChatResponse response = new(new ChatMessage(ChatRole.Assistant, """
-            1. get round
+            1. go round
             2. retreat
             3. jump over the tree
             4. evazive maneveur
@@ -321,8 +339,8 @@ public class Evaluators
 
         var groundednessEvaluator = new GroundednessEvaluator();
         EvaluationResult result = await groundednessEvaluator.EvaluateAsync(
-            history, 
-            response, 
+            history,
+            response,
             new ChatConfiguration(chat),
             [baselineResponseForGroundedness]);
         NumericMetric groundedness = result.Get<NumericMetric>(GroundednessEvaluator.GroundednessMetricName);
@@ -342,6 +360,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -418,6 +439,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();
@@ -470,6 +494,9 @@ public class Evaluators
             configuration["AzureOpenAI:DeploymentName"]!,
             configuration["AzureOpenAI:Endpoint"]!,
             configuration["AzureOpenAI:ApiKey"]!);
+        //builder.AddOpenAIChatCompletion(
+        //    configuration["OpenAI:ModelId"]!,
+        //    configuration["OpenAI:ApiKey"]!);
         var kernel = builder.Build();
 
         var chat = kernel.GetRequiredService<IChatCompletionService>().AsChatClient();

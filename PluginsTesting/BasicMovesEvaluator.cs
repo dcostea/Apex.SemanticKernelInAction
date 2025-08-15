@@ -17,7 +17,6 @@ public class BasicMovesEvaluator : IEvaluator
 {
     public const string BasicMovesMetricName = "BasicMoves";
 
-    /// <inheritdoc/>
     public IReadOnlyCollection<string> EvaluationMetricNames => [BasicMovesMetricName];
 
     /// <summary>
@@ -107,9 +106,7 @@ public class BasicMovesEvaluator : IEvaluator
         return (isValid, reason, foundValidMoves, foundInvalidMoves);
     }
 
-    /// <summary>
     /// Provides interpretation for the supplied <paramref name="metric"/>.
-    /// </summary>
     private static void Interpret(BooleanMetric metric, string reason)
     {
         if (metric.Value is null)
@@ -137,7 +134,6 @@ public class BasicMovesEvaluator : IEvaluator
         }
     }
 
-    /// <inheritdoc/>
     public ValueTask<EvaluationResult> EvaluateAsync(
         IEnumerable<ChatMessage> messages,
         ChatResponse modelResponse,

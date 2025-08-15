@@ -40,7 +40,7 @@ var vectorStoreTextSearch = kernel.Services.GetRequiredService<VectorStoreTextSe
 kernel.Plugins.Add(vectorStoreTextSearch.CreateWithGetTextSearchResults("SearchPlugin"));
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Assistant > Ask me anything from the loaded PDF. (hit 'enter' key to end the chat session)");
+Console.WriteLine("Assistant > Ask me anything from the loaded documents. (hit 'enter' key to end the chat session)");
 Console.WriteLine();
 
 var history = new ChatHistory("""
