@@ -111,6 +111,11 @@ var query = """
     "There is a tree directly in front of the car. Avoid it and then come back to the original path. The distance to the tree is 50 meters."
     """;
 
+//var query = """
+//    # MISSION COMMAND:
+//    "There is a big lake in front of you, at least 10 meters in diameter. I want you to explore the entire lake."
+//    """;
+
 InProcessRuntime runtime = new();
 await runtime.StartAsync();
 

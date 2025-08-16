@@ -174,9 +174,16 @@ HandoffOrchestration orchestration = new(
 var query = """
     MISSION COMMAND:
     "There is a tree directly in front of the car. Avoid it and then come back to the original path. The distance to the tree is 50 meters."
-    
+
     If safety reports are available, integrate them into the mission command (e.g, advices to slow down or stop).
     """;
+
+//var query = """
+//    # MISSION COMMAND:
+//    "There is a big lake in front of you, at least 10 meters in diameter. I want you to explore the entire lake."
+
+//    If safety reports are available, integrate them into the mission command (e.g, advices to slow down or stop).
+//    """;
 
 InProcessRuntime runtime = new();
 await runtime.StartAsync();
