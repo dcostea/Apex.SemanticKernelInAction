@@ -40,12 +40,12 @@ KernelFunction[] subset = [forward, backward];
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     // FunctionChoiceBehavior determines how the AI interacts with functions:
-    // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // AI can choose to call functions or respond with text
+    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // AI can choose to call functions or respond with text
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([]), // AI can choose, but no functions are available
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(subset), // AI can choose, but only from the subset
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Required(), // AI must call a function
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Required([]), // AI must call a function, but none are available
-    FunctionChoiceBehavior = FunctionChoiceBehavior.Required(subset), // AI must call a function from the subset
+    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required(subset), // AI must call a function from the subset
     // FunctionChoiceBehavior = FunctionChoiceBehavior.None(), // Function calling is disabled
     // FunctionChoiceBehavior = FunctionChoiceBehavior.None([]), // Function calling is disabled, no functions available
     // FunctionChoiceBehavior = FunctionChoiceBehavior.None(subset), // Function calling is disabled, subset ignored

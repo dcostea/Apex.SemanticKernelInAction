@@ -4,9 +4,8 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.Onnx;
 
-//const string ModelPath = @"c:\Users\dcost\.foundry\cache\models\Microsoft\Phi-4-mini-reasoning-cuda-gpu\v1";
-//const string ModelPath = @"c:\Users\dcost\.foundry\cache\models\Microsoft\mistralai-Mistral-7B-Instruct-v0-2-cuda-gpu\mistral-7b-instruct-v0.2-cuda-int4-rtn-block-32";
-const string ModelPath = @"c:\Users\dcost\.foundry\cache\models\Microsoft\qwen2.5-14b-instruct-cuda-gpu\v3";
+const string ModelPath = @"c:\Temp\LLMs\ONNX\phi-3.5-mini-instruct\cpu_and_mobile\cpu-int4-awq-block-128-acc-level-4";
+//const string ModelPath = @"c:\Temp\LLMs\ONNX\mistral-7b-instruct-v0.2-cuda-fp16";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOnnxRuntimeGenAIChatCompletion(

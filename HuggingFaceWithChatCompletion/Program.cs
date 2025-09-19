@@ -11,9 +11,8 @@ var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build()
 
 const string ModelHub = "https://api-inference.huggingface.co/models/";
 
-//const string Model = "mistralai/Mistral-Small-3.1-24B-Instruct-2503";
+const string Model = "mistralai/Mistral-Small-24B-Instruct-2501";
 //const string Model = "Qwen/Qwen3-32B";
-const string Model = "microsoft/phi-4";
 //const string Model = "meta-llama/Llama-3.1-8B-Instruct";
 //const string Model = "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B";
 

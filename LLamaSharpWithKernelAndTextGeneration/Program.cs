@@ -10,8 +10,8 @@ using Microsoft.SemanticKernel.TextGeneration;
 
 //https://huggingface.co/Qwen/Qwen3-14B-GGUF
 //const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen3\Qwen3-14B-Q4_K_M.gguf";
-const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen3\Qwen3-8B-Q8_0.gguf";
-//const string ModelPath = @"c:\Temp\LLMs\GGUF\mistral-small-3.1\Mistral-Small-3.1-24B-Instruct-2503-Q4_K_M.gguf";
+//const string ModelPath = @"c:\Temp\LLMs\GGUF\gemma\gemma-3-12b-it-Q5_K_M.gguf";
+const string ModelPath = @"c:\Temp\LLMs\GGUF\mistral\Mistral-Small-3.1-24B-Instruct-2503-Q4_K_M.gguf";
 
 NativeLibraryConfig.All.WithLogCallback((level, message) =>
 {
@@ -22,7 +22,7 @@ NativeLibraryConfig.All.WithLogCallback((level, message) =>
 var modelParams = new ModelParams(ModelPath)
 {
     ContextSize = 1 << 12, // 4K context size 🦙
-    GpuLayerCount = 0
+    GpuLayerCount = -1
 };
 using var model = LLamaWeights.LoadFromFile(modelParams);
 using var context = model.CreateContext(modelParams);

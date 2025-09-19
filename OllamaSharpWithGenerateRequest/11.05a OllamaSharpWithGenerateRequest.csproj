@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonSchema.Net" Version="7.3.4" />
-    <PackageReference Include="OllamaSharp" Version="5.2.2" />
+    <PackageReference Include="JsonSchema.Net" Version="7.4.0" />
+    <PackageReference Include="OllamaSharp" Version="5.4.5" />
   </ItemGroup>
 
 </Project>

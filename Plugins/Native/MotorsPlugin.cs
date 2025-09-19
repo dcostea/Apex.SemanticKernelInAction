@@ -9,7 +9,7 @@ public class MotorsPlugin
     private const int Delay = 2000; // x seconds delay for mocking an action
 
     [KernelFunction("backward"), Description("Basic command: Moves the robot car backward.")]
-    public async Task<string> Backward([Description("The distance (in meters) to move the robot car backward.")] int? distance = null)
+    public async Task<string> Backward([Description("The distance (in meters) to move the robot car backward.")] int distance)
     {
         Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] MOTORS: Backward: {distance}m");
         await Task.Delay(Delay);
@@ -17,7 +17,7 @@ public class MotorsPlugin
     }
 
     [KernelFunction("forward"), Description("Basic command: Moves the robot car forward.")]
-    public async Task<string> Forward([Description("The distance (in meters) to move the robot car forward.")] int? distance = null)
+    public async Task<string> Forward([Description("The distance (in meters) to move the robot car forward.")] int distance)
     {
         Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] MOTORS: Forward: {distance}m");
         await Task.Delay(Delay);

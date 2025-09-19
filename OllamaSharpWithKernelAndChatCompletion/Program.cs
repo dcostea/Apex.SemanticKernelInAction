@@ -6,9 +6,9 @@ using Microsoft.SemanticKernel.Connectors.Ollama;
 using Plugins.Native;
 
 const string ModelUri = "http://localhost:11434";
-//const string Model = "mistral-small3.1:latest";
+const string Model = "mistral-small3.1:latest";
 //const string Model = "llama3.2:latest";
-const string Model = "qwen3:14b";
+//const string Model = "qwen3:14b";
 
 var builder = Kernel.CreateBuilder();
 builder.AddOllamaChatCompletion(

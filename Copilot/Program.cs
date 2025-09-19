@@ -6,13 +6,13 @@ using Microsoft.SemanticKernel.ChatCompletion;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var kernel = Kernel.CreateBuilder()
-//.AddAzureOpenAIChatCompletion(
-//configuration["AzureOpenAI:DeploymentName"]!,
-//configuration["AzureOpenAI:Endpoint"]!,
-//configuration["AzureOpenAI:ApiKey"]!)
-.AddOpenAIChatCompletion(
-     configuration["OpenAI:ModelId"]!,
-     configuration["OpenAI:ApiKey"]!)
+    .AddAzureOpenAIChatCompletion(
+    configuration["AzureOpenAI:DeploymentName"]!,
+    configuration["AzureOpenAI:Endpoint"]!,
+    configuration["AzureOpenAI:ApiKey"]!)
+//.AddOpenAIChatCompletion(
+//     configuration["OpenAI:ModelId"]!,
+//     configuration["OpenAI:ApiKey"]!)
 .Build();
 
 var commandsPluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins", "CommandsPlugin");

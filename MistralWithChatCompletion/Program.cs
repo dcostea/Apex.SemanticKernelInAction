@@ -91,7 +91,7 @@ static async Task FunctionCallingFix(Kernel kernel, KernelPlugin motorPlugin, Ch
             }
             
             var args = function.Metadata.Parameters.Count > 0 
-                ? new KernelArguments { [function.Metadata.Parameters[0].Name] = match.Groups[2].Value }
+                ? new KernelArguments { [function.Metadata.Parameters[0].Name] = string.IsNullOrEmpty(match.Groups[2].Value) ? "90" : match.Groups[2].Value }
                 : [];
                 
             var result = await kernel.InvokeAsync(function, args);

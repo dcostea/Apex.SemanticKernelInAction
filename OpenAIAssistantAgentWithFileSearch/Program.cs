@@ -25,7 +25,7 @@ foreach (var filePath in filePaths)
     string fileId = await openAIClient.UploadAssistantFileAsync(stream, fileName);
     fileIds.Add(fileId);
 }
-string vectorStoreId = await openAIClient.CreateVectorStoreAsync(fileIds, waitUntilCompleted: true);
+string vectorStoreId = await openAIClient.CreateVectorStoreAsync(fileIds);
 
 OpenAIAssistantAgentThread thread = new (assistantClient, vectorStoreId: vectorStoreId);
 

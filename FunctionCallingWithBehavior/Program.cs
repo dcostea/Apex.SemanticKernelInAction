@@ -9,13 +9,13 @@ using Plugins.Native;
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
 var builder = Kernel.CreateBuilder();
-//builder.AddAzureOpenAIChatCompletion(
-//    configuration["AzureOpenAI:DeploymentName"]!,
-//    configuration["AzureOpenAI:Endpoint"]!,
-//    configuration["AzureOpenAI:ApiKey"]!);
-builder.AddOpenAIChatCompletion(
-    configuration["OpenAI:ModelId"]!,
-    configuration["OpenAI:ApiKey"]!);
+builder.AddAzureOpenAIChatCompletion(
+    configuration["AzureOpenAI:DeploymentName"]!,
+    configuration["AzureOpenAI:Endpoint"]!,
+    configuration["AzureOpenAI:ApiKey"]!);
+//builder.AddOpenAIChatCompletion(
+//    configuration["OpenAI:ModelId"]!,
+//    configuration["OpenAI:ApiKey"]!);
 //builder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
 var kernel = builder.Build();
 

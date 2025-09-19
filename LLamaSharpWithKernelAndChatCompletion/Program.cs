@@ -9,10 +9,10 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using System.Text;
 
 //https://huggingface.co/Qwen/Qwen3-14B-GGUF
-const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen3\Qwen3-14B-Q4_K_M.gguf";
-//const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen3\Qwen3-8B-Q4_K_M.gguf";
-//const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen3\Qwen3-8B-Q8_0.gguf";
-//const string ModelPath = @"c:\Temp\LLMs\GGUF\mistral-small-3.1\Mistral-Small-3.1-24B-Instruct-2503-Q4_K_M.gguf";
+//const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen\Qwen3-14B-Q4_K_M.gguf";
+//const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen\Qwen3-8B-Q4_K_M.gguf";
+//const string ModelPath = @"c:\Temp\LLMs\GGUF\Qwen\Qwen3-8B-Q8_0.gguf";
+const string ModelPath = @"c:\Temp\LLMs\GGUF\mistral\Mistral-Small-3.1-24B-Instruct-2503-Q4_K_M.gguf";
 
 NativeLibraryConfig.All.WithLogCallback((level, message) =>
 {
