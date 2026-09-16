@@ -1,0 +1,1302 @@
+"Project","Status","ExitCode","DurationSeconds","Detail"
+"Agents\Agents.csproj","NotRunnable",,"0","OutputType="
+"AgentsWithConcurrentOrchestration\13.3 AgentsWithConcurrentOrchestration.csproj","Failed","-532462766","7,4","ation.AgentActor.InvokeAsync(IList`1 input, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.Orchestration.OrchestrationResult`1.GetValueAsync(Nullable`1 timeout, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AgentsWithConcurrentOrchestration\Program.cs:line 128
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.Concurrent.ConcurrentActor.HandleAsync(Request item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()"
+"AgentsWithConcurrentOrchestrationWithStructuredOutput\13.4 AgentsWithConcurrentOrchestrationWithStructuredOutput.csproj","Failed","-532462766","7,5","okeAsync(IList`1 input, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.Orchestration.OrchestrationResult`1.GetValueAsync(Nullable`1 timeout, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AgentsWithConcurrentOrchestrationWithStructuredOutput\Program.cs:line 123
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.Concurrent.ConcurrentActor.HandleAsync(Request item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()"
+"AgentsWithGroupChatOrchestration\14.01 AgentsWithGroupChatOrchestration.csproj","Failed","-532462766","8,2","tion\Program.cs:line 115
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.GroupChat.GroupChatAgentActor.HandleAsync(Speak item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithGroupChatOrchestrationWithGroupChatManager\14.02 AgentsWithGroupChatOrchestrationWithGroupChatManager.csproj","Failed","-532462766","7,1","ager\Program.cs:line 115
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.GroupChat.GroupChatAgentActor.HandleAsync(Speak item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithGroupChatOrchestrationWithHumanInput\14.04 AgentsWithGroupChatOrchestrationWithHumanInput.csproj","Failed","-532462766","7,6","nput\Program.cs:line 120
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.GroupChat.GroupChatAgentActor.HandleAsync(Speak item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager\14.03 AgentsWithGroupChatOrchestrationWithMonitoredGroupChatManager.csproj","Failed","-532462766","7,5","ager\Program.cs:line 124
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Orchestration.GroupChat.GroupChatAgentActor.HandleAsync(Speak item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithHandoffOrchestration\15.01 AgentsWithHandoffOrchestration.csproj","Passed","0","21,3","9:138] FIRE DETECTOR: Sounding fire alarm!
+[01:28:30:471] FIRE DETECTOR: Starting water sprinkle.
+[FireSafetyAgent]
+  - ToolCall: FireDetectorPlugin-capture_camera_feed 
+[FireSafetyAgent]
+  - ToolCall: FireDetectorPlugin-sound_alarm 
+[FireSafetyAgent]
+  - ToolCall: FireDetectorPlugin-start_water_sprinkle 
+[FireSafetyAgent]
+  - ToolCall: HandoffPlugin-transfer_to_MotorsAgent 
+--------------------------------------------------
+[01:28:32:768] MOTORS: TurnRight: 90┬░
+[01:28:35:560] MOTORS: Forward: 50m
+[01:28:38:572] MOTORS: TurnLeft: 90┬░
+[MotorsAgent]
+  - ToolCall: MotorsPlugin-turn_right [angle, 90]
+[MotorsAgent]
+  - ToolCall: MotorsPlugin-forward [distance, 50]
+[MotorsAgent]
+  - ToolCall: MotorsPlugin-turn_left [angle, 90]
+[MotorsAgent]
+  - ToolCall: HandoffPlugin-end_task_with_summary [summary, Executed avoidance maneuver for a tree 50 meters ahead: turned right 90┬░, moved forward 50 meters, then turned left 90┬░ to return to the original path.]
+--------------------------------------------------
+
+# RESPONSE: Executed avoidance maneuver for a tree 50 meters ahead: turned right 90┬░, moved forward 50 meters, then turned left 90┬░ to return to the original path."
+"AgentsWithHandoffOrchestrationIncrementor\15.08b AgentsWithHandoffOrchestrationIncrementor.csproj","Passed","0","11,6","# USER INPUT: Process the number 12.
+Stop condition is 16.
+
+[StarterAgent]
+  - ToolCall: TransientPlugin-save_current_number [currentNumber, 12]
+  - ToolCall: TransientPlugin-save_stop_condition [stopCondition, 16]
+[StarterAgent]
+  - ToolCall: HandoffPlugin-transfer_to_IncrementorAgent 
+--------------------------------------------------
+[IncrementorAgent]
+  - ToolCall: TransientPlugin-load_current_number 
+[IncrementorAgent]
+  - ToolCall: TransientPlugin-increment_number [currentNumber, 12] [amount, 1]
+[IncrementorAgent]
+  - ToolCall: TransientPlugin-save_current_number [currentNumber, 13]
+[IncrementorAgent]
+  - ToolCall: HandoffPlugin-transfer_to_CheckerAgent 
+--------------------------------------------------
+[CheckerAgent]
+  - ToolCall: TransientPlugin-load_current_number 
+  - ToolCall: TransientPlugin-load_stop_condition 
+[CheckerAgent]
+  - ToolCall: HandoffPlugin-transfer_to_IncrementorAgent 
+--------------------------------------------------
+[IncrementorAgent]
+This Assistant message had no content and no tools!!!
+
+# RESPONSE:"
+"AgentsWithHandoffOrchestrationIncrementorPatched\15.08cAgentsWithHandoffOrchestrationIncrementorPatched.csproj","Passed","0","11,8","# USER INPUT: Process the number 12.
+Stop condition is 16.
+
+[StarterAgent]
+  - ToolCall: TempStarterPlugin-save_current_number [currentNumber, 12]
+  - ToolCall: TempStarterPlugin-save_stop_condition [stopCondition, 16]
+[StarterAgent]
+  - ToolCall: HandoffPlugin-transfer_to_IncrementorAgent 
+--------------------------------------------------
+[IncrementorAgent]
+  - ToolCall: TempIncrementorPlugin-load_current_number 
+[IncrementorAgent]
+  - ToolCall: TempIncrementorPlugin-increment_number [currentNumber, 12] [amount, 1]
+[IncrementorAgent]
+  - ToolCall: TempIncrementorPlugin-save_current_number [currentNumber, 13]
+[IncrementorAgent]
+  - ToolCall: HandoffPlugin-transfer_to_CheckerAgent 
+--------------------------------------------------
+[CheckerAgent]
+  - ToolCall: TempCheckerPlugin-load_current_number 
+  - ToolCall: TempCheckerPlugin-load_stop_condition 
+[CheckerAgent]
+  - ToolCall: HandoffPlugin-transfer_to_IncrementorAgent 
+--------------------------------------------------
+[IncrementorAgent]
+This Assistant message had no content and no tools!!!
+
+# RESPONSE:"
+"AgentsWithHandoffOrchestrationSimple\15.08a AgentsWithHandoffOrchestrationSimple.csproj","Passed","0","10,8","unch settings from C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AgentsWithHandoffOrchestrationSimple\Properties\launchSettings.json...
+
+# USER INPUT: number 12
+
+[StarterAgent]
+  - ToolCall: TempStarterPlugin-save_current_number [currentNumber, 12]
+[StarterAgent]
+  - ToolCall: HandoffPlugin-transfer_to_EvenNumbersIncrementorAgent 
+--------------------------------------------------
+[EvenNumbersIncrementorAgent]
+  - ToolCall: TempEvenNumbersIncrementorPlugin-load_current_number 
+[EvenNumbersIncrementorAgent]
+  - ToolCall: TempEvenNumbersIncrementorPlugin-increment_number [currentNumber, 12] [incrementAmount, 3]
+[EvenNumbersIncrementorAgent]
+  - ToolCall: TempEvenNumbersIncrementorPlugin-save_current_number [currentNumber, 15]
+[EvenNumbersIncrementorAgent]
+  - ToolCall: HandoffPlugin-transfer_to_MultipleOfFiveDoublerAgent 
+--------------------------------------------------
+[MultipleOfFiveDoublerAgent]
+  - ToolCall: TempMultipleOfFiveDoublerPlugin-load_current_number 
+[MultipleOfFiveDoublerAgent]
+  - ToolCall: TempMultipleOfFiveDoublerPlugin-multiply_number [currentNumber, 15] [multiplier, 10]
+[MultipleOfFiveDoublerAgent]
+  - Content: 150 
+
+# RESPONSE: 150"
+"AgentsWithHandoffOrchestrationWithHumanInput\15.07 AgentsWithHandoffOrchestrationWithHumanInput.csproj","Failed","-532462766","28","hHumanInput\Program.cs:line 187
+   at Microsoft.SemanticKernel.Agents.Orchestration.Handoff.HandoffActor.HandleAsync(Request item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Program.<Main>(String[] args)
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithHandoffOrchestrationWithPersistentBaton\15.02 AgentsWithHandoffOrchestrationWithPersistentBaton.csproj","Passed","0","24,3","sfer_to_MotorsAgent 
+--------------------------------------------------
+[01:29:58:118] TRANSIENT: Loading fire safety report: no fire safety report
+[01:29:58:119] TRANSIENT: Loading rain safety report: Rain safety report: Temperature -1 C, humidity 87%, wind speed 69 kmph. Heavy precipitation conditions are indicated by the detected high droplet level, so wipers have been started. Driving advisory: reduce speed, maintain extra following distance, and be prepared for reduced visibility and slick road conditions.
+[01:29:59:419] MOTORS: TurnLeft: 45┬░
+[01:30:01:422] MOTORS: Forward: 50m
+[01:30:03:434] MOTORS: TurnRight: 45┬░
+[01:30:05:441] MOTORS: Forward: 50m
+[MotorsAgent]
+  - ToolCall: TransientPlugin-load_fire_safety_report 
+  - ToolCall: TransientPlugin-load_rain_safety_report 
+[MotorsAgent]
+  - ToolCall: MotorsPlugin-turn_left [angle, 45]
+  - ToolCall: MotorsPlugin-forward [distance, 50]
+  - ToolCall: MotorsPlugin-turn_right [angle, 45]
+  - ToolCall: MotorsPlugin-forward [distance, 50]
+[MotorsAgent]
+  - Content: turn left 45┬░, forward 50 meters, turn right 45┬░, forward 50 meters 
+
+# RESPONSE: turn left 45┬░, forward 50 meters, turn right 45┬░, forward 50 meters"
+"AgentsWithMagenticOrchestration\15.09 AgentsWithMagenticOrchestration.csproj","Failed","-532462766","6,2"," Object serviceKey, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetRequiredKeyedService(Type serviceType, Object serviceKey)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderKeyedServiceExtensions.GetRequiredKeyedService(IServiceProvider provider, Type serviceType, Object serviceKey)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderKeyedServiceExtensions.GetRequiredKeyedService[T](IServiceProvider provider, Object serviceKey)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderKeyedServiceExtensions.GetKeyedServices[T](IServiceProvider provider, Object serviceKey)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetLastNonIterator[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.LastOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.SemanticKernel.Kernel.GetRequiredService[T](Object serviceKey)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AgentsWithMagenticOrchestration\Program.cs:line 103
+   at Program.<Main>(String[] args)"
+"AgentsWithSequentialOrchestration\13.1 AgentsWithSequentialOrchestration.csproj","Failed","-532462766","8,2","el.Agents.Orchestration.Sequential.SequentialActor.InvokeAgentAsync(IList`1 input, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Orchestration.Sequential.SequentialActor.HandleAsync(Request item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AgentsWithSequentialOrchestrationWithStructuredOutput\13.2 AgentsWithSequentialOrchestrationWithStructuredOutput.csproj","Failed","-532462766","8,5","el.Agents.Orchestration.Sequential.SequentialActor.InvokeAgentAsync(IList`1 input, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Orchestration.Sequential.SequentialActor.HandleAsync(Request item, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.<>c__DisplayClass4_0.<<-ctor>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.Internal.HandlerInvoker.InvokeAsync(Object obj, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.Core.BaseAgent.OnMessageAsync(Object message, MessageContext messageContext)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.<>c__DisplayClass35_0.<<PublishMessageServicerAsync>g__ProcessSubscriptionAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.InProcessRuntime.PublishMessageServicerAsync(MessageEnvelope envelope, CancellationToken deliveryToken)
+   at Microsoft.SemanticKernel.Agents.Runtime.InProcess.MessageEnvelope.<>c__DisplayClass24_0.<<ForPublish>g__BoundServicer|0>d.MoveNext()"
+"AggregateAgentsFromYaml\AggregateAgentsFromYaml.csproj","Passed","0","1,1","Hello, World!"
+"AspireServiceDefaults\AspireServiceDefaults.csproj","NotRunnable",,"0","OutputType="
+"AzureAIAgent\12.14 AzureAIAgent.csproj","Failed","-532462766","9,6","ne, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.AI.Agents.Persistent.HttpPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(RequestContent content, RequestContext context)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(String model, String name, String description, String instructions, IEnumerable`1 tools, ToolResources toolResources, Nullable`1 temperature, Nullable`1 topP, BinaryData responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AzureAIAgent\Program.cs:line 11
+   at Program.<Main>(String[] args)"
+"AzureAIAgentFromYaml\12.23 AzureAIAgentFromYaml.csproj","Failed","-532462766","9,1","RequestContent content, RequestContext context)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(String model, String name, String description, String instructions, IEnumerable`1 tools, ToolResources toolResources, Nullable`1 temperature, Nullable`1 topP, BinaryData responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.AzureAI.AzureAIAgentFactory.TryCreateAsync(Kernel kernel, AgentDefinition agentDefinition, AgentCreationOptions agentCreationOptions, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.AgentFactory.CreateAsync(Kernel kernel, AgentDefinition agentDefinition, AgentCreationOptions agentCreationOptions, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.YamlAgentFactoryExtensions.CreateAgentFromYamlAsync(AgentFactory kernelAgentFactory, String text, AgentCreationOptions options, IConfiguration configuration, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AzureAIAgentFromYaml\Program.cs:line 32
+   at Program.<Main>(String[] args)"
+"AzureAIAgentWithCodeInterpreter\12.15 AzureAIAgentWithCodeInterpreter.csproj","Failed","-532462766","8,9","
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.AI.Agents.Persistent.HttpPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(RequestContent content, RequestContext context)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(String model, String name, String description, String instructions, IEnumerable`1 tools, ToolResources toolResources, Nullable`1 temperature, Nullable`1 topP, BinaryData responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AzureAIAgentWithCodeInterpreter\Program.cs:line 13
+   at Program.<Main>(String[] args)"
+"AzureAIAgentWithFileSearch\12.16 AzureAIAgentWithFileSearch.csproj","Failed","-532462766","9,3","age, TokenRequestContext context)
+   at Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.AI.Agents.Persistent.HttpPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.AI.Agents.Persistent.PersistentAgentsFiles.UploadFileAsync(RequestContent content, String contentType, RequestContext context)
+   at Azure.AI.Agents.Persistent.PersistentAgentsFiles.UploadFileAsync(Stream data, PersistentAgentFilePurpose purpose, String filename, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AzureAIAgentWithFileSearch\Program.cs:line 19
+   at Program.<Main>(String[] args)"
+"AzureAIAgentWithResponseFormat\12.17 AzureAIAgentWithResponseFormat.csproj","Failed","-532462766","9,5","
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.AI.Agents.Persistent.HttpPipelineExtensions.ProcessMessageAsync(HttpPipeline pipeline, HttpMessage message, RequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(RequestContent content, RequestContext context)
+   at Azure.AI.Agents.Persistent.PersistentAgentsAdministrationClient.CreateAgentAsync(String model, String name, String description, String instructions, IEnumerable`1 tools, ToolResources toolResources, Nullable`1 temperature, Nullable`1 topP, BinaryData responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\AzureAIAgentWithResponseFormat\Program.cs:line 12
+   at Program.<Main>(String[] args)"
+"Chatbot\2.3 Chatbot.csproj","Passed","0","1,8","Type a command for the car. Use 'exit' to quit.
+ User >>> 13:31:20 info: Chatbot.Services.ConsoleChatbotRunner[0] Chatbot session ended."
+"ChatbotStreamingWithSemanticFunction\2.6 ChatbotStreamingWithSemanticFunction.csproj","Passed","0","3","User >>>"
+"ChatbotWithHistory\2.4 ChatbotWithHistory.csproj","Passed","0","1,5","User >>>"
+"ChatbotWithSemanticFunction\2.5 ChatbotWithSemanticFunction.csproj","Passed","0","2,8","User >>>"
+"ChatCompletion\2.2 ChatCompletion.csproj","Passed","0","5,3","turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"
+"ChatCompletionAgent\12.03 ChatCompletionAgent.csproj","Passed","0","4,7","Kernel.Connectors.OpenAI.OpenAIChatCompletionService.
+trce: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      ChatHistory: [{""AuthorName"":""RobotCarAgent"",""Role"":{""Label"":""system""},""Items"":[{""$type"":""TextContent"",""Text"":""You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.\r\nYou have to break down the provided complex commands into basic moves you know.\r\nRespond only with the permitted moves, without any additional explanations.""}]},{""Role"":{""Label"":""user""},""Items"":[{""$type"":""TextContent"",""Text"":""There is a tree directly in front of the car. Avoid it and then come back to the original path.""}]}], Settings: null
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 91. Completion tokens: 20. Total tokens: 111.
+info: Microsoft.SemanticKernel.Agents.ChatCompletionAgent[0]
+      [InvokeAsync] Agent c40cbda3-41c0-4989-b489-94991cb050cd/RobotCarAgent Invoked service Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService with message count: 1.
+turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"
+"ChatCompletionAgentFromYaml\12.19 ChatCompletionAgentFromYaml.csproj","Passed","0","5","RESPONSE: 
+turn_right
+forward
+turn_left
+forward
+turn_left
+forward
+turn_right"
+"ChatCompletionAgentSimple\12.02 ChatCompletionAgentSimple.csproj","Passed","0","4,4","RESPONSE: 
+turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"
+"ChatCompletionAgentWithContextualFunctionProvider\12.07 ChatCompletionAgentWithContextualFunctionProvider.csproj","Failed","-532462766","10,2","gin_turn_right, Score: 0,7334805727005005"", ""Function: MotorsPlugin_forward, Score: 0,7330905199050903"", ""Function: MotorsPlugin_turn_left, Score: 0,7329961657524109"", ""Function: MotorsPlugin_stop, Score: 0,7256228923797607""
+
+Unhandled exception. System.InvalidOperationException: AIContextProviders with AIFunctions are not supported when Agent UseImmutableKernel setting is false.
+   at Microsoft.SemanticKernel.Agents.ChatCompletionAgent.InvokeAsync(ICollection`1 messages, AgentThread thread, AgentInvokeOptions options, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.Agents.ChatCompletionAgent.InvokeAsync(ICollection`1 messages, AgentThread thread, AgentInvokeOptions options, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\ChatCompletionAgentWithContextualFunctionProvider\Program.cs:line 70
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\ChatCompletionAgentWithContextualFunctionProvider\Program.cs:line 70
+   at Program.<Main>(String[] args)"
+"ChatCompletionAgentWithHistoryAndReducer\12.06a ChatCompletionAgentWithHistoryAndReducer.csproj","Passed","0","2,8","User >"
+"ChatCompletionAgentWithOllama\12.09 ChatCompletionAgentWithOllama.csproj","Failed","-532462766","7,4",", ChatHistory history, Func`2 onNewToolMessage, KernelArguments arguments, Kernel kernel, String additionalInstructions, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Microsoft.SemanticKernel.Agents.ChatCompletionAgent.InvokeAsync(ICollection`1 messages, AgentThread thread, AgentInvokeOptions options, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.Agents.ChatCompletionAgent.InvokeAsync(ICollection`1 messages, AgentThread thread, AgentInvokeOptions options, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.Agents.ChatCompletionAgent.InvokeAsync(ICollection`1 messages, AgentThread thread, AgentInvokeOptions options, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\ChatCompletionAgentWithOllama\Program.cs:line 75
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\ChatCompletionAgentWithOllama\Program.cs:line 75
+   at Program.<Main>(String[] args)"
+"ChatCompletionAgentWithTextSearchProvider\12.08 ChatCompletionAgentWithTextSearchProvider.csproj","Passed","0","5,8","RESPONSE:
+*** The average temperature on **June 2, 2025** is **17┬░C**.
+
+Calculation: \( (15 + 22 + 14) / 3 = 17 \)┬░C"
+"ChatCompletionAgentWithThreads\12.06 ChatCompletionAgentWithThreads.csproj","Passed","0","1,9","User > CHAT HISTORY:"
+"ChatCompletionAgentWithWhiteboardProvider\12.06b ChatCompletionAgentWithWhiteboardProvider.csproj","TimedOut",,"30,1","atural satellite reflecting sunlight at night.
+Whiteboard contents:
+  ACTION - RobotCarAgent provided the definition of water as ""Colorless liquid H2O essential for life."" in 6 words, satisfying the user's requirement for fewer than 10 words.
+  ACTION - RobotCarAgent provided the definition of fire as ""Rapid combustion producing heat, light, and flames."" in 7 words, satisfying the user's requirement for fewer than 10 words.
+  ACTION - RobotCarAgent provided the definition of earth as ""Planet we live on; also soil or ground."" in 8 words, satisfying the user's requirement for fewer than 10 words.
+  ACTION - RobotCarAgent provided the definition of air as ""Invisible gas mixture we breathe and surrounds Earth."" in 8 words, satisfying the user's requirement for fewer than 10 words.
+  ACTION - RobotCarAgent provided the definition of sun as ""Star at the center of our solar system."" in 8 words, satisfying the user's requirement for fewer than 10 words.
+  ACTION - RobotCarAgent provided the definition of moon as ""EarthΓÇÖs natural satellite reflecting sunlight at night."" in 6 words, satisfying the user's requirement for fewer than 10 words.
+
+*** A person; a member of Homo sapiens."
+"Copilot\2.7 Copilot.csproj","Passed","0","2,9","User >>>"
+"FiltersArchitecture\9.2 FiltersArchitecture.csproj","Passed","0","7,2","FirstFunctionFilter.invoking forward
+  SecondFunctionFilter invoking forward
+  ThirdFunctionFilter invoking forward
+[01:32:53:405] MOTORS: Forward: 100m
+  ThirdFunctionFilter invoked forward
+  SecondFunctionFilter invoked forward
+  FirstFunctionFilter invoked forward
+RESPONSE: forward 100"
+"FiltersWithAutoFunctionInvocationFilter\9.12 FiltersWithAutoFunctionInvocationFilter.csproj","Passed","0","25,6","Request #0 invoking turn_right.
+Request sequence index: 0
+Function sequence index: 0
+Total number of functions: 1
+[01:33:00:889] MOTORS: TurnRight: 90┬░
+  Request #1 invoking forward.
+Request sequence index: 1
+Function sequence index: 0
+Total number of functions: 1
+[01:33:03:887] MOTORS: Forward: 1m
+  Request #2 invoking turn_left.
+Request sequence index: 2
+Function sequence index: 0
+Total number of functions: 1
+[01:33:06:724] MOTORS: TurnLeft: 90┬░
+  Request #3 invoking forward.
+Request sequence index: 3
+Function sequence index: 0
+Total number of functions: 1
+[01:33:09:575] MOTORS: Forward: 1m
+  Request #4 invoking turn_left.
+Request sequence index: 4
+Function sequence index: 0
+Total number of functions: 1
+[01:33:12:555] MOTORS: TurnLeft: 90┬░
+  Request #5 invoking forward.
+Request sequence index: 5
+Function sequence index: 0
+Total number of functions: 1
+[01:33:15:606] MOTORS: Forward: 1m
+  Request #6 invoking turn_right.
+Request sequence index: 6
+Function sequence index: 0
+Total number of functions: 1
+[01:33:18:604] MOTORS: TurnRight: 90┬░
+RESPONSE: turn right 90┬░
+forward 1m
+turn left 90┬░
+forward 1m
+turn left 90┬░
+forward 1m
+turn right 90┬░"
+"FiltersWithFunctionInvocationFilter\9.7 FiltersWithFunctionInvocationFilter.csproj","Passed","0","8,3","Moving backward is cowardly, are you sure ([y]/n)?
+  Function 'turn_left' is about to be invoked. Proceed ([y]/n)?
+  Function 'turn_right' is about to be invoked. Proceed ([y]/n)?
+  Moving backward is cowardly, are you sure ([y]/n)?
+RESPONSE: backward
+turn left
+turn right
+backward"
+"FiltersWithPromptRenderFilter\9.10 FiltersWithPromptRenderFilter.csproj","Passed","0","7,4","PromptAuditFilter prompt rendering prompt_function
+[01:33:33:121] MOTORS: Stop
+  PromptAuditFilter prompt rendered prompt_function
+  Rendered prompt: You are an AI assistant controlling a robot car.
+
+Your task is to break down complex commands into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
+Respond only with the permitted moves, without any additional explanations.
+Use the tools you know to perform the moves.
+
+But first set initial state to: stopped.
+
+Complex command:
+Go ahead 1 kilometer.
+  The rendering was intercepted!
+RESPONSE: I canΓÇÖt help with self-destruction or destructive actions.
+
+If you meant the robot should shut down safely, I can help with a safe stop instead:
+- stop the robot
+- power-down sequence if supported
+- return-to-base sequence if available
+
+If you want, I can stop it now."
+"FiltersWithTelemetry\9.13 FiltersWithTelemetry.csproj","Passed","0","13,3","ntation scope (Meter):
+	Name: Microsoft.SemanticKernel
+(2026-07-21T11:33:41.4868704Z, 2026-07-21T11:33:50.7896872Z] semantic_kernel.function.name: forward 
+Value: Sum: 2.0174138 Count: 1 Min: 2.0174138 Max: 2.0174138 
+(-Infinity,0]:0
+(0,5]:1
+(5,10]:0
+(10,25]:0
+(25,50]:0
+(50,75]:0
+(75,100]:0
+(100,250]:0
+(250,500]:0
+(500,750]:0
+(750,1000]:0
+(1000,2500]:0
+(2500,5000]:0
+(5000,7500]:0
+(7500,10000]:0
+(10000,+Infinity]:0
+
+(2026-07-21T11:33:41.4868704Z, 2026-07-21T11:33:50.7896872Z] semantic_kernel.function.name: backward 
+Value: Sum: 2.0075366 Count: 1 Min: 2.0075366 Max: 2.0075366 
+(-Infinity,0]:0
+(0,5]:1
+(5,10]:0
+(10,25]:0
+(25,50]:0
+(50,75]:0
+(75,100]:0
+(100,250]:0
+(250,500]:0
+(500,750]:0
+(750,1000]:0
+(1000,2500]:0
+(2500,5000]:0
+(5000,7500]:0
+(7500,10000]:0
+(10000,+Infinity]:0
+
+(2026-07-21T11:33:41.4868704Z, 2026-07-21T11:33:50.7896872Z] semantic_kernel.function.name: stop 
+Value: Sum: 2.0094891 Count: 1 Min: 2.0094891 Max: 2.0094891 
+(-Infinity,0]:0
+(0,5]:1
+(5,10]:0
+(10,25]:0
+(25,50]:0
+(50,75]:0
+(75,100]:0
+(100,250]:0
+(250,500]:0
+(500,750]:0
+(750,1000]:0
+(1000,2500]:0
+(2500,5000]:0
+(5000,7500]:0
+(7500,10000]:0
+(10000,+Infinity]:0"
+"FirstSample\1.1 FirstSample.csproj","Passed","0","3,3","[""turn right"", ""forward"", ""turn left"", ""forward"", ""turn left"", ""backward"", ""turn right""]"
+"FunctionCallingWithAutoInvoke\8.5 FunctionCallingWithAutoInvoke.csproj","Passed","0","27,7","UNC RESP: turned clockwise 90┬░.
+-------http request---------------------
+[01:34:00:805] MOTORS: Forward: 1m
+FUNC CALL: forward [distance, 1], FUNC RESP: moved forward for 1 meters.
+-------http request---------------------
+[01:34:04:058] MOTORS: TurnLeft: 90┬░
+FUNC CALL: turn_left [angle, 90], FUNC RESP: turned anticlockwise 90┬░.
+-------http request---------------------
+[01:34:06:992] MOTORS: Forward: 1m
+FUNC CALL: forward [distance, 1], FUNC RESP: moved forward for 1 meters.
+-------http request---------------------
+[01:34:09:792] MOTORS: TurnLeft: 90┬░
+FUNC CALL: turn_left [angle, 90], FUNC RESP: turned anticlockwise 90┬░.
+-------http request---------------------
+[01:34:12:605] MOTORS: Forward: 1m
+FUNC CALL: forward [distance, 1], FUNC RESP: moved forward for 1 meters.
+-------http request---------------------
+[01:34:15:442] MOTORS: TurnRight: 90┬░
+FUNC CALL: turn_right [angle, 90], FUNC RESP: turned clockwise 90┬░.
+-------http request---------------------
+[01:34:18:692] MOTORS: Stop
+FUNC CALL: stop , FUNC RESP: stopped.
+-------http request---------------------
+RESPONSE: turn_right 90
+forward 1
+turn_left 90
+forward 1
+turn_left 90
+forward 1
+turn_right 90
+stop"
+"FunctionCallingWithBehavior\8.4 FunctionCallingWithBehavior.csproj","Passed","0","3,8","RESPONSE: Ready to control the robot car.  
+Tell me the move you want, like:
+
+- forward 2
+- backward 1
+- turn left 90
+- turn right 45
+- stop"
+"FunctionCallingWithBehaviorOptions\8.6 FunctionCallingWithBehaviorOptions.csproj","Passed","0","17,6","[01:34:29:385] MOTORS: TurnRight: 45┬░
+[01:34:32:438] MOTORS: Forward: 1m
+[01:34:35:308] MOTORS: TurnLeft: 45┬░
+[01:34:37:983] MOTORS: Forward: 1m
+[01:34:40:658] MOTORS: Stop
+RESPONSE (total time: 16,159083 seconds): turn_right 45
+forward 1
+turn_left 45
+forward 1
+stop
+FUNC CALL [call_RlhFP:asst_yKONl]: MotorsPlugin-turn_right {""angle"":45}
+FUNC RESP [call_RlhFP]: turned clockwise 45┬░.
+FUNC CALL [call_SdOmz:asst_R9Lm6]: MotorsPlugin-forward {""distance"":1}
+FUNC RESP [call_SdOmz]: moved forward for 1 meters.
+FUNC CALL [call_DLhQd:asst_uaevj]: MotorsPlugin-turn_left {""angle"":45}
+FUNC RESP [call_DLhQd]: turned anticlockwise 45┬░.
+FUNC CALL [call_JabUC:asst_4T4uU]: MotorsPlugin-forward {""distance"":1}
+FUNC RESP [call_JabUC]: moved forward for 1 meters.
+FUNC CALL [call_kikUv:asst_43vj2]: MotorsPlugin-stop {}
+FUNC RESP [call_kikUv]: stopped."
+"FunctionCallingWithExplicitCalling\7.3 FunctionCallingWithExplicitCalling.csproj","Passed","0","23,4","OTORS: Backward: 30m
+[01:35:03:772] MOTORS: Stop
+RESPONSE: forward 100
+backward 10
+stop
+forward 200
+backward 20
+stop
+forward 300
+backward 30
+stop
+FUNC CALL [call_toXOZ:asst_lEvhY]: MotorsPlugin-forward {""distance"": 100}
+FUNC CALL [call_MniRc:asst_lEvhY]: MotorsPlugin-backward {""distance"": 10}
+FUNC CALL [call_gYJQj:asst_lEvhY]: MotorsPlugin-stop {}
+FUNC CALL [call_rWZ5B:asst_lEvhY]: MotorsPlugin-forward {""distance"": 200}
+FUNC CALL [call_HATAx:asst_lEvhY]: MotorsPlugin-backward {""distance"": 20}
+FUNC CALL [call_wq6tQ:asst_lEvhY]: MotorsPlugin-stop {}
+FUNC CALL [call_tsyNx:asst_lEvhY]: MotorsPlugin-forward {""distance"": 300}
+FUNC CALL [call_mV5WP:asst_lEvhY]: MotorsPlugin-backward {""distance"": 30}
+FUNC CALL [call_UyWHr:asst_lEvhY]: MotorsPlugin-stop {}
+FUNC RESP [call_toXOZ]: moved forward for 100 meters.
+FUNC RESP [call_MniRc]: moved backward for 10 meters.
+FUNC RESP [call_gYJQj]: stopped.
+FUNC RESP [call_rWZ5B]: moved forward for 200 meters.
+FUNC RESP [call_HATAx]: moved backward for 20 meters.
+FUNC RESP [call_wq6tQ]: stopped.
+FUNC RESP [call_tsyNx]: moved forward for 300 meters.
+FUNC RESP [call_mV5WP]: moved backward for 30 meters.
+FUNC RESP [call_UyWHr]: stopped."
+"FunctionCallingWithMultiplePlugins\8.99 FunctionCallingWithMultiplePlugins.csproj","Passed","0","12,7","[01:35:10:598] MOTORS: TurnRight: 45┬░
+[01:35:12:617] MOTORS: Forward: 1m
+[01:35:14:627] MOTORS: TurnLeft: 45┬░
+[01:35:16:636] MOTORS: Forward: 1m
+RESPONSE (total time: 11,1645359 seconds): turn right forward turn left forward"
+"Helper\Helpers.csproj","NotRunnable",,"0","OutputType="
+"HuggingFaceWithChatCompletion\11.10 HuggingFaceWithChatCompletion.csproj","Failed","-532462766","6,2","tp.HttpClientExtensions.SendWithSuccessCheckAsync(HttpClient client, HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Http.HttpClientExtensions.SendWithSuccessCheckAsync(HttpClient client, HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Connectors.HuggingFace.Core.HuggingFaceClient.SendRequestAndGetStringBodyAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Connectors.HuggingFace.Core.HuggingFaceMessageApiClient.CompleteChatMessageAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.ChatCompletion.ChatCompletionServiceExtensions.GetChatMessageContentAsync(IChatCompletionService chatCompletionService, ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\HuggingFaceWithChatCompletion\Program.cs:line 66
+   at Program.<Main>(String[] args)"
+"Kernel\3.1a Kernel.csproj","Passed","0","3,7","]
+      Sending HTTP request POST https://psy-8059-resource.services.ai.azure.com/openai/deployments/gpt-5.4-mini/chat/completions?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 1120.3585ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 1141.9088ms - 200
+info: Microsoft.SemanticKernel.Connectors.AzureOpenAI.AzureOpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 21. Total tokens: 104.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_30917f21766e427d8dce099a3c5672bb succeeded.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_30917f21766e427d8dce099a3c5672bb completed. Duration: 1.3748185s
+dbug: Program[0]
+      turn left
+forward
+turn right
+forward
+turn right
+forward
+turn left
+RESPONSE
+  Model id: gpt-5.4-mini
+  Role: Assistant
+  Content: turn left
+forward
+turn right
+forward
+turn right
+forward
+turn left
+METADATA
+  Created at: 21/07/2026 11:35:29 +00:00
+  System fingerprint: 
+  Finish reason: Stop
+  Total token count: 104 (input: 83, output: 21)"
+"KernelWithAIServiceSelector\3.4a KernelWithAIServiceSelector.csproj","Passed","0","3,4","ChatHistory: [{""Role"":{""Label"":""user""},""Items"":[{""$type"":""TextContent"",""Text"":""You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.\r\nYou have to break down the provided complex commands into basic moves you know.\r\nRespond only with the permitted moves, without any additional explanations.\r\n\r\nThere is a tree directly in front of the car. Avoid it and then come back to the original path.""}]}], Settings: {""service_id"":null,""model_id"":null,""function_choice_behavior"":null}
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 20. Total tokens: 103.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_2a8d8565fe5f492ab84aeb7033e371fd succeeded.
+trce: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_2a8d8565fe5f492ab84aeb7033e371fd result: turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_2a8d8565fe5f492ab84aeb7033e371fd completed. Duration: 2.0649225s"
+"KernelWithExecutionSettings\4.3b KernelWithExecutionSettings.csproj","Failed","-532462766","6,9","ompt.GetChatCompletionResultAsync(IChatCompletionService chatCompletion, Kernel kernel, PromptRenderingResult promptRenderingResult, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithExecutionSettings\Program.cs:line 34
+   at Program.<Main>(String[] args)"
+"KernelWithHandlebarsPromptTemplate\4.5c KernelWithHandlebarsPromptTemplate.csproj","Failed","-532462766","6,2","soft.SemanticKernel.KernelFunctionFromPrompt.RenderPromptAsync(Kernel kernel, KernelArguments arguments, Boolean isStreaming, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithHandlebarsPromptTemplate\Program.cs:line 87
+   at Program.<Main>(String[] args)"
+"KernelWithJsonResponse\3.1b KernelWithJsonResponse.csproj","Passed","0","3,3","info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_cc88813ee7804a59b5571f4cbe32f03e invoking.
+info: Microsoft.SemanticKernel.Connectors.AzureOpenAI.AzureOpenAIChatCompletionService[0]
+      Prompt tokens: 121. Completion tokens: 32. Total tokens: 153.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_cc88813ee7804a59b5571f4cbe32f03e succeeded.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_cc88813ee7804a59b5571f4cbe32f03e completed. Duration: 2.1039291s
+dbug: Program[0]
+      RESPONSE: {""Steps"":[""turn left"",""forward"",""turn right"",""forward"",""turn right"",""forward"",""turn left"",""stop""]}
+Steps: 
+  turn left
+  forward
+  turn right
+  forward
+  turn right
+  forward
+  turn left
+  stop"
+"KernelWithKernelArguments\4.3a KernelWithKernelArguments.csproj","Passed","0","3,5","car. Avoid it and then come back to the original path.""}]}], Settings: null
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 20. Total tokens: 103.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_8a9116923805450f8c5198ea62a8ea05 succeeded.
+trce: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_8a9116923805450f8c5198ea62a8ea05 result: turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_8a9116923805450f8c5198ea62a8ea05 completed. Duration: 2.1390049s
+RENDERED PROMPT: You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+You have to break down the provided complex commands into basic moves you know.
+Respond only with the permitted moves, without any additional explanations.
+
+There is a tree directly in front of the car. Avoid it and then come back to the original path.
+RESPONSE: turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"
+"KernelWithLiquidPromptTemplate\4.5b KernelWithLiquidPromptTemplate.csproj","Failed","-532462766","6,1","Unhandled exception. System.NotSupportedException: Argument 'robot_car' has a value that doesn't support automatic encoding. Set AllowDangerouslySetContent to 'true' for this argument and implement custom encoding, or provide the value as a string.
+   at Microsoft.SemanticKernel.PromptTemplates.Liquid.LiquidPromptTemplate.GetEncodedValueOrDefault(PromptTemplateConfig promptTemplateConfig, String propertyName, Object propertyValue)
+   at Microsoft.SemanticKernel.PromptTemplates.Liquid.LiquidPromptTemplate.GetTemplateContext(KernelArguments arguments)
+   at Microsoft.SemanticKernel.PromptTemplates.Liquid.LiquidPromptTemplate.RenderAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithLiquidPromptTemplate\Program.cs:line 71
+   at Program.<Main>(String[] args)"
+"KernelWithMessages\4.2a KernelWithMessages.csproj","Passed","0","3,7"," basic moves you know.\r\nRespond only with the permitted moves, without any additional explanations.""}]},{""Role"":{""Label"":""user""},""Items"":[{""$type"":""TextContent"",""Text"":""Go 5 steps forward.""}]},{""Role"":{""Label"":""assistant""},""Items"":[{""$type"":""TextContent"",""Text"":""forward, forward, forward, forward, forward""}]},{""Role"":{""Label"":""user""},""Items"":[{""$type"":""TextContent"",""Text"":""What do you see in the image? If you see craters or big rocks, go back to the very first position.""}]}], Settings: null
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 115. Completion tokens: 4. Total tokens: 119.
+Chat history: 
+ROLE: system, You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
+You have to break down the provided complex commands into basic moves you know.
+Respond only with the permitted moves, without any additional explanations.
+ROLE: user, Go 5 steps forward.
+ROLE: assistant, forward, forward, forward, forward, forward
+ROLE: user, What do you see in the image? If you see craters or big rocks, go back to the very first position.
+ROLE: Assistant, stop"
+"KernelWithMultipleServices\3.1c KernelWithMultipleServices.csproj","Passed","0","3,5","""Text"":""You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.\r\nYou have to break down the provided complex commands into basic moves you know.\r\nRespond only with the permitted moves, without any additional explanations.\r\n\r\nThere is a tree directly in front of the car. Avoid it and then come back to the original path.""}]}], Settings: {""service_id"":""OPENAI"",""model_id"":null,""function_choice_behavior"":null}
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 20. Total tokens: 103.
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_6cc9da541a794ebeaa9e2ddae3ded58f succeeded.
+trce: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_6cc9da541a794ebeaa9e2ddae3ded58f result: turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right
+info: Microsoft.SemanticKernel.KernelFunction[0]
+      Function (null)-InvokePromptAsync_6cc9da541a794ebeaa9e2ddae3ded58f completed. Duration: 2.1653185s
+turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"
+"KernelWithNativeFunctions\5.1a KernelWithNativeFunctions.csproj","Passed","0","1,2","[36:07] CALIBRATING sensors...
+DELEGATED METHOD RESPONSE: All sensors have been calibrated.
+
+[36:07] SENSOR READING: Temperature: 76 Celsius degrees.
+REFLECTED METHOD RESPONSE: 76"
+"KernelWithPromptTemplate\4.5a KernelWithPromptTemplate.csproj","Passed","0","3,6","trce: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      ChatHistory: [{""Role"":{""Label"":""system""},""Items"":[{""$type"":""TextContent"",""Text"":""You are an AI assistant controlling a robot car capable of performing basic moves: .\r\nYou have to break down the provided complex commands into basic moves you know.\r\nRespond only with the permitted moves, without any additional explanations.""}]},{""Role"":{""Label"":""user""},""Items"":[{""$type"":""TextContent"",""Text"":""There is a tree directly in front of the car. Avoid it and then come back to the original path.""}]}], Settings: null
+info: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 76. Completion tokens: 23. Total tokens: 99.
+turn right
+move forward
+turn left
+move forward
+turn left
+move forward
+turn right"
+"KernelWithPromptyFunction\4.5d KernelWithPromptyFunction.csproj","Failed","-532462766","6,7"," at Microsoft.SemanticKernel.KernelFunctionFromPrompt.RenderPromptAsync(Kernel kernel, KernelArguments arguments, Boolean isStreaming, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithPromptyFunction\Program.cs:line 78
+   at Program.<Main>(String[] args)"
+"KernelWithSemanticFunctions\5.1b KernelWithSemanticFunctions.csproj","Passed","0","4,2","SEMANTIC FUNCTION:
+  Name: breaks_down_complex_command
+  Description: 'Breaks down a complex command to basic moves.'
+  Input variable: 
+    basic_moves : String required ''
+    input : String required ''
+  Output variable:   ''
+RENDERED PROMPT: Your task is to break down complex commands into a sequence for basic moves such as forward, backward, turn left, turn right, and stop.
+You have to break down the provided complex commands into basic moves you know.
+Respond only with the permitted moves, without any additional explanations.
+
+Complex command:
+There is a tree directly in front of the car. Avoid it and then come back to the original path.
+PROMPT RESPONSE: turn left
+forward
+turn right
+forward
+stop"
+"KernelWithSemanticFunctionsFromPrompt\5.1d KernelWithSemanticFunctionsFromPrompt.csproj","Passed","0","3,7","SEMANTIC FUNCTION:
+  Name: Function_2f14f026285c410d8333a92ba8bd303c
+  Description: 'Generic function, unknown purpose'
+  Plugin name: ''
+  Execution settings: [max_tokens, 1000] [temperature, 0.1]
+  Input variable: 
+    basic_moves : String required ''
+    input : String required ''
+  Output variable:   ''
+RENDERED PROMPT: Your task is to break down complex commands into a sequence of these basic moves.
+The permitted basic moves are: forward, backward, turn left, turn right, and stop.
+
+[COMPLEX COMMAND START]
+There is a tree directly in front of the car. Avoid it and then come back to the original path.
+[COMPLEX COMMAND END]
+
+Provide only the sequence of the basic movements, without any additional explanations.
+
+Commands:
+PROMPT RESPONSE: turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right
+stop"
+"KernelWithSemanticFunctionsFromPromptTemplateConfig\5.1c KernelWithSemanticFunctionsFromPromptTemplateConfig.csproj","Failed","-532462766","7","sultAsync(IChatCompletionService chatCompletion, Kernel kernel, PromptRenderingResult promptRenderingResult, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithSemanticFunctionsFromPromptTemplateConfig\Program.cs:line 66
+   at Program.<Main>(String[] args)"
+"KernelWithSemanticFunctionsFromYaml\5.1e KernelWithSemanticFunctionsFromYaml.csproj","Failed","-532462766","7,4","ChatCompletionResultAsync(IChatCompletionService chatCompletion, Kernel kernel, PromptRenderingResult promptRenderingResult, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\KernelWithSemanticFunctionsFromYaml\Program.cs:line 62
+   at Program.<Main>(String[] args)"
+"KernelWithStreaming\3.1d KernelWithStreaming.csproj","Passed","0","4,2","STREAMING USING PROMPT TEMPLATE
+info: InvokePromptStreamingAsync_52f2ff5fff6d4d859fb00d010a2f5f44[0]
+      Function (null)-InvokePromptStreamingAsync_52f2ff5fff6d4d859fb00d010a2f5f44 streaming.
+turn right
+forward
+turn left
+forward
+turn left
+forward
+turn rightinfo: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 20. Total tokens: 103.
+info: InvokePromptStreamingAsync_52f2ff5fff6d4d859fb00d010a2f5f44[0]
+      Function (null)-InvokePromptStreamingAsync_52f2ff5fff6d4d859fb00d010a2f5f44 streaming completed. Duration: 1.9286194s.
+
+STREAMING USING SEMANTIC FUNCTION
+info: Function_2fe62fd38765400cb6b6c207ec8873cc[0]
+      Function (null)-Function_2fe62fd38765400cb6b6c207ec8873cc streaming.
+turn right
+forward
+turn left
+forward
+turn left
+forward
+turn rightinfo: Microsoft.SemanticKernel.Connectors.OpenAI.OpenAIChatCompletionService[0]
+      Prompt tokens: 83. Completion tokens: 20. Total tokens: 103.
+
+info: Function_2fe62fd38765400cb6b6c207ec8873cc[0]
+      Function (null)-Function_2fe62fd38765400cb6b6c207ec8873cc streaming completed. Duration: 0.7806546s."
+"LLamaSharpWithKernelAndChatCompletion\11.02 LLamaSharpWithKernelAndChatCompletion.csproj","Failed","-532462766","12,3","24B-Instruct-2503-Q4_K_M.gguf'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at LLama.Native.SafeLlamaModelHandle.LoadFromFile(String modelPath, LLamaModelParams lparams)
+   at LLama.LLamaWeights.LoadFromFile(IModelParams params)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\LLamaSharpWithKernelAndChatCompletion\Program.cs:line 27
+   at Program.<Main>(String[] args)"
+"LLamaSharpWithKernelAndTextGeneration\11.01 LLamaSharpWithKernelAndTextGeneration.csproj","Failed","-532462766","8,2","24B-Instruct-2503-Q4_K_M.gguf'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at LLama.Native.SafeLlamaModelHandle.LoadFromFile(String modelPath, LLamaModelParams lparams)
+   at LLama.LLamaWeights.LoadFromFile(IModelParams params)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\LLamaSharpWithKernelAndTextGeneration\Program.cs:line 27
+   at Program.<Main>(String[] args)"
+"McpClientSample\16.02 McpClientSample.csproj","Failed","-532462766","6,3","6.01 McpServerSample.csproj.
+   at System.Threading.Channels.AsyncOperation`2.GetResult(Int16 token)
+   at System.Threading.Channels.ChannelReader`1.ReadAllAsync(CancellationToken cancellationToken)+MoveNext()
+   at ModelContextProtocol.McpSessionHandler.ProcessMessagesCoreAsync(CancellationToken cancellationToken)
+   at ModelContextProtocol.McpSessionHandler.ProcessMessagesCoreAsync(CancellationToken cancellationToken)
+   at ModelContextProtocol.McpSessionHandler.DisposeAsync()
+   at ModelContextProtocol.Client.McpClientImpl.DisposeAsync()
+   at ModelContextProtocol.Client.McpClientImpl.ConnectAsync(CancellationToken cancellationToken)
+   at ModelContextProtocol.Client.McpClient.CreateAsync(IClientTransport clientTransport, McpClientOptions clientOptions, ILoggerFactory loggerFactory, CancellationToken cancellationToken)
+   at ModelContextProtocol.Client.McpClient.CreateAsync(IClientTransport clientTransport, McpClientOptions clientOptions, ILoggerFactory loggerFactory, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\McpClientSample\Program.cs:line 20
+   at Program.<Main>(String[] args)"
+"McpServerSample\16.01 McpServerSample.csproj","Passed","0","2,5","Using launch settings from C:\Users\danie\source\repos\Apex.SemanticKernelInAction\McpServerSample\Properties\launchSettings.json...
+Registered MCP tool: backward
+Registered MCP tool: forward
+Registered MCP tool: stop
+Registered MCP tool: turn_left
+Registered MCP tool: turn_right
+MCP Server is running..."
+"MistralWithChatCompletion\11.12 MistralWithChatCompletion.csproj","Passed","0","16,4","RESPONSE: MotorsPlugin.turn_right()
+MotorsPlugin.forward()
+MotorsPlugin.turn_left()
+MotorsPlugin.forward()
+MotorsPlugin.turn_left()
+MotorsPlugin.forward()
+MotorsPlugin.turn_right()
+
+NO FUNCTION CALLS FOUND IN THE RESPONSE, CALLING FUNCTION CALLING FIX!
+[01:37:16:274] MOTORS: TurnRight: 90┬░
+[01:37:18:284] MOTORS: Forward: 90m
+[01:37:20:300] MOTORS: TurnLeft: 90┬░
+[01:37:22:304] MOTORS: Forward: 90m
+[01:37:24:305] MOTORS: TurnLeft: 90┬░
+[01:37:26:308] MOTORS: Forward: 90m
+[01:37:28:317] MOTORS: TurnRight: 90┬░"
+"OllamaSharpWithChatCompletion\11.05d OllamaSharpWithChatCompletion.csproj","Failed","-532462766","5,4","eading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Microsoft.SemanticKernel.ChatCompletion.ChatClientChatCompletionService.GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.ChatCompletion.ChatClientChatCompletionService.GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.ChatCompletion.ChatClientChatCompletionService.GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatCompletion\Program.cs:line 32
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatCompletion\Program.cs:line 32
+   at Program.<Main>(String[] args)"
+"OllamaSharpWithChatRequest\11.05b OllamaSharpWithChatRequest.csproj","Failed","-532462766","4,3","=== Ollama Client with Chat ===
+RESPONSE: 
+Unhandled exception. System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at OllamaSharp.OllamaApiClient.EnsureSuccessStatusCodeAsync(HttpResponseMessage response)
+   at OllamaSharp.OllamaApiClient.SendToOllamaAsync(HttpRequestMessage requestMessage, OllamaRequest ollamaRequest, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at OllamaSharp.OllamaApiClient.ChatAsync(ChatRequest request, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.OllamaApiClient.ChatAsync(ChatRequest request, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatRequest\Program.cs:line 42
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatRequest\Program.cs:line 42
+   at Program.<Main>(String[] args)"
+"OllamaSharpWithChatRequestAndTools\11.05c OllamaSharpWithChatRequestAndTools.csproj","Failed","-532462766","4,8","Async(ChatRequest request, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.OllamaApiClient.ChatAsync(ChatRequest request, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at OllamaSharp.Chat.SendAsAsync(ChatRole role, String message, IEnumerable`1 tools, IEnumerable`1 imagesAsBase64, Object format, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.Chat.SendAsAsync(ChatRole role, String message, IEnumerable`1 tools, IEnumerable`1 imagesAsBase64, Object format, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.Chat.SendAsAsync(ChatRole role, String message, IEnumerable`1 tools, IEnumerable`1 imagesAsBase64, Object format, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatRequestAndTools\Program.cs:line 20
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithChatRequestAndTools\Program.cs:line 20
+   at Program.<Main>(String[] args)"
+"OllamaSharpWithGenerateRequest\11.05a OllamaSharpWithGenerateRequest.csproj","Failed","-532462766","6","st ollamaRequest, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at OllamaSharp.OllamaApiClient.GenerateCompletionAsync(GenerateRequest generateRequest, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.OllamaApiClient.GenerateCompletionAsync(GenerateRequest generateRequest, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at OllamaSharp.OllamaApiClient.GenerateAsync(GenerateRequest request, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.OllamaApiClient.GenerateAsync(GenerateRequest request, CancellationToken cancellationToken)+MoveNext()
+   at OllamaSharp.OllamaApiClient.GenerateAsync(GenerateRequest request, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithGenerateRequest\Program.cs:line 50
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithGenerateRequest\Program.cs:line 50
+   at Program.<Main>(String[] args)"
+"OllamaSharpWithKernelAndChatCompletion\11.06 OllamaSharpWithKernelAndChatCompletion.csproj","Failed","-532462766","5,4","er`2 appender, Action`1 itemCallback)
+   at OllamaSharp.IAsyncEnumerableExtensions.StreamToEndAsync[Tin,Tout](IAsyncEnumerable`1 stream, IAppender`2 appender, Action`1 itemCallback)
+   at OllamaSharp.OllamaApiClient.Microsoft.Extensions.AI.IChatClient.GetResponseAsync(IEnumerable`1 messages, ChatOptions options, CancellationToken cancellationToken)
+   at Microsoft.Extensions.AI.FunctionInvokingChatClient.GetResponseAsync(IEnumerable`1 messages, ChatOptions options, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.ChatCompletion.ChatClientChatCompletionService.GetChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.ChatCompletion.ChatCompletionServiceExtensions.GetChatMessageContentAsync(IChatCompletionService chatCompletionService, ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithKernelAndChatCompletion\Program.cs:line 58
+   at Program.<Main>(String[] args)"
+"OllamaSharpWithKernelAndTextGeneration\11.05 OllamaSharpWithKernelAndTextGeneration.csproj","Failed","-532462766","5,3","lationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeStreamingCoreAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithKernelAndTextGeneration\Program.cs:line 44
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OllamaSharpWithKernelAndTextGeneration\Program.cs:line 44
+   at Program.<Main>(String[] args)"
+"OnnxWithKernel\11.03 OnnxWithKernel.csproj","Failed","-532462766","6","Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeStreamingCoreAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+MoveNext()
+   at Microsoft.SemanticKernel.KernelFunction.InvokeStreamingAsync[TResult](Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OnnxWithKernel\Program.cs:line 49
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OnnxWithKernel\Program.cs:line 49
+   at Program.<Main>(String[] args)"
+"OnnxWithKernelAndChatHistory\11.04 OnnxWithKernelAndChatHistory.csproj","Failed","-532462766","4,7","=== ONNX with Kernel and Chat History ===
+RESPONSE: 
+Unhandled exception. Microsoft.ML.OnnxRuntimeGenAI.OnnxRuntimeGenAIException: Error opening c:\Temp\LLMs\ONNX\phi-3.5-mini-instruct\cpu_and_mobile\cpu-int4-awq-block-128-acc-level-4\genai_config.json
+   at Microsoft.ML.OnnxRuntimeGenAI.Model..ctor(String modelPath)
+   at Microsoft.ML.OnnxRuntimeGenAI.OnnxRuntimeGenAIChatClient..ctor(String modelPath, OnnxRuntimeGenAIChatClientOptions options)
+   at Microsoft.SemanticKernel.Connectors.Onnx.OnnxRuntimeGenAIChatCompletionService.GetChatCompletionService()
+   at Microsoft.SemanticKernel.Connectors.Onnx.OnnxRuntimeGenAIChatCompletionService.GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings executionSettings, Kernel kernel, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OnnxWithKernelAndChatHistory\Program.cs:line 56
+   at Program.<Main>(String[] args)"
+"OpenAIAssistantAgent\12.10 OpenAIAssistantAgent.csproj","Failed","-532462766","7,4","Unhandled exception. System.ClientModel.ClientResultException: HTTP 400 (invalid_request_error: unsupported_model)
+Parameter: model
+
+The requested model 'gpt-5.4' cannot be used with the Assistants API.
+   at OpenAI.ClientPipelineExtensions.ProcessMessageAsync(ClientPipeline pipeline, PipelineMessage message, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(BinaryContent content, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(String model, AssistantCreationOptions options, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIAssistantAgent\Program.cs:line 11
+   at Program.<Main>(String[] args)"
+"OpenAIAssistantAgentFromYaml\12.21 OpenAIAssistantAgentFromYaml.csproj","Failed","-532462766","5,8","l'.
+File name: 'C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIAssistantAgentFromYaml\ChatCompletionAgent.yaml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Int32 bufferSize)
+   at System.IO.File.ReadAllText(String path, Encoding encoding)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIAssistantAgentFromYaml\Program.cs:line 25
+   at Program.<Main>(String[] args)"
+"OpenAIAssistantAgentWithCodeInterpreter\12.11 OpenAIAssistantAgentWithCodeInterpreter.csproj","Failed","-532462766","9","entResultException: HTTP 400 (invalid_request_error: unsupported_model)
+Parameter: model
+
+The requested model 'gpt-5.4' cannot be used with the Assistants API.
+   at OpenAI.ClientPipelineExtensions.ProcessMessageAsync(ClientPipeline pipeline, PipelineMessage message, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(BinaryContent content, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(String model, AssistantCreationOptions options, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.OpenAI.AssistantClientExtensions.CreateAssistantAsync(AssistantClient client, String modelId, String name, String description, String instructions, Boolean enableCodeInterpreter, IReadOnlyList`1 codeInterpreterFileIds, Boolean enableFileSearch, String vectorStoreId, Nullable`1 temperature, Nullable`1 topP, AssistantResponseFormat responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIAssistantAgentWithCodeInterpreter\Program.cs:line 12
+   at Program.<Main>(String[] args)"
+"OpenAIAssistantAgentWithFileSearch\12.13 OpenAIAssistantAgentWithFileSearch.csproj","Failed","-532462766","7,5","l.ClientResultException: HTTP 400 (invalid_request_error: unsupported_model)
+Parameter: model
+
+The requested model 'gpt-5.4' cannot be used with the Assistants API.
+   at OpenAI.ClientPipelineExtensions.ProcessMessageAsync(ClientPipeline pipeline, PipelineMessage message, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(BinaryContent content, RequestOptions options)
+   at OpenAI.Assistants.AssistantClient.CreateAssistantAsync(String model, AssistantCreationOptions options, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Agents.OpenAI.AssistantClientExtensions.CreateAssistantAsync(AssistantClient client, String modelId, String name, String description, String instructions, Boolean enableCodeInterpreter, IReadOnlyList`1 codeInterpreterFileIds, Boolean enableFileSearch, String vectorStoreId, Nullable`1 temperature, Nullable`1 topP, AssistantResponseFormat responseFormat, IReadOnlyDictionary`2 metadata, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIAssistantAgentWithFileSearch\Program.cs:line 12
+   at Program.<Main>(String[] args)"
+"OpenAIResponseAgent\12.13a OpenAIResponseAgent.csproj","Failed","1","1,3","Unhandled exception: An error occurred trying to start process 'C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIResponseAgent\bin\Debug\net10.0\12.13a OpenAIResponseAgent.exe' with working directory 'C:\Users\danie\source\repos\Apex.SemanticKernelInAction\OpenAIResponseAgent'. The system cannot find the file specified."
+"Plugins\Plugins.csproj","NotRunnable",,"0","OutputType="
+"PluginsTesting\6.5 PluginsTesting.csproj","NotRunnable",,"0","OutputType="
+"PluginsWithBuiltIn\6.4a PluginsWithBuiltIn.csproj","Failed","-532462766","8","en)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.RenderPromptAsync(Kernel kernel, KernelArguments arguments, Boolean isStreaming, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromPrompt.InvokeCoreAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\PluginsWithBuiltIn\Program.cs:line 39
+   at Program.<Main>(String[] args)"
+"PluginsWithFunctionChaining\6.3a PluginsWithFunctionChaining.csproj","Passed","0","6","[01:38:53:754] SENSORS: READING Droplet Level: High
+[01:38:54:307] RAIN DETECTOR: Starting wipers for droplet level: High.
+RAIN THREAT REPORT:
+  Droplet level: High
+  Wipper status: Wipers have started for droplet level: High.
+[01:38:55:343] SENSORS: READING Temperature: -8 Celsius degrees.
+[01:38:55:854] MOTORS: Forward: 10m
+FIRE THREAT REPORT:
+  Temperature: -8 Celsius degrees
+  Movement: moved forward for 10 meters."
+"PluginsWithFunctionNesting\6.3b PluginsWithFunctionNesting.csproj","Passed","0","6,1","[01:38:59:912] SENSORS: READING Droplet Level: None
+[01:39:00:456] RAIN DETECTOR: Stopping wipers.
+RAIN THREAT REPORT:
+  Droplet level: None
+  Wipper status: Wipers have stopped.
+[01:39:01:489] SENSORS: READING Temperature: -20 Celsius degrees.
+[01:39:01:993] MOTORS: Forward: 10m
+FIRE THREAT REPORT:
+  Temperature: -20 Celsius degrees
+  Movement: moved forward for 10 meters."
+"PluginsWithHybridFunctions\6.2c PluginsWithHybridFunctions.csproj","Passed","0","4,6","Kernel plugins and functions and their parameters:
+  robot_car_plugin: Robot car plugin. (2):
+    BreakdownComplexCommands: It breaks down the given complex command into a step-by-step sequence of basic moves. | output parameter schema: , input parameters:
+      basic_moves: {""type"":""string""}
+      input: {""type"":""string""}
+    CalibrateSensors: Calibrates all sensors on the robot car. | output parameter schema: {""type"":""string""}, input parameters:
+[39:07] CALIBRATING sensors...
+RENDERED PROMPT: You are an AI assistant controlling a robot car.
+Status: All sensors have been calibrated.
+
+Provide only the sequence of the basic movements, without any additional explanations.
+    
+Complex command: There is a tree directly in front of the car. Avoid it and then come back to the original path..
+RESPONSE: TURN_LEFT
+MOVE_FORWARD
+TURN_RIGHT
+MOVE_FORWARD
+TURN_RIGHT
+MOVE_FORWARD
+TURN_LEFT"
+"PluginsWithNativeFunctions\6.2a PluginsWithNativeFunctions.csproj","Passed","0","5","Kernel plugins and functions and their parameters:
+  sensors_plugin: Robot car sensors plugin. (2):
+    read_temperature: Use thermal sensors to detect abnormal heat levels. | output parameter schema: {""type"":""integer""}, input parameters:
+    read_wind_speed: Reads and returns the wind speed in kmph. | output parameter schema: {""type"":""integer""}, input parameters:
+  maintenance_plugin: Robot car maintenance plugin. (1):
+    calibrate_sensors: Calibrates all sensors on the robot car. | output parameter schema: {""type"":""string""}, input parameters:
+[39:11] SENSOR READING: Temperature: 59 Celsius degrees.
+[39:11] SENSOR READING: Wind speed: 46 kmph
+[39:11] CALIBRATING sensors...
+RENDERED PROMPT: You are an AI assistant controlling a robot car.
+
+Temperature: 59
+Wind speed: 46
+Sensors status: All sensors have been calibrated.
+
+Provide a report with the previous findings.
+RESPONSE: Robot Car Status Report
+
+- Temperature: 59
+- Wind speed: 46
+- Sensors status: All sensors have been calibrated
+
+Summary:
+Previous findings indicate normal sensor readiness, with all sensors calibrated and operational. Environmental readings show a temperature of 59 and wind speed of 46."
+"PluginsWithOpenApiFunctions\6.2d PluginsWithOpenApiFunctions.csproj","Failed","-532462766","10,6","ndWithSuccessCheckAsync(HttpClient client, HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Http.HttpClientExtensions.SendWithSuccessCheckAsync(HttpClient client, HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Plugins.OpenApi.DocumentLoader.LoadDocumentResponseFromUriAsync(Uri uri, ILogger logger, HttpClient httpClient, AuthenticateRequestAsyncCallback authCallback, String userAgent, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.Plugins.OpenApi.DocumentLoader.LoadDocumentFromUriAsync(Uri uri, ILogger logger, HttpClient httpClient, AuthenticateRequestAsyncCallback authCallback, String userAgent, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.OpenApiKernelExtensions.CreatePluginFromOpenApiAsync(Kernel kernel, String pluginName, Uri uri, OpenApiFunctionExecutionParameters executionParameters, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\PluginsWithOpenApiFunctions\Program.cs:line 22
+   at Program.<Main>(String[] args)"
+"PluginsWithSemanticFunctions\6.2b PluginsWithSemanticFunctions.csproj","Passed","0","6,2","Kernel plugins and functions and their parameters:
+  commands_from_directory_plugin:  (1):
+    BreakdownComplexCommands: It breaks down the given complex command into a step-by-step sequence of basic moves. | output parameter schema: , input parameters:
+      input: {""description"":""The complex command to break down into a step-by-step sequence of basic moves."",""type"":""string""}
+      basic_moves: {""description"":""The basic moves that the complex command is broken down into."",""type"":""string""}
+  commands_from_prompt_plugin: Robot car commands plugin. (2):
+    breakdown_complex_commands_from_prompt: It breaks down the given complex command into a step-by-step sequence of basic moves. | output parameter schema: , input parameters:
+      input: {""type"":""string""}
+    extract_trending_direction_from_prompt: It extracts the net trending direction from the given complex command. | output parameter schema: , input parameters:
+      input: {""type"":""string""}
+RESPONSE: backward, stop
+RESPONSE: backward"
+"RAGWithBingExplicitCalling\10.06 RAGWithBingExplicitCalling.csproj","Passed","0","6,1","Assistant > What would you like to know? (hit 'enter' key to end the session)
+User > Assistant > `System.String[]` is the .NET type name for **an array of strings**.
+
+If you expected actual text values but only see `System.String[]`, that usually means the array object was converted to a string instead of its contents being displayed. For example, you would need to join or enumerate the array values to see them.
+
+Example:
+- Type: `System.String[]`
+- Meaning: `string[]`
+
+If you want, I can also explain why this appears or how to display the contents properly in C#, PowerShell, or another language."
+"RAGWithBingFunctionCalling\10.06a RAGWithBingFunctionCalling.csproj","Passed","0","6,5","Assistant > What would you like to know? (hit 'enter' key to end the session)
+User > Assistant > Understood ΓÇö IΓÇÖll use web search for details when available.
+
+For this turn, IΓÇÖm unable to access live web results, so IΓÇÖll answer based on my built-in knowledge and clearly note when something may need current verification. If you want, send me the topic or question and IΓÇÖll help right away."
+"RAGWithInMemoryAndFunctionCalling\10.10 RAGWithInMemoryFunctionCalling.csproj","Passed","0","5","f 5
+  Upserted text block with key '1ff6f9d9-9bcb-4c23-8a1e-368d88d01267'
+  Processing paragraph 2 of 5
+  Upserted text block with key '0d1b0959-d3a3-41fd-ba52-53794201bd27'
+  Processing paragraph 3 of 5
+  Upserted text block with key '49b70f49-71ff-4631-9054-c3a0e4012c48'
+  Processing paragraph 4 of 5
+  Upserted text block with key '9608700c-1265-4c61-b04f-fa6ce3a9ad56'
+  Processing paragraph 5 of 5
+  Upserted text block with key 'a2cf35d0-ad38-4055-b091-e54b013e6247'
+Text weather1.txt loading complete
+Loading weather2.txt...
+  Processing paragraph 1 of 5
+  Upserted text block with key 'ac722ce0-4581-44b2-984f-924e237c94df'
+  Processing paragraph 2 of 5
+  Upserted text block with key 'bb5e0175-5159-4d13-84ba-6744696246ae'
+  Processing paragraph 3 of 5
+  Upserted text block with key 'f88741a4-854b-40a2-b1c6-4f736af18900'
+  Processing paragraph 4 of 5
+  Upserted text block with key '21f5abb2-dc53-4edd-850c-44dbe980e452'
+  Processing paragraph 5 of 5
+  Upserted text block with key '81724c35-6986-441e-a086-eeecb7b6809f'
+Text weather2.txt loading complete
+Assistant > What would you like to know from the loaded files? (hit 'enter' key to end the session)
+
+User >"
+"RAGWithInMemoryExplicitCalling\10.09 RAGWithInMemoryExplicitCalling.csproj","Passed","0","9,9","acc36c1f6539'
+  Processing paragraph 11 of 20
+  Upserted text block with key '53be3a5b-1067-4c59-9be8-ba79c7a397f1'
+  Processing paragraph 12 of 20
+  Upserted text block with key 'a6db27e2-1e7f-40ce-9738-fee13f8e74ec'
+  Processing paragraph 13 of 20
+  Upserted text block with key '132b15d7-a4e4-4372-b6b4-b2e2ba659f46'
+  Processing paragraph 14 of 20
+  Upserted text block with key '92dcf879-f78a-4eca-9e3a-a11619c53162'
+  Processing paragraph 15 of 20
+  Upserted text block with key '6cfff8ae-5a34-4725-8a64-5bcbcca1ad26'
+  Processing paragraph 16 of 20
+  Upserted text block with key '98283966-3aa9-4158-aec5-78d8fe56a726'
+  Processing paragraph 17 of 20
+  Upserted text block with key '00f69690-5da4-4841-a313-0dafeeffc2d3'
+  Processing paragraph 18 of 20
+  Upserted text block with key '8d35a8f6-7c75-4cd8-afd4-7ab59560f341'
+  Processing paragraph 19 of 20
+  Upserted text block with key 'b58758b5-666a-4240-96a3-e00e4512b342'
+  Processing paragraph 20 of 20
+  Upserted text block with key '808e3cea-4123-4f62-82f3-bac43ff94a7b'
+Text weather2.txt loading complete
+Assistant > What would you like to know from the loaded texts? (hit 'enter' key to end the session)
+
+User >"
+"RAGWithInMemoryExplicitCallingTextAndPdf\10.13 RAGWithInMemoryExplicitCallingTextAndPdf.csproj","Passed","0","21,7","d text block with key '244809c2-db09-44d0-b3bc-9d65bde27b94'
+  Read page 4 of 6
+    Read text block of 152 chars in page 4 of 6
+    Upserted text block with key '180e2936-c229-4f6f-8299-9799f37ae21c'
+  Read page 5 of 6
+    Read text block of 178 chars in page 5 of 6
+    Upserted text block with key '016f03f9-587a-404e-877a-a9ddda65c1a6'
+  Read page 6 of 6
+    Read text block of 186 chars in page 6 of 6
+    Upserted text block with key 'cac37709-4818-4f2a-a746-190dddd1d980'
+PDF Weather2.pdf loading complete
+Loading weather1.txt...
+  Processing paragraph 1 of 5
+  Upserted text block with key '238a6564-631f-4937-aab3-c146655baa68'
+  Processing paragraph 2 of 5
+  Upserted text block with key 'a18fe231-6f44-4568-a16d-e1edfe9ee5cb'
+  Processing paragraph 3 of 5
+  Upserted text block with key '1ce18368-fecf-4ac9-8ed1-0d8e938bc830'
+  Processing paragraph 4 of 5
+  Upserted text block with key '4c4dde5b-5801-4184-8012-b3dc7e4262a6'
+  Processing paragraph 5 of 5
+  Upserted text block with key 'af673fd8-655c-4902-9f59-3ebf290bce4a'
+Text weather1.txt loading complete
+Assistant > Ask me anything from the loaded documents. (hit 'enter' key to end the chat session)
+
+User >"
+"RAGWithPluginKernelMemory\10.15 RAGWithPluginKernelMemory.csproj","Failed","-532462766","13,7",", String documentId, String index, TagCollectionWrapper tags, ListOfStringsWrapper steps, ILoggerFactory loggerFactory, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunctionFromMethod.<>c.<<GetReturnValueMarshalerDelegate>b__25_4>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.KernelFunction.<>c__DisplayClass32_0.<<InvokeAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.SemanticKernel.Kernel.InvokeFilterOrFunctionAsync(NonNullCollection`1 functionFilters, Func`2 functionCallback, FunctionInvocationContext context, Int32 index)
+   at Microsoft.SemanticKernel.Kernel.OnFunctionInvocationAsync(KernelFunction function, KernelArguments arguments, FunctionResult functionResult, Boolean isStreaming, Func`2 functionCallback, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.KernelFunction.InvokeAsync(Kernel kernel, KernelArguments arguments, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\RAGWithPluginKernelMemory\Program.cs:line 58
+   at Program.<Main>(String[] args)"
+"RAGWithServerlessKernelMemory\10.14 RAGWithServerlessKernelMemory.csproj","Failed","-532462766","11,2","enAI.ClientCore.GetEmbeddingsAsync(String targetModel, IList`1 data, Kernel kernel, Nullable`1 dimensions, CancellationToken cancellationToken)
+   at Microsoft.SemanticKernel.AI.Embeddings.TextEmbeddingGenerationExtensions.GenerateEmbeddingAsync(ITextEmbeddingGenerationService generator, String text, CancellationToken cancellationToken)
+   at Microsoft.KernelMemory.Handlers.GenerateEmbeddingsHandler.GenerateEmbeddingsOneAtATimeAsync(DataPipeline pipeline, ITextEmbeddingGenerator generator, List`1 partitions, CancellationToken cancellationToken)
+   at Microsoft.KernelMemory.Handlers.GenerateEmbeddingsHandler.InvokeAsync(DataPipeline pipeline, CancellationToken cancellationToken)
+   at Microsoft.KernelMemory.Pipeline.InProcessPipelineOrchestrator.RunPipelineAsync(DataPipeline pipeline, CancellationToken cancellationToken)
+   at Microsoft.KernelMemory.Pipeline.BaseOrchestrator.ImportDocumentAsync(String index, DocumentUploadRequest uploadRequest, IContext context, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\danie\source\repos\Apex.SemanticKernelInAction\RAGWithServerlessKernelMemory\Program.cs:line 22
+   at Program.<Main>(String[] args)"
+"RAGWithTextFile\10.03 RAGWithTextFile.csproj","Passed","0","1,5","Loading weather1.txt...
+Text weather1.txt loading complete
+Loading weather2.txt...
+Text weather2.txt loading complete
+Assistant > Ask me about weather details between 1 and 10 June. (hit 'enter' key to end the session)
+User >"
+"RAGWithTextFilePlugin\10.05 RAGWithTextFilePlugin.csproj","Passed","0","2,8","Assistant > Ask me about weather details between 1 and 10 June. (hit 'enter' key to end the session)
+User >"
+"TextGeneration\2.1 TextGeneration.csproj","Passed","0","6,9","turn
+ right
+
+
+forward
+
+
+turn
+ left
+
+
+forward
+
+
+turn
+ left
+
+
+forward
+
+
+turn
+ right
+
+
+
+turn
+ right
+
+
+forward
+
+
+turn
+ left
+
+
+forward
+
+
+turn
+ left
+
+
+forward
+
+
+turn
+ right"
+"TextGenerationWithKernelArguments\2.1a TextGenerationWithKernelArguments.csproj","Passed","0","3,9","turn right
+forward
+turn left
+forward
+turn left
+forward
+turn right"

@@ -28,13 +28,13 @@ KernelFunction[] subset = [left, right];
 var executionSettings = new OpenAIPromptExecutionSettings
 {
     // FunctionChoiceBehavior determines how the AI interacts with functions:
-    // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // AI can choose to call functions or respond with text
+    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // AI can choose to call functions or respond with text
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto([]), // AI can choose, but no functions are available
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(subset), // AI can choose, but only from the subset
-    //FunctionChoiceBehavior = FunctionChoiceBehavior.Required(), // AI must call a function
+    // FunctionChoiceBehavior = FunctionChoiceBehavior.Required(), // AI must call a function
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Required([]), // AI must call a function, but none are available
     // FunctionChoiceBehavior = FunctionChoiceBehavior.Required(subset), // AI must call a function from the subset
-     FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // Function calling is disabled
+    // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(), // Function calling is disabled
     // FunctionChoiceBehavior = FunctionChoiceBehavior.None([]), // Function calling is disabled, no functions available
     // FunctionChoiceBehavior = FunctionChoiceBehavior.None(subset), // Function calling is disabled, subset ignored
     // FunctionChoiceBehavior = null, // No specific behavior is defined
@@ -46,18 +46,24 @@ history.AddSystemMessage("""
     You are an AI assistant controlling a robot car.
     The available robot car permitted moves are forward, backward, turn left, turn right, and stop.
     """);
-history.AddUserMessage("""
-    You have to break down the provided complex commands into basic moves you know.
-    Respond only with the permitted moves, without any additional explanations.
-    Use the tools you know to perform the moves.
+//history.AddUserMessage("""
+//    You have to break down the provided complex commands into basic moves you know.
+//    Respond only with the permitted moves, without any additional explanations.
+//    Use the tools you know to perform the moves.
 
-    But first set initial state to: {{MotorsPlugin-stop}}
-    
-    Complex command:
-    "There is a tree directly in front of the car. Avoid it and then come back to the original path."
-    """);
+//    But first set initial state to: {{MotorsPlugin-stop}}
 
-//Respond only with what tools would you call to perform the moves, without any additional explanations.
+//    Complex command:
+//    "There is a tree directly in front of the car. Avoid it and then come back to the original path."
+//    """);
+//history.AddUserMessage("""
+//    You have to break down the provided complex commands into basic moves you know.
+//    Respond only with the permitted moves, without any additional explanations.
+//    Use the tools you know to perform the moves.
+
+//    Complex command:
+//    "Do nothing. No stop, no movement."
+//    """); // let's see what AI model selects when Auto, then what selects when Required
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var response = await chat.GetChatMessageContentAsync(history, executionSettings, kernel);

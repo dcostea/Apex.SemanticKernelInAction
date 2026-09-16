@@ -13,7 +13,7 @@ public class MotorsPlugin
     {
         Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] MOTORS: Backward: {distance}m");
         await Task.Delay(Delay);
-        return await Task.FromResult($"moved backward for {(distance == null ? "a few " : distance)} meters.");
+        return await Task.FromResult($"moved backward for {distance} meters.");
     }
 
     [KernelFunction("forward"), Description("Basic command: Moves the robot car forward.")]
@@ -21,7 +21,7 @@ public class MotorsPlugin
     {
         Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] MOTORS: Forward: {distance}m");
         await Task.Delay(Delay);
-        return await Task.FromResult($"moved forward for {(distance == null ? "a few " : distance)} meters.");
+        return await Task.FromResult($"moved forward for {distance} meters.");
     }
 
     [KernelFunction("stop"), Description("Basic command: Stops the robot car.")]

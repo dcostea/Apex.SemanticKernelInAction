@@ -7,11 +7,10 @@ using OpenAI.Responses;
 
 var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-var client = new OpenAIResponseClient(
-    configuration["OpenAI:ModelId"],
+var client = new ResponsesClient(
     configuration["OpenAI:ApiKey"]);
 
-OpenAIResponseAgent agent = new(client)
+OpenAIResponseAgent agent = new(client, configuration["OpenAI:ModelId"])
 {
     Name = "RobotCarAgent",
     Instructions = """

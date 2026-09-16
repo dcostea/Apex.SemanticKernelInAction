@@ -1,37 +1,57 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
+﻿using Chatbot.Options;
+using Chatbot.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+var builder = Host.CreateApplicationBuilder(args);
+builder.Configuration.AddUserSecrets<Program>(optional: true);
 
-var kernel = Kernel.CreateBuilder()
-//.AddAzureOpenAIChatCompletion(
-//configuration["AzureOpenAI:DeploymentName"]!,
-//configuration["AzureOpenAI:Endpoint"]!,
-//configuration["AzureOpenAI:ApiKey"]!)
-.AddOpenAIChatCompletion(
-     configuration["OpenAI:ModelId"]!,
-     configuration["OpenAI:ApiKey"]!)
-.Build();
+builder.Services
+    .AddOptions<AiProvidersOptions>()
+    .Bind(builder.Configuration.GetSection("AiProviders"))
+    .Configure(options =>
+        builder.Configuration.GetSection("OpenAI").Bind(options.OpenAI))
+    .Validate(options =>
+    {
+        if (options.UseAzureOpenAI)
+        {
+            return !string.IsNullOrWhiteSpace(options.AzureOpenAI.DeploymentName)
+                && !string.IsNullOrWhiteSpace(options.AzureOpenAI.Endpoint)
+                && !string.IsNullOrWhiteSpace(options.AzureOpenAI.ApiKey);
+        }
 
-var kernelArguments = new KernelArguments(new OpenAIPromptExecutionSettings
+        return !string.IsNullOrWhiteSpace(options.OpenAI.ModelId)
+            && !string.IsNullOrWhiteSpace(options.OpenAI.ApiKey);
+    }, "Missing required AI provider configuration values.")
+    .ValidateOnStart();
+
+builder.Services
+    .AddOptions<ChatbotOptions>()
+    .Bind(builder.Configuration.GetSection("Chatbot"))
+    .ValidateDataAnnotations()
+    .Validate(options => !string.IsNullOrWhiteSpace(options.SystemPrompt), "Chatbot:SystemPrompt is required.")
+    .ValidateOnStart();
+
+builder.Services.AddSingleton<IKernelFactory, KernelFactory>();
+builder.Services.AddSingleton<ConsoleChatbotRunner>();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSimpleConsole(console =>
 {
-    Temperature = 0.1,
-    ChatSystemPrompt = """
-        You are an AI assistant controlling a robot car capable of performing basic moves: forward, backward, turn left, turn right, and stop.
-        You have to break down the provided complex commands into basic moves you know.
-        Respond only with the permitted moves, without any additional explanations.
-        """
+    console.TimestampFormat = "HH:mm:ss ";
+    console.SingleLine = true;
 });
 
-while (true)
+using var host = builder.Build();
+
+using var cancellationTokenSource = new CancellationTokenSource();
+Console.CancelKeyPress += (_, args) =>
 {
-    Console.Write(" User >>> ");
-    var prompt = Console.ReadLine(); // e.g. "There is a tree directly in front of the car. Avoid it and then come back to the original path."
-    if (string.IsNullOrEmpty(prompt)) break;
+    args.Cancel = true;
+    cancellationTokenSource.Cancel();
+};
 
-    var response = await kernel.InvokePromptAsync(prompt, kernelArguments);
-
-    Console.WriteLine($"  Bot >>> {response}");
-}
+var runner = host.Services.GetRequiredService<ConsoleChatbotRunner>();
+await runner.RunAsync(cancellationTokenSource.Token);

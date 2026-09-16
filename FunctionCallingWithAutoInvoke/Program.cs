@@ -21,15 +21,15 @@ var kernel = builder.Build();
 
 kernel.ImportPluginFromType<MotorsPlugin>();
 
-var behaviorOptions = new FunctionChoiceBehaviorOptions
-{
-    AllowConcurrentInvocation = true,
-    AllowParallelCalls = true
-};
+//var behaviorOptions = new FunctionChoiceBehaviorOptions
+//{
+//    AllowConcurrentInvocation = true,
+//    AllowParallelCalls = true
+//};
 
 var executionSettings = new OpenAIPromptExecutionSettings
 {
-    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(options: behaviorOptions, autoInvoke: false),
+    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(/*options: behaviorOptions,*/ autoInvoke: false),
 };
 
 var history = new ChatHistory();

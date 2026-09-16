@@ -1,5 +1,4 @@
 ﻿using Plugins;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -7,20 +6,14 @@ using Microsoft.SemanticKernel;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 
-var configuration = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-
-var kernelBuilder = Kernel.CreateBuilder();
-kernelBuilder.AddAzureOpenAIChatCompletion(
-    configuration["AzureOpenAI:DeploymentName"]!,
-    configuration["AzureOpenAI:Endpoint"]!,
-    configuration["AzureOpenAI:ApiKey"]!);
-kernelBuilder.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Trace));
-var kernel = kernelBuilder.Build();
+// These native plugin functions do not require an AI service or credentials.
+var kernel = new Kernel();
 
 kernel.Plugins.AddFromType<MotorsPlugin>();
 //kernel.Plugins.AddFromType<SensorsPlugin>();
 
 var builder = Host.CreateEmptyApplicationBuilder(null);
+builder.Logging.AddConsole(options => options.LogToStandardErrorThreshold = LogLevel.Trace);
 
 McpServerOptions options = new()
 {
@@ -40,8 +33,6 @@ builder.Services
         }
     )
     .WithStdioServerTransport()
-    //.WithStreamServerTransport()  // Enables Streamed HTTP transport. Important: it needs to run in a webapi application!
-    //.WithHttpTransport()          // Enables HTTP transport. Important: it needs to run in a webapi application!
     .WithPromptsFromAssembly()
     .WithResourcesFromAssembly()
     .WithToolsFromAssembly(); // scans the calling assembly for MCP tools
@@ -55,17 +46,17 @@ foreach (var plugin in kernel.Plugins)
         {
             var mcpTool = McpServerTool.Create(function);
             builder.Services.AddSingleton(mcpTool);
-            Console.WriteLine($"Registered MCP tool: {function.Name}");
+            Console.Error.WriteLine($"Registered MCP tool: {function.Name}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Failed to register MCP tool {function.Name}: {ex.Message}");
+            Console.Error.WriteLine($"Failed to register MCP tool {function.Name}: {ex.Message}");
         }
     }
 }
 
 var app = builder.Build();
 
-Console.WriteLine("MCP Server is running...");
+Console.Error.WriteLine("MCP Server is running...");
 
 await app.RunAsync();

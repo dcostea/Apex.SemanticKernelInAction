@@ -8,16 +8,17 @@ using Microsoft.Extensions.Logging;
 using ModelContextProtocol;
 using ModelContextProtocol.Client;
 
-var mcpServerProjectPath = @"..\..\..\..\McpServerSample\16.01 McpServerSample.csproj";    
+var mcpServerProjectPath = @"..\..\..\..\McpServerSample\16.01 McpServerSample.csproj";
 
 var clientTransport = new StdioClientTransport(new StdioClientTransportOptions
 {
     Name = "MotorsServer",
     Command = "dotnet",
-    Arguments = ["run", "--project", mcpServerProjectPath, "--no-build"],
+    WorkingDirectory = AppContext.BaseDirectory,
+    Arguments = ["run", "--no-launch-profile", "--project", mcpServerProjectPath],
 });
 
-var client = await McpClientFactory.CreateAsync(clientTransport);
+await using var client = await McpClient.CreateAsync(clientTransport);
 
 /// Using native functions exponsed by MCP Server
 Console.WriteLine("AVAILABLE TOOLS:");

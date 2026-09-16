@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "16.01 McpServerSample": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64641;http://localhost:64642"
+    }
+  }
+}

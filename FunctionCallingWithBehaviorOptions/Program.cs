@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
 using System.Diagnostics;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Plugins.Native;
@@ -45,14 +44,6 @@ var history = new ChatHistory();
 history.AddSystemMessage("""
     You are an AI assistant controlling a robot car.
     """);
-//history.AddUserMessage("""
-//    Your task is to break down complex commands into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
-//    Respond only with the permitted moves, without any additional explanations.
-//    Use the tools you know to perform the moves.
-
-//    Complex command:
-//    "Go in a shape of a square."
-//    """);
 history.AddUserMessage("""
     Your task is to break down complex commands into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
     Respond only with the permitted moves, without any additional explanations.
@@ -61,6 +52,14 @@ history.AddUserMessage("""
     Complex command:
     "There is a tree directly in front of the car. Avoid it and then come back to the original path."
     """);
+//history.AddUserMessage("""
+//    Your task is to break down complex commands into a sequence of these basic moves: forward, backward, turn left, turn right, and stop.
+//    Respond only with the permitted moves, without any additional explanations.
+//    Use the tools you know to perform the moves.
+
+//    Complex command:
+//    "Go in a shape of a square."
+//    """);
 
 var sw = new Stopwatch();
 sw.Start();
