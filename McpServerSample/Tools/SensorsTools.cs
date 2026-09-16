@@ -11,7 +11,7 @@ public static class SensorsTools
     {
         var random = new Random();
         var temperature = random.Next(-20, 100); // Simulate temperature reading
-        Console.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] SENSORS: READING Temperature: {temperature} Celsius degrees.");
+        Console.Error.WriteLine($"[{DateTime.Now:hh:mm:ss:fff}] SENSORS: READING Temperature: {temperature} Celsius degrees.");
         return await Task.FromResult(temperature);
     }
 }
